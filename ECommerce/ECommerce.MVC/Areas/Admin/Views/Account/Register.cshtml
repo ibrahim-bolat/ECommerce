@@ -1,0 +1,58 @@
+﻿@model RegisterViewModel
+@{
+    Layout = "Account/_AccountLayout";
+    ViewBag.Title = "Register";
+}
+<div class="login-form">
+    <form asp-area="Admin" asp-controller="Account" asp-action="Register" method="post">
+        <div class="form-group row">
+            <label asp-for="FirstName" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="FirstName" class="form-control"/>
+            </div>
+            <span asp-validation-for="FirstName" class="offset-sm-2 col-sm-10 text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <label asp-for="LastName" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="LastName" class="form-control"/>
+            </div>
+            <span asp-validation-for="LastName" class="offset-sm-2 col-sm-10 text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <label asp-for="UserName" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="UserName" class="form-control"/>
+            </div>
+            <span asp-validation-for="UserName" class="offset-sm-2 col-sm-10 text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <label asp-for="Email" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="Email" class="form-control"/>
+            </div>
+            <span asp-validation-for="Email" class="offset-sm-2 col-sm-10 text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <label asp-for="Password" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="Password" class="form-control"/>
+            </div>
+            <span asp-validation-for="Password" class="offset-sm-2 col-sm-10 text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <label asp-for="RePassword" class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <input asp-for="RePassword" class="form-control"/>
+            </div>
+            <span asp-validation-for="RePassword" class="offset-sm-2 col-sm-10 text-danger"></span>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox"><a href="#" target="_blank">Kullanıcı sözleşmesini</a> okudum ve kabul ediyorum.</label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Kaydol</button>
+        <div class="register-link m-t-15 text-center">
+            <p>Hesabın var mı? <a asp-area="Admin" asp-controller="Account" asp-action="Login"> Giriş Yap</a></p>
+        </div>
+    </form>
+</div>

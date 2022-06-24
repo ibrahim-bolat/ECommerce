@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "C354Z69SoPhT+dSkNtAV752zBmQdyQcF13NuwzzEISCNhlQ0MbQJQ0fZ7P+crgFrEKIO+8pF/8qHVr/6dGt/ew==",
+  "success": true,
+  "projectFilePath": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.Shared/ECommerce.Shared.csproj",
+  "expectedPackageFiles": [
+    "/home/ibrahim.bolat/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/6.0.0/microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "/home/ibrahim.bolat/.nuget/packages/microsoft.extensions.options/6.0.0/microsoft.extensions.options.6.0.0.nupkg.sha512",
+    "/home/ibrahim.bolat/.nuget/packages/microsoft.extensions.primitives/6.0.0/microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "/home/ibrahim.bolat/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,419 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.MVC/ECommerce.MVC.csproj": {}
+  },
+  "projects": {
+    "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.Business/ECommerce.Business.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.Business/ECommerce.Business.csproj",
+        "projectName": "ECommerce.Business",
+        "projectPath": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.Business/ECommerce.Business.csproj",
+        "packagesPath": "/home/ibrahim.bolat/.nuget/packages/",
+        "outputPath": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.Business/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/ibrahim.bolat/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.DataAccess/ECommerce.DataAccess.csproj": {
+                "projectPath": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.DataAccess/ECommerce.DataAccess.csproj"
+              },
+              "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.Entities/ECommerce.Entities.csproj": {
+                "projectPath": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.Entities/ECommerce.Entities.csproj"
+              },
+              "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.Shared/ECommerce.Shared.csproj": {
+                "projectPath": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.Shared/ECommerce.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[11.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/ibrahim.bolat/.dotnet/sdk/6.0.301/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.DataAccess/ECommerce.DataAccess.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.DataAccess/ECommerce.DataAccess.csproj",
+        "projectName": "ECommerce.DataAccess",
+        "projectPath": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.DataAccess/ECommerce.DataAccess.csproj",
+        "packagesPath": "/home/ibrahim.bolat/.nuget/packages/",
+        "outputPath": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.DataAccess/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/ibrahim.bolat/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.Entities/ECommerce.Entities.csproj": {
+                "projectPath": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.Entities/ECommerce.Entities.csproj"
+              },
+              "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.Shared/ECommerce.Shared.csproj": {
+                "projectPath": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.Shared/ECommerce.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[6.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.5, )"
+            },
+            "Microsoft.Extensions.Identity.Core": {
+              "target": "Package",
+              "version": "[6.0.5, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[6.0.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/ibrahim.bolat/.dotnet/sdk/6.0.301/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.Entities/ECommerce.Entities.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.Entities/ECommerce.Entities.csproj",
+        "projectName": "ECommerce.Entities",
+        "projectPath": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.Entities/ECommerce.Entities.csproj",
+        "packagesPath": "/home/ibrahim.bolat/.nuget/packages/",
+        "outputPath": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.Entities/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/ibrahim.bolat/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.Shared/ECommerce.Shared.csproj": {
+                "projectPath": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.Shared/ECommerce.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.5, )"
+            },
+            "Microsoft.Extensions.Identity.Core": {
+              "target": "Package",
+              "version": "[6.0.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/ibrahim.bolat/.dotnet/sdk/6.0.301/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.MVC/ECommerce.MVC.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.MVC/ECommerce.MVC.csproj",
+        "projectName": "ECommerce.MVC",
+        "projectPath": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.MVC/ECommerce.MVC.csproj",
+        "packagesPath": "/home/ibrahim.bolat/.nuget/packages/",
+        "outputPath": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.MVC/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/ibrahim.bolat/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.Business/ECommerce.Business.csproj": {
+                "projectPath": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.Business/ECommerce.Business.csproj"
+              },
+              "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.DataAccess/ECommerce.DataAccess.csproj": {
+                "projectPath": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.DataAccess/ECommerce.DataAccess.csproj"
+              },
+              "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.Entities/ECommerce.Entities.csproj": {
+                "projectPath": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.Entities/ECommerce.Entities.csproj"
+              },
+              "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.Shared/ECommerce.Shared.csproj": {
+                "projectPath": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.Shared/ECommerce.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[11.0.3, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.5, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
+              "target": "Package",
+              "version": "[6.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[6.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.5, )"
+            },
+            "Microsoft.Extensions.Identity.Core": {
+              "target": "Package",
+              "version": "[6.0.5, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[6.0.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/ibrahim.bolat/.dotnet/sdk/6.0.301/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.Shared/ECommerce.Shared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.Shared/ECommerce.Shared.csproj",
+        "projectName": "ECommerce.Shared",
+        "projectPath": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.Shared/ECommerce.Shared.csproj",
+        "packagesPath": "/home/ibrahim.bolat/.nuget/packages/",
+        "outputPath": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.Shared/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/ibrahim.bolat/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.Extensions.Options": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/ibrahim.bolat/.dotnet/sdk/6.0.301/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

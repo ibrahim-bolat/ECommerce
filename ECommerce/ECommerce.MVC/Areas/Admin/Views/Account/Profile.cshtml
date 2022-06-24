@@ -1,0 +1,414 @@
+@model UserDetailViewModel
+@{
+    Layout = "Admin/_AdminLayout";
+    ViewData["Title"] = "Profil";
+}
+@section Style {
+   <style>
+      /*------------------------------------------------------------------
+          17. Gallery Section   
+      -------------------------------------------------------------------*/
+      
+      .gallery_section_inner .column {
+          background: #fff;
+          box-shadow: 0 0 13px -10px #000;
+          overflow: hidden;
+      }
+      
+      .heading_section {
+          border-top: solid #1ed085 2px;
+          background: #15283c;
+      }
+      
+      .heading_section h4 {
+          color: #fff;
+          margin: 0;
+          font-weight: 200;
+          text-align: center;
+          padding: 16px 0 16px;
+          font-size: 15px;
+      }
+   </style>
+       <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.css">
+}
+
+<div class="breadcrumbs">
+    <div class="col-sm-4">
+        <div class="page-header float-left">
+            <div class="page-title">
+                <h1>Dashboard</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <div class="page-header float-right">
+            <div class="page-title">
+                <ol class="breadcrumb text-right">
+                    <li class="active">Dashboard</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content mt-3">
+    <div class="col-sm-12">
+        <div class="alert  alert-success alert-dismissible fade show" role="alert">
+            <span class="badge badge-pill badge-success">Success</span> You successfully read this important alert message.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="container-fluid py-5" style="background-color: #eee;">
+       <div class="row">
+          <div class="col-lg-4">
+             <div class="card mb-4">
+                <div class="card-body text-center">
+                   <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                      class="rounded-circle img-fluid" style="width: 150px;">
+                   <h5 class="my-3">@Model.FirstName @Model.LastName</h5>
+                    <p class="text-muted mb-1">@Model.UserName</p>
+                   <p class="text-muted mb-1">@Model.Email</p>
+                   <p class="text-muted mb-4">Etlik,Keçiören,Ankara</p>
+                  <div class="d-flex justify-content-center mb-2">
+                    <button type="button" class="btn btn-primary mr-2 rounded">Takip Et</button>
+                    <button type="button" class="btn btn-outline-primary ms-1 rounded">Mesaj Gönder</button>
+                  </div>
+                </div>
+             </div>
+          </div>
+          <div class="col-lg-8">
+             <div class="card">
+                <div class="card-body">
+                   <div class="custom-tab">
+                      <nav>
+                         <div class="nav nav-tabs nav-justified" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link active" id="custom-nav-home-tab" data-toggle="tab" href="#custom-nav-home" role="tab" aria-controls="custom-nav-home" aria-selected="true">Profil Bilgileri</a>
+                            <a class="nav-item nav-link" id="custom-nav-profile-tab" data-toggle="tab" href="#custom-nav-profile" role="tab" aria-controls="custom-nav-profile" aria-selected="false">Fotoğraflar</a>
+                            <a class="nav-item nav-link" id="custom-nav-contact-tab" data-toggle="tab" href="#custom-nav-contact" role="tab" aria-controls="custom-nav-contact" aria-selected="false">İletişim Bilgileri</a>
+                         </div>
+                      </nav>
+                      <div class="tab-content pl-3 pt-2" id="nav-tabContent">
+                         <div class="tab-pane fade show active" id="custom-nav-home" role="tabpanel" aria-labelledby="custom-nav-home-tab">
+                    <table class="table border-bottom">
+                        <thead>
+                            <tr>
+                              <th width="30%" class="border-0"></th>
+                              <th width="70%" class="border-0"></th>
+                            </tr>
+                          </thead>
+                        <tbody>
+                          <tr>
+                            <td class="border-0"><label asp-for="FirstName" ></label></td>
+                            <td class="text-muted border-0">@Model.FirstName</td>
+                          </tr>
+                        <tr>
+                           <td><label asp-for="LastName" ></label></td>
+                           <td class="text-muted">@Model.LastName</td>
+                        </tr>
+                        <tr>
+                           <td><label asp-for="UserName" ></label></td>
+                           <td class="text-muted">@Model.UserName</td>
+                        </tr>
+                         <tr>
+                             <td><label asp-for="UserIdendityNo" ></label></td>
+                              <td class="text-muted">@Model.UserIdendityNo</td>
+                         </tr>
+                         <tr>
+                          <td><label asp-for="PhoneNumber" ></label></td>
+                            <td class="text-muted">@Model.PhoneNumber</td>
+                            </tr>
+                        <tr>
+                           <td><label asp-for="Email"></label></td>
+                           <td class="text-muted">@Model.Email</td>
+                        </tr>
+                        <tr>
+                           <td><label asp-for="DateOfBirth"></label></td>
+                           <td class="text-muted">@Model.DateOfBirth</td>
+                           </tr>
+                        <tr>
+                            <td>Adres</td>
+                            <td class="text-muted">Etlik,Keçiören,Ankara</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                         </div>
+                         <div class="tab-pane fade" id="custom-nav-profile" role="tabpanel" aria-labelledby="custom-nav-profile-tab">
+                             <!-- row -->
+                             <div class="row column4 graph">
+                             <!-- Gallery section -->
+                                <div class="col-md-12">
+                                   <div class="white_shd full margin_bottom_30">
+                                   <div class="full graph_head">
+                                      <div class="heading1 margin_0">
+                                         <h2>Profil Fotoğrafları</h2>
+                                      </div>
+                                   </div>
+                                   <div class="full gallery_section_inner padding_infor_info">
+                                   <div class="row">
+                                   <div class="col-sm-6 col-lg-4 margin_bottom_30">
+                                      <div class="column">
+                                         <a data-fancybox="gallery" href="~/admin/images/layout_img/g1.jpg">
+                                            <img class="img-responsive" src="~/admin/images/layout_img/g1.jpg" alt="#"/>
+                                         </a>
+                                      </div>
+                                      <div class="heading_section">
+                                         <h4>Sed ut perspiciatis</h4>
+                                      </div>
+                                   </div>
+                                   <div class="col-sm-6 col-lg-4 margin_bottom_30">
+                                      <div class="column">
+                                         <a data-fancybox="gallery" href="~/admin/images/layout_img/g2.jpg">
+                                            <img class="img-responsive" src="~/admin/images/layout_img/g2.jpg" alt="#"/>
+                                         </a>
+                                      </div>
+                                      <div class="heading_section">
+                                         <h4>Sed ut perspiciatis</h4>
+                                      </div>
+                                   </div>
+                                   <div class="col-sm-6 col-lg-4 margin_bottom_30">
+                                      <div class="column">
+                                         <a data-fancybox="gallery" href="~/admin/images/layout_img/g3.jpg">
+                                            <img class="img-responsive" src="~/admin/images/layout_img/g3.jpg" alt="#"/>
+                                         </a>
+                                      </div>
+                                      <div class="heading_section">
+                                         <h4>Sed ut perspiciatis</h4>
+                                      </div>
+                                   </div>
+                                   <div class="col-sm-6 col-lg-4 margin_bottom_30">
+                                      <div class="column">
+                                         <a data-fancybox="gallery" href="~/admin/images/layout_img/g4.jpg">
+                                            <img class="img-responsive" src="~/admin/images/layout_img/g4.jpg" alt="#"/>
+                                         </a>
+                                      </div>
+                                      <div class="heading_section">
+                                         <h4>Sed ut perspiciatis</h4>
+                                      </div>
+                                   </div>
+                                   <div class="col-sm-6 col-lg-4 margin_bottom_30">
+                                      <div class="column">
+                                         <a data-fancybox="gallery" href="~/admin/images/layout_img/g5.jpg">
+                                            <img class="img-responsive" src="~/admin/images/layout_img/g5.jpg" alt="#"/>
+                                         </a>
+                                      </div>
+                                      <div class="heading_section">
+                                         <h4>Sed ut perspiciatis</h4>
+                                      </div>
+                                   </div>
+                                   <div class="col-sm-6 col-lg-4 margin_bottom_30">
+                                      <div class="column">
+                                         <a data-fancybox="gallery" href="~/admin/images/layout_img/g6.jpg">
+                                            <img class="img-responsive" src="~/admin/images/layout_img/g6.jpg" alt="#"/>
+                                         </a>
+                                      </div>
+                                      <div class="heading_section">
+                                         <h4>Sed ut perspiciatis</h4>
+                                      </div>
+                                   </div>
+                                   <div class="col-sm-6 col-lg-4 margin_bottom_30">
+                                      <div class="column">
+                                         <a data-fancybox="gallery" href="~/admin/images/layout_img/g7.jpg">
+                                            <img class="img-responsive" src="~/admin/images/layout_img/g7.jpg" alt="#"/>
+                                         </a>
+                                      </div>
+                                      <div class="heading_section">
+                                         <h4>Sed ut perspiciatis</h4>
+                                      </div>
+                                   </div>
+                                   <div class="col-sm-6 col-lg-4 margin_bottom_30">
+                                      <div class="column">
+                                         <a data-fancybox="gallery" href="~/admin/images/layout_img/g8.jpg">
+                                            <img class="img-responsive" src="~/admin/images/layout_img/g8.jpg" alt="#"/>
+                                         </a>
+                                      </div>
+                                      <div class="heading_section">
+                                         <h4>Sed ut perspiciatis</h4>
+                                      </div>
+                                   </div>
+                                   <div class="col-sm-6 col-lg-4 margin_bottom_30">
+                                      <div class="column">
+                                         <a data-fancybox="gallery" href="~/admin/images/layout_img/g9.jpg">
+                                            <img class="img-responsive" src="~/admin/images/layout_img/g9.jpg" alt="#"/>
+                                         </a>
+                                      </div>
+                                      <div class="heading_section">
+                                         <h4>Sed ut perspiciatis</h4>
+                                      </div>
+                                   </div>
+                                   <div class="col-sm-6 col-lg-4 margin_bottom_30">
+                                      <div class="column">
+                                         <a data-fancybox="gallery" href="~/admin/images/layout_img/g10.jpg">
+                                            <img class="img-responsive" src="~/admin/images/layout_img/g10.jpg" alt="#"/>
+                                         </a>
+                                      </div>
+                                      <div class="heading_section">
+                                         <h4>Sed ut perspiciatis</h4>
+                                      </div>
+                                   </div>
+                                   <div class="col-sm-6 col-lg-4 margin_bottom_30">
+                                      <div class="column">
+                                         <a data-fancybox="gallery" href="~/admin/images/layout_img/g11.jpg">
+                                            <img class="img-responsive" src="~/admin/images/layout_img/g11.jpg" alt="#"/>
+                                         </a>
+                                      </div>
+                                      <div class="heading_section">
+                                         <h4>Sed ut perspiciatis</h4>
+                                      </div>
+                                   </div>
+                                   <div class="col-sm-6 col-lg-4 margin_bottom_30">
+                                      <div class="column">
+                                         <a data-fancybox="gallery" href="~/admin/images/layout_img/g12.jpg">
+                                            <img class="img-responsive" src="~/admin/images/layout_img/g12.jpg" alt="#"/>
+                                         </a>
+                                      </div>
+                                      <div class="heading_section">
+                                         <h4>Sed ut perspiciatis</h4>
+                                      </div>
+                                   </div>
+                                   <div class="col-sm-6 col-lg-4 margin_bottom_30">
+                                      <div class="column">
+                                         <a data-fancybox="gallery" href="~/admin/images/layout_img/g13.jpg">
+                                            <img class="img-responsive" src="~/admin/images/layout_img/g13.jpg" alt="#"/>
+                                         </a>
+                                      </div>
+                                      <div class="heading_section">
+                                         <h4>Sed ut perspiciatis</h4>
+                                      </div>
+                                   </div>
+                                   <div class="col-sm-6 col-lg-4 margin_bottom_30">
+                                      <div class="column">
+                                         <a data-fancybox="gallery" href="~/admin/images/layout_img/g14.jpg">
+                                            <img class="img-responsive" src="~/admin/images/layout_img/g14.jpg" alt="#"/>
+                                         </a>
+                                      </div>
+                                      <div class="heading_section">
+                                         <h4>Sed ut perspiciatis</h4>
+                                      </div>
+                                   </div>
+                                   <div class="col-sm-6 col-lg-4 margin_bottom_30">
+                                      <div class="column">
+                                         <a data-fancybox="gallery" href="~/admin/images/layout_img/g15.jpg">
+                                            <img class="img-responsive" src="~/admin/images/layout_img/g15.jpg" alt="#"/>
+                                         </a>
+                                      </div>
+                                      <div class="heading_section">
+                                         <h4>Sed ut perspiciatis</h4>
+                                      </div>
+                                   </div>
+                                   <div class="col-sm-6 col-lg-4 margin_bottom_30">
+                                      <div class="column">
+                                         <a data-fancybox="gallery" href="~/admin/images/layout_img/g16.jpg">
+                                            <img class="img-responsive" src="~/admin/images/layout_img/g16.jpg" alt="#"/>
+                                         </a>
+                                      </div>
+                                      <div class="heading_section">
+                                         <h4>Sed ut perspiciatis</h4>
+                                      </div>
+                                   </div>
+                                   <div class="col-sm-6 col-lg-4 margin_bottom_30">
+                                      <div class="column">
+                                         <a data-fancybox="gallery" href="~/admin/images/layout_img/g1.jpg">
+                                            <img class="img-responsive" src="~/admin/images/layout_img/g1.jpg" alt="#"/>
+                                         </a>
+                                      </div>
+                                      <div class="heading_section">
+                                         <h4>Sed ut perspiciatis</h4>
+                                      </div>
+                                   </div>
+                                   <div class="col-sm-6 col-lg-4 margin_bottom_30">
+                                      <div class="column">
+                                         <a data-fancybox="gallery" href="~/admin/images/layout_img/g2.jpg">
+                                            <img class="img-responsive" src="~/admin/images/layout_img/g2.jpg" alt="#"/>
+                                         </a>
+                                      </div>
+                                      <div class="heading_section">
+                                         <h4>Sed ut perspiciatis</h4>
+                                      </div>
+                                   </div>
+                                   <div class="col-sm-6 col-lg-4 margin_bottom_30">
+                                      <div class="column">
+                                         <a data-fancybox="gallery" href="~/admin/images/layout_img/g3.jpg">
+                                            <img class="img-responsive" src="~/admin/images/layout_img/g3.jpg" alt="#"/>
+                                         </a>
+                                      </div>
+                                      <div class="heading_section">
+                                         <h4>Sed ut perspiciatis</h4>
+                                      </div>
+                                   </div>
+                                   <div class="col-sm-6 col-lg-4 margin_bottom_30">
+                                      <div class="column">
+                                         <a data-fancybox="gallery" href="~/admin/images/layout_img/g4.jpg">
+                                            <img class="img-responsive" src="~/admin/images/layout_img/g4.jpg" alt="#"/>
+                                         </a>
+                                      </div>
+                                      <div class="heading_section">
+                                         <h4>Sed ut perspiciatis</h4>
+                                      </div>
+                                   </div>
+                                   <div class="col-sm-6 col-lg-4 margin_bottom_30">
+                                      <div class="column">
+                                         <a data-fancybox="gallery" href="~/admin/images/layout_img/g5.jpg">
+                                            <img class="img-responsive" src="~/admin/images/layout_img/g5.jpg" alt="#"/>
+                                         </a>
+                                      </div>
+                                      <div class="heading_section">
+                                         <h4>Sed ut perspiciatis</h4>
+                                      </div>
+                                   </div>
+                                   <div class="col-sm-6 col-lg-4 margin_bottom_30">
+                                      <div class="column">
+                                         <a data-fancybox="gallery" href="~/admin/images/layout_img/g6.jpg">
+                                            <img class="img-responsive" src="~/admin/images/layout_img/g6.jpg" alt="#"/>
+                                         </a>
+                                      </div>
+                                      <div class="heading_section">
+                                         <h4>Sed ut perspiciatis</h4>
+                                      </div>
+                                   </div>
+                                   <div class="col-sm-6 col-lg-4 margin_bottom_30">
+                                      <div class="column">
+                                         <a data-fancybox="gallery" href="~/admin/images/layout_img/g7.jpg">
+                                            <img class="img-responsive" src="~/admin/images/layout_img/g7.jpg" alt="#"/>
+                                         </a>
+                                      </div>
+                                      <div class="heading_section">
+                                         <h4>Sed ut perspiciatis</h4>
+                                      </div>
+                                   </div>
+                                   <div class="col-sm-6 col-lg-4 margin_bottom_30">
+                                      <div class="column">
+                                         <a data-fancybox="gallery" href="~/admin/images/layout_img/g8.jpg">
+                                            <img class="img-responsive" src="~/admin/images/layout_img/g8.jpg" alt="#"/>
+                                         </a>
+                                      </div>
+                                      <div class="heading_section">
+                                         <h4>Sed ut perspiciatis</h4>
+                                      </div>
+                                   </div>
+                                   </div>
+                                   </div>
+                                   </div>
+                                    </div>
+                                </div>                           
+                         </div>
+                         <div class="tab-pane fade" id="custom-nav-contact" role="tabpanel" aria-labelledby="custom-nav-contact-tab">
+                             <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit
+                                butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, irure terry richardson ex sd. Alip placeat salvia cillum iphone. Seitan alip s cardigan american apparel, butcher voluptate nisi .
+                              </p>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+
+</div> <!-- .content -->
+@section Scripts
+{
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+}
