@@ -96,16 +96,9 @@
         </div>
 
         <div class="col-sm-5">
-            @if (User.Identity.IsAuthenticated)
-            {
-                <div class="user-area dropdown">
-                    <a asp-area="Admin" asp-controller="Account" asp-action="Profile" class="nav-link">
-                        <i class="fa fa-user"></i> @User.Identity.Name
-                    </a>
-                </div>
-            }
-            <div class="user-area dropdown float-right">
+            <div class="user-area dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span  style="line-height: 40px;"><u>Merhaba @User.Identity.Name</u></span>
                     <img class="user-avatar rounded-circle" src="~/admin/images/admin.jpg" alt="User Avatar">
                 </a>
                 <div class="user-menu dropdown-menu">

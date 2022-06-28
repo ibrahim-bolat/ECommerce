@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ECommerce.DataAccess.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220624140738_InitialCreate")]
+    [Migration("20220628083329_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,8 +40,9 @@ namespace ECommerce.DataAccess.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
-                    b.Property<int>("AddressType")
-                        .HasColumnType("integer");
+                    b.Property<string>("AddressType")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("BuildingNo")
                         .IsRequired()
@@ -109,6 +110,32 @@ namespace ECommerce.DataAccess.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Address");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AddressDetails = "Naci Bekir Mahallesi ,Atılım Cad. Ateş Sok. No:40/7 06500 Yenimahalle/Ankara/Türkiye",
+                            AddressTitle = "Evim",
+                            AddressType = "Home",
+                            BuildingNo = "40",
+                            City = "Ankara",
+                            Country = "Turkiye",
+                            CreatedByName = "Owner",
+                            CreatedTime = new DateTime(2022, 6, 28, 11, 33, 28, 825, DateTimeKind.Local).AddTicks(7535),
+                            District = "Yenimahalle",
+                            FlatNo = "7",
+                            IsActive = false,
+                            IsDeleted = false,
+                            MainStreet = "Atılım",
+                            ModifiedByName = "Owner",
+                            ModifiedTime = new DateTime(2022, 6, 28, 11, 33, 28, 825, DateTimeKind.Local).AddTicks(7553),
+                            NeighborhoodOrVillage = "Naci Bekir",
+                            PostalCode = "06500",
+                            RegionOrState = "İç Anadolu",
+                            Street = "Ateş",
+                            UserId = 1
+                        });
                 });
 
             modelBuilder.Entity("ECommerce.Entities.Concrete.Identity.Entities.AppRole", b =>
@@ -165,13 +192,13 @@ namespace ECommerce.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "893eb1c4-29c2-48f9-93b4-baa72d798c93",
+                            ConcurrencyStamp = "931fb6fa-a3db-4d30-a8dd-4fe98384ed4c",
                             CreatedByName = "Owner",
-                            CreatedTime = new DateTime(2022, 6, 24, 17, 7, 37, 877, DateTimeKind.Local).AddTicks(4461),
+                            CreatedTime = new DateTime(2022, 6, 28, 11, 33, 28, 819, DateTimeKind.Local).AddTicks(7769),
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByName = "Owner",
-                            ModifiedTime = new DateTime(2022, 6, 24, 17, 7, 37, 877, DateTimeKind.Local).AddTicks(4482),
+                            ModifiedTime = new DateTime(2022, 6, 28, 11, 33, 28, 819, DateTimeKind.Local).AddTicks(7792),
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -284,9 +311,9 @@ namespace ECommerce.DataAccess.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ea9c5de2-65f2-457c-a2c5-31816876e88e",
+                            ConcurrencyStamp = "0084c4b2-a679-4011-ac64-cb844180500b",
                             CreatedByName = "Owner",
-                            CreatedTime = new DateTime(2022, 6, 24, 17, 7, 37, 877, DateTimeKind.Local).AddTicks(5174),
+                            CreatedTime = new DateTime(2022, 6, 28, 11, 33, 28, 819, DateTimeKind.Local).AddTicks(8274),
                             Email = "bolat6606@hotmail.com",
                             EmailConfirmed = true,
                             FirstName = "İbrahim",
@@ -295,10 +322,10 @@ namespace ECommerce.DataAccess.Migrations
                             LastName = "Bolat",
                             LockoutEnabled = false,
                             ModifiedByName = "Owner",
-                            ModifiedTime = new DateTime(2022, 6, 24, 17, 7, 37, 877, DateTimeKind.Local).AddTicks(5178),
+                            ModifiedTime = new DateTime(2022, 6, 28, 11, 33, 28, 819, DateTimeKind.Local).AddTicks(8278),
                             NormalizedEmail = "BOLAT6606@HOTMAIL.COM",
                             NormalizedUserName = "BOLAT6606",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPYcDRa0eaueVJtT1IRAg6nrnJPbat+/vqRoI31DSP03VZDmNxSmA7IsM48yjXRG9Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEH4yiO4RXCuhIg1XHqso4ww7b7HkQAsE/gah8t62WeWSuw79mTMT1LAptocwWiT4aQ==",
                             PhoneNumber = "05325757966",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "VVPCRDAS3MJWQD5CSW2GWPRADBXEZINA",
@@ -360,6 +387,23 @@ namespace ECommerce.DataAccess.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserImage");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedByName = "Owner",
+                            CreatedTime = new DateTime(2022, 6, 28, 11, 33, 28, 825, DateTimeKind.Local).AddTicks(8409),
+                            ImageAltText = "Profil",
+                            ImagePath = "/admin/images/layout_img/g1.jpg",
+                            ImageTitle = "ProfilResmi",
+                            IsActive = false,
+                            IsDeleted = false,
+                            ModifiedByName = "Owner",
+                            ModifiedTime = new DateTime(2022, 6, 28, 11, 33, 28, 825, DateTimeKind.Local).AddTicks(8414),
+                            UserId = 1,
+                            isProfil = true
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>

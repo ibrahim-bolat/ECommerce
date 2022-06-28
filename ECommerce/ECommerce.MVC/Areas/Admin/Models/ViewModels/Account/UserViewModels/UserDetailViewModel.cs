@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using ECommerce.Entities.Concrete;
+using ECommerce.Entities.Enums;
 
 
 namespace ECommerce.MVC.Areas.Admin.Models.ViewModels.Account.UserViewModels;
@@ -38,5 +40,5 @@ public class UserDetailViewModel
         [DisplayFormat(DataFormatString="{0:dd.MM.yyyy}")]
         [Display(Name = "Doğum Tarihi")]
         public DateTime? DateOfBirth{get; set;}
-
+        
     }

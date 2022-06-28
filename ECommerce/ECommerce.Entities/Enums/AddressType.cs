@@ -1,4 +1,4 @@
-namespace MyWebApp.Entities.Enums
+namespace ECommerce.Entities.Enums
 {
     public enum AddressType
     {

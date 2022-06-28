@@ -1,6 +1,6 @@
 ﻿using ECommerce.Entities.Concrete.Identity.Entities;
+using ECommerce.Entities.Enums;
 using ECommerce.Shared.Entities.Concrete;
-using MyWebApp.Entities.Enums;
 
 namespace ECommerce.Entities.Concrete;
 
@@ -20,6 +20,6 @@ namespace ECommerce.Entities.Concrete;
         public  string PostalCode{ get; set; }
         public  string AddressDetails{ get; set; }
         public int UserId{ get; set; }
-        public AppUser AppUser{ get; set; }
+        public virtual AppUser AppUser{ get; set; }
     
 }

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.MVC.Areas.Admin.Controllers;
 
-[Area("Admin")]
+    [Area("Admin")]
     public class RoleController : Controller
     {
         readonly RoleManager<AppRole> _roleManager;

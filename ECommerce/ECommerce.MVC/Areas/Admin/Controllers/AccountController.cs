@@ -302,15 +302,13 @@ public class AccountController : Controller
 
         return RedirectToAction("Index", "Home", new { area = "Admin" });
     }
-
-    [Authorize(Roles = "Admin")]
+    
     [HttpGet]
     public IActionResult EditPassword()
     {
         return View();
     }
-
-    [Authorize(Roles = "Admin")]
+    
     [HttpPost]
     public async Task<IActionResult> EditPassword(EditPasswordViewModel model)
     {
@@ -359,6 +357,7 @@ public class AccountController : Controller
             PhoneNumber = user.PhoneNumber,
             Email = user.Email,
             DateOfBirth = user.DateOfBirth
+
         };
         return View(userDetail);
     }

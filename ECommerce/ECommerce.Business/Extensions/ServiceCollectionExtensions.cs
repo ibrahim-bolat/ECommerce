@@ -31,7 +31,7 @@ public static class ServiceCollectionExtensions
         {
             //dotnet ef migrations add InitialCreate -s ECommerce.MVC -p ECommerce.DataAccess
             //dotnet ef database update -s MyWebApp.MVC -p MyWebApp.DataAccess
-            options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
+            options.UseLazyLoadingProxies().UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
         });
         
         serviceCollection.AddIdentity<AppUser, AppRole>(options =>
