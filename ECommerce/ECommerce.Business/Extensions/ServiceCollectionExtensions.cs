@@ -1,11 +1,10 @@
-using System.Reflection;
+using System.Text.Json.Serialization;
 using ECommerce.Business.Validations.Identity;
 using ECommerce.DataAccess.Concrete.EfCore.Contexts;
 using ECommerce.Entities.Concrete.Identity.Entities;
 using ECommerce.Helpers.MailHelper;
 using ECommerce.Shared.Helpers.MailHelper;
 using ECommerce.Shared.Service.Abtract;
-using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -21,12 +20,19 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection LoadMyService(this IServiceCollection serviceCollection,IConfiguration configuration)
     {
+        
         /*
         IConfiguration configuration = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("appsettings.json", false)
             .Build();
         */
+        serviceCollection.AddControllers().AddJsonOptions(options => 
+        { 
+            options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+            options.JsonSerializerOptions.WriteIndented = true;
+        });
+        
         serviceCollection.AddDbContext<DataContext>(options =>
         {
             //dotnet ef migrations add InitialCreate -s ECommerce.MVC -p ECommerce.DataAccess
@@ -73,14 +79,7 @@ public static class ServiceCollectionExtensions
         {
             options.LowercaseQueryStrings = true; 
         });
-        
-        serviceCollection.AddFluentValidation(options =>
-        {
-           options.ImplicitlyValidateChildProperties = true;
-           options.ImplicitlyValidateRootCollectionElements = true;
-            options.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-        });
-        
+
         serviceCollection.Configure<MailSettings>(configuration.GetSection("MailSettings"));
 
         serviceCollection.AddTransient<IEmailService, EmailHelper>();

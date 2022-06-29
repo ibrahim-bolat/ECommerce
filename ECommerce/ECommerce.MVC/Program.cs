@@ -1,11 +1,19 @@
+using System.Reflection;
 using ECommerce.Business.Extensions;
 using ECommerce.DataAccess.Concrete.EfCore.Contexts;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddFluentValidation(options =>
+{
+    options.ImplicitlyValidateChildProperties = true;
+    options.ImplicitlyValidateRootCollectionElements = true;
+    options.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+});
+
 builder.Services.LoadMyService(builder.Configuration);
 
 var app = builder.Build();

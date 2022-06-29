@@ -1,7 +1,7 @@
 using System.Web;
 using ECommerce.Entities.Concrete.Identity.Entities;
 using ECommerce.Helpers.MailHelper;
-using ECommerce.MVC.Areas.Admin.Models.ViewModels.Account.UserViewModels;
+using ECommerce.MVC.Areas.Admin.Models.ViewModels.Account;
 using ECommerce.Shared.Service.Abtract;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -36,61 +36,41 @@ public class AccountController : Controller
 
     [AllowAnonymous]
     [HttpPost] 
-    public async Task<IActionResult> Register(RegisterViewModel registerViewModel)
+    public async Task<IActionResult> Register(RegisterViewModel Model)
     {
         if (ModelState.IsValid)
         {
             AppUser applicationUser = new AppUser
             {
-                FirstName = registerViewModel.FirstName,
-                LastName = registerViewModel.LastName,
-                UserName = registerViewModel.UserName,
-                Email = registerViewModel.Email
+                FirstName = Model.FirstName,
+                LastName = Model.LastName,
+                UserName = Model.UserName,
+                Email = Model.Email
             };
             AppRole role = await _roleManager.FindByNameAsync("User");
             if (role == null)
                 await _roleManager.CreateAsync(new AppRole { Name = "User" });
-            IdentityResult userResult = await _userManager.CreateAsync(applicationUser, registerViewModel.Password);
-            IdentityResult roleResult = await _userManager.AddToRoleAsync(applicationUser, "User");
-            if (userResult.Succeeded && roleResult.Succeeded)
+            IdentityResult userResult = await _userManager.CreateAsync(applicationUser, Model.Password);
+            IdentityResult roleResult = null;
+            if (userResult.Succeeded)
             {
-                var token = await _userManager.GenerateEmailConfirmationTokenAsync(applicationUser);
-                var confirmationLink = Url.Action("ConfirmEmail", "Account",
-                    new { area = "Admin", token = HttpUtility.UrlEncode(token), email = registerViewModel.Email },
-                    Request.Scheme);
-
-                MailRequest mailRequest = new MailRequest
-                {
-                    ToMail = registerViewModel.Email,
-                    ConfirmationLink = confirmationLink,
-                    MailSubject = "Mail Adresini Onayla",
-                    IsBodyHtml = true,
-                    MailLinkTitle = "Emailinizi Doğrulamak İçin tıklayınız"
-                };
-                bool emailResponse = _emailService.SendEmail(mailRequest);
-
-                if (emailResponse)
+                roleResult = await _userManager.AddToRoleAsync(applicationUser, "User");
+                if (roleResult.Succeeded)
                 {
                     TempData["LoginSuccess"] = true;
                     return RedirectToAction("Login", "Account", new { area = "Admin" });
                 }
-                else
-                {
-                    // log email failed 
-                }
-            }
-            else
-            {
-                userResult.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
                 roleResult.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
+                return View(Model);
             }
+            userResult.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
+            return View(Model);
         }
-
-        return View();
+        return View(Model);
     }
 
     [AllowAnonymous]
-    [HttpGet("[action]/{email}/{token}")] //kullanıcı email onaylama dolu sayfa
+    [HttpGet("[action]/{email}/{token}")] 
     public async Task<IActionResult> ConfirmEmail(string email, string token)
     {
         var user = await _userManager.FindByEmailAsync(email);
@@ -99,19 +79,17 @@ public class AccountController : Controller
             ViewBag.State = false;
             return View("ConfirmEmail");
         }
-
         var result = await _userManager.ConfirmEmailAsync(user, HttpUtility.UrlDecode(token));
         if (result.Succeeded)
         {
             ViewBag.State = true;
             return View("ConfirmEmail");
         }
-
         return View();
     }
 
     [AllowAnonymous]
-    [HttpGet] //kullanıcı boş giriş sayfası
+    [HttpGet] 
     public IActionResult Login(string ReturnUrl = "Index")
     {
         TempData["returnUrl"] = ReturnUrl;
@@ -119,89 +97,75 @@ public class AccountController : Controller
     }
 
     [AllowAnonymous]
-    [HttpPost] //kullanıcı dolu giriş sayfası
-    public async Task<IActionResult> Login(LoginViewModel model)
+    [HttpPost] 
+    public async Task<IActionResult> Login(LoginViewModel Model)
     {
         if (ModelState.IsValid)
         {
-            AppUser user = await _userManager.FindByEmailAsync(model.Email);
+            AppUser user = await _userManager.FindByEmailAsync(Model.Email);
             if (user != null)
             {
-                //İlgili kullanıcıya dair önceden oluşturulmuş bir Cookie varsa siliyoruz.
                 await _signInManager.SignOutAsync();
                 SignInResult result =
-                    await _signInManager.PasswordSignInAsync(user, model.Password, model.Persistent, model.Lock);
+                    await _signInManager.PasswordSignInAsync(user, Model.Password, Model.Persistent, Model.Lock);
 
                 if (result.Succeeded)
                 {
-                    await _userManager.ResetAccessFailedCountAsync(
-                        user); //Önceki hataları girişler neticesinde +1 arttırılmış tüm değerleri 0(sıfır)a çekiyoruz.
+                    await _userManager.ResetAccessFailedCountAsync(user);
                     if (string.IsNullOrEmpty(TempData["returnUrl"] != null ? TempData["returnUrl"].ToString() : ""))
                         return RedirectToAction("Index", "Home");
                     if (TempData["returnUrl"].Equals("Index") || TempData["returnUrl"].Equals("/"))
                         return RedirectToAction("Index", "Home");
-                    bool emailStatus = await _userManager.IsEmailConfirmedAsync(user);
-                    if (emailStatus == false)
-                    {
-                        ModelState.AddModelError(nameof(model.Email), "Email Doğrulanamadı");
-                    }
-
+                    
                     return Redirect(TempData["returnUrl"].ToString());
                 }
                 else
                 {
-                    await _userManager
-                        .AccessFailedAsync(
-                            user); //Eğer ki başarısız bir account girişi söz konusu ise AccessFailedCount kolonundaki değer +1 arttırılacaktır. 
-
-                    int failcount =
-                        await _userManager
-                            .GetAccessFailedCountAsync(
-                                user); //Kullanıcının yapmış olduğu başarısız giriş deneme adedini alıyoruz.
+                    await _userManager.AccessFailedAsync(user);
+                    int failcount = await _userManager.GetAccessFailedCountAsync(user);
                     if (failcount == 3)
                     {
                         await _userManager.SetLockoutEndDateAsync(user,
                             new DateTimeOffset(DateTime.Now
-                                .AddMinutes(
-                                    30))); //Eğer ki başarısız giriş denemesi 3'ü bulduysa ilgili kullanıcının hesabını kilitliyoruz.
+                                .AddMinutes(30))); 
                         ModelState.AddModelError("Locked",
-                            "Art arda 3 başarısız giriş denemesi yaptığınızdan dolayı hesabınız 30 dk kitlenmiştir.");
+                            "Art arda 3 başarısız giriş denemesi yaptığınızdan dolayı hesabınız 30 dk kilitlenmiştir.");
                     }
                     else
                     {
                         if (result.IsLockedOut)
+                        {
                             ModelState.AddModelError("Locked",
                                 "Art arda 3 başarısız giriş denemesi yaptığınızdan dolayı hesabınız 30 dk kilitlenmiştir.");
-                        else
-                            ModelState.AddModelError("NotUser2", "E-posta veya şifre yanlış.");
+                            return View(Model);
+                        }
+                        ModelState.AddModelError("InvalidEpostaOrPass1", "E-posta veya şifre yanlış.");
+                        return View(Model);
                     }
                 }
             }
-            else
-            {
-                ModelState.AddModelError("NotUser", "Böyle bir kullanıcı bulunmamaktadır.");
-                ModelState.AddModelError("NotUser2", "E-posta veya şifre yanlış.");
-            }
+            ModelState.AddModelError("NoUser", "Böyle bir kullanıcı bulunmamaktadır.");
+            ModelState.AddModelError("InvalidEpostaOrPass2", "E-posta veya şifre yanlış.");
+            return View(Model);
         }
-
-        return View(model);
+        return View(Model);
     }
 
-    [HttpGet] //kullanıcı çıkış
+    [HttpGet] 
     public async Task Logout()
     {
         await _signInManager.SignOutAsync();
     }
 
     [AllowAnonymous]
-    [HttpGet] //kullanıcı parola restleme boş sayfa
+    [HttpGet] 
     public IActionResult ForgetPass()
     {
         return View();
     }
 
     [AllowAnonymous]
-    [HttpPost] //kullanıcı parola resteleme dolu sayfa
+    [HttpPost] 
     public async Task<IActionResult> ForgetPass(ForgetPassViewModel model)
     {
         AppUser user = await _userManager.FindByEmailAsync(model.Email);
@@ -221,29 +185,31 @@ public class AccountController : Controller
             };
             bool emailResponse = _emailService.SendEmail(mailRequest);
             if (emailResponse)
+            {
                 ViewBag.State = true;
+            }
             else
             {
                 ViewBag.State = false;
             }
-
             ViewBag.State = true;
         }
         else
+        {
             ViewBag.State = false;
-
+        }
         return View();
     }
 
     [AllowAnonymous]
-    [HttpGet("[action]/{userId}/{token}")] //kullanıcı parola güncelleme boş sayfa
+    [HttpGet("[action]/{userId}/{token}")] 
     public IActionResult UpdatePassword(string userId, string token)
     {
         return View();
     }
 
     [AllowAnonymous]
-    [HttpPost("[action]/{userId}/{token}")] //kullanıcı parola güncelleme dolu sayfa
+    [HttpPost("[action]/{userId}/{token}")] 
     public async Task<IActionResult> UpdatePassword(UpdatePasswordViewModel model, string userId, string token)
     {
         AppUser user = await _userManager.FindByIdAsync(userId);
@@ -268,11 +234,14 @@ public class AccountController : Controller
         AppUser user = await _userManager.FindByNameAsync(User.Identity?.Name);
         UserDetailViewModel userDetail = new UserDetailViewModel
         {
+            Id=user.Id,
             FirstName = user.FirstName,
             LastName = user.LastName,
-            PhoneNumber = user.PhoneNumber,
             UserName = user.UserName,
-            Email = user.Email
+            UserIdendityNo = user.UserIdendityNo,
+            PhoneNumber = user.PhoneNumber,
+            Email = user.Email,
+            DateOfBirth = user.DateOfBirth
         };
         return View(userDetail);
     }

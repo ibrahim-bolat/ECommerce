@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace ECommerce.MVC.Areas.Admin.Models.ViewModels.Account.UserViewModels;
+namespace ECommerce.MVC.Areas.Admin.Models.ViewModels.Account;
 
 
 public class UpdatePasswordViewModel

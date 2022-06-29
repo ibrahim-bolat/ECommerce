@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-namespace ECommerce.MVC.Areas.Admin.Models.ViewModels.Account.RoleViewModels;
+namespace ECommerce.MVC.Areas.Admin.Models.ViewModels.Account;
 
 
 public class RoleAssignViewModel

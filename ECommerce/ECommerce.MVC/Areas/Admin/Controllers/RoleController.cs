@@ -1,5 +1,5 @@
 using ECommerce.Entities.Concrete.Identity.Entities;
-using ECommerce.MVC.Areas.Admin.Models.ViewModels.Account.RoleViewModels;
+using ECommerce.MVC.Areas.Admin.Models.ViewModels.Account;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
