@@ -43,6 +43,24 @@ namespace ECommerce.DataAccess.Concrete.EfCore.Mappings;
                 PostalCode = "06500",
                 AddressDetails = "Naci Bekir Mahallesi ,Atılım Cad. Ateş Sok. No:40/7 06500 Yenimahalle/Ankara/Türkiye",
                 UserId = 1
+            },
+            new Address
+            {
+                Id = 2, 
+                AddressTitle = "İş",
+                AddressType = AddressType.Work,
+                Street = "Kütahya",
+                MainStreet = "Eskişehir Yolu",
+                NeighborhoodOrVillage = "Mustafa Kemal",
+                District = "Çankaya",
+                City ="Ankara",
+                Country = "Turkiye",
+                RegionOrState = "İç Anadolu",
+                BuildingNo = "280",
+                FlatNo = "7",
+                PostalCode = "06100",
+                AddressDetails = "Mustafa Kemal Mahallesi ,Eskişehir Yolu  Kütahya Sok. No:280/7 06500 Çankaya/Ankara/Türkiye",
+                UserId = 1
             });
 
         }

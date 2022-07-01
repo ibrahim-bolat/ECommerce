@@ -162,4 +162,74 @@
 @section Scripts {
     <script src="~/lib/datatables/js/datatables.min.js"></script>
     <script src="~/admin/js/UserOperation/UserTable.js"></script>
+        <script>
+                document.addEventListener("DOMContentLoaded", function(event) {
+                    var registerMessage = '@TempData["RegisterSuccess"]';
+                    var EditProfileMessage = '@TempData["EditProfileSuccess"]';
+                    var EditPasswordMessage = '@TempData["EditPasswordSuccess"]';
+                    if (registerMessage)
+                    {
+                        const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 5000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                        })
+            
+                     Toast.fire({
+                    icon: 'success',
+                    title: 'Kullanıcı Kaydedildi',
+                    text: 'Kullanıcı Kaydetme İşlemi Başarıyla Gerçekleştirildi.',
+                        })
+            
+                    }
+                                    if (EditProfileMessage)
+                                    {
+                                        const Toast = Swal.mixin({
+                                        toast: true,
+                                        position: 'top-end',
+                                        showConfirmButton: false,
+                                        timer: 5000,
+                                        timerProgressBar: true,
+                                        didOpen: (toast) => {
+                                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                        }
+                                        })
+                            
+                                     Toast.fire({
+                                    icon: 'success',
+                                    title: 'Kullanıcı Güncellendi',
+                                    text: 'Kullanıcı Güncelleme İşlemi Başarıyla Gerçekleştirildi.',
+                                        })
+                            
+                                    }
+                                                                    if (EditPasswordMessage)
+                                                                    {
+                                                                        const Toast = Swal.mixin({
+                                                                        toast: true,
+                                                                        position: 'top-end',
+                                                                        showConfirmButton: false,
+                                                                        timer: 5000,
+                                                                        timerProgressBar: true,
+                                                                        didOpen: (toast) => {
+                                                                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                                                                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                                                        }
+                                                                        })
+                                                            
+                                                                     Toast.fire({
+                                                                    icon: 'success',
+                                                                    title: 'Şifre Güncellendi',
+                                                                    text: 'Şifre Güncelleme İşlemi Başarıyla Gerçekleştirildi.',
+                                                                        })
+                                                            
+                                                                    }
+            });
+        </script>
 }

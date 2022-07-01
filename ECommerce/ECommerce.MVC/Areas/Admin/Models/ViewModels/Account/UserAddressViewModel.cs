@@ -2,15 +2,9 @@ using ECommerce.Entities.Enums;
 
 namespace ECommerce.MVC.Areas.Admin.Models.ViewModels.Account;
 
-public class AddressViewModel
+public class UserAddressViewModel
 {
     public int Id { get; set; }
-    public DateTime CreatedTime { get; set; }
-    public DateTime ModifiedTime { get; set; } 
-    public bool IsActive { get; set; } 
-    public bool IsDeleted { get; set; } 
-    public string CreatedByName { get; set; } 
-    public string ModifiedByName { get; set; }
     public  string Note { get; set; }
     public  string AddressTitle{ get; set; }
     public  AddressType AddressType { get; set; }

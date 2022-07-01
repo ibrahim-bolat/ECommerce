@@ -1,5 +1,6 @@
 using System.Web;
 using ECommerce.Entities.Concrete.Identity.Entities;
+using ECommerce.Entities.Enums;
 using ECommerce.Helpers.MailHelper;
 using ECommerce.MVC.Areas.Admin.Models.ViewModels.Account;
 using ECommerce.Shared.Service.Abtract;
@@ -229,48 +230,87 @@ public class AccountController : Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> EditProfile()
+    public async Task<IActionResult> EditProfile(int Id=0)
     {
-        AppUser user = await _userManager.FindByNameAsync(User.Identity?.Name);
-        UserDetailViewModel userDetail = new UserDetailViewModel
+        AppUser user = null;
+        if (Id == 0)
         {
-            Id=user.Id,
+            user = await _userManager.FindByNameAsync(User.Identity?.Name);
+        }
+        else
+        {
+            user = await _userManager.FindByIdAsync(Id.ToString());
+        }
+        UserViewModel userViewModel = new UserViewModel
+        {
+            Id = user.Id,
             FirstName = user.FirstName,
             LastName = user.LastName,
             UserName = user.UserName,
             UserIdendityNo = user.UserIdendityNo,
             PhoneNumber = user.PhoneNumber,
             Email = user.Email,
-            DateOfBirth = user.DateOfBirth
+            DateOfBirth = user.DateOfBirth,
+            Note = user.Note
         };
-        return View(userDetail);
+        TempData["oldEmail"] = user.Email;
+        return View(userViewModel);
     }
 
-    [HttpPost]
-    public async Task<IActionResult> EditProfile(UserDetailViewModel model)
-    {
-        if (ModelState.IsValid)
+        [HttpPost]
+        public async Task<IActionResult> EditProfile(UserViewModel model)
         {
-            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
-            user.FirstName = model.FirstName;
-            user.LastName = model.LastName;
-            user.PhoneNumber = model.PhoneNumber;
-            IdentityResult result = await _userManager.UpdateAsync(user);
-            if (!result.Succeeded)
+            if (ModelState.IsValid)
             {
-                result.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
-                return View(model);
+                IdentityResult result = null;
+                AppUser user = null;
+                if (model.Email.Equals(TempData["oldEmail"].ToString()))
+                {
+                    user =  await _userManager.FindByEmailAsync(model.Email);
+                    user.FirstName = model.FirstName;
+                    user.LastName = model.LastName;
+                    user.UserName = model.UserName;
+                    user.NormalizedUserName = model.UserName.ToUpper();
+                    user.UserIdendityNo = model.UserIdendityNo;
+                    user.PhoneNumber = model.PhoneNumber;
+                    user.DateOfBirth = model.DateOfBirth;
+                    user.Note = model.Note;
+                    result = await _userManager.UpdateAsync(user);
+                }
+                else
+                {
+                    user =  _userManager.FindByEmailAsync(TempData["oldEmail"].ToString()).Result;
+                    user.FirstName = model.FirstName;
+                    user.LastName = model.LastName;
+                    user.UserName = model.UserName;
+                    user.NormalizedUserName = model.UserName.ToUpper();
+                    user.UserIdendityNo = model.UserIdendityNo;
+                    user.PhoneNumber = model.PhoneNumber;
+                    user.Email = model.Email;
+                    user.NormalizedEmail = model.Email.ToUpper();
+                    user.DateOfBirth = model.DateOfBirth;
+                    user.Note = model.Note;
+                    result = await _userManager.UpdateAsync(user);
+                    var token = await _userManager.GenerateChangeEmailTokenAsync(user,user.Email);
+                    result = await _userManager.ChangeEmailAsync(user,user.Email,token);
+                }
+                if (!result.Succeeded)
+                {
+                    result.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
+                    return View(model);
+                }
+                await _userManager.UpdateSecurityStampAsync(user);
+                if (User.Identity.Name==TempData["oldEmail"].ToString() && model.Email != TempData["oldEmail"].ToString())
+                {
+                    await _signInManager.SignOutAsync();
+                    await _signInManager.SignInAsync(user, true);
+                }
+                TempData["EditProfileSuccess"] = true;
+                return RedirectToAction("Index", "UserOperation", new { area = "Admin" });
             }
-
-            //burda kullanıcının “SecurityStamp” değerini güncelleyip ve ardından kullanıcıya çıkış yaptırıp,
-            //tekrar giriş yaptırıyoruz
-            await _userManager.UpdateSecurityStampAsync(user);
-            await _signInManager.SignOutAsync();
-            await _signInManager.SignInAsync(user, true);
+          
+            return View(model);
         }
-
-        return RedirectToAction("Index", "Home", new { area = "Admin" });
-    }
     
     [HttpGet]
     public IActionResult EditPassword()
@@ -317,7 +357,7 @@ public class AccountController : Controller
             user = await _userManager.FindByIdAsync(Id.ToString());
         }
 
-        UserDetailViewModel userDetail = new UserDetailViewModel
+        UserViewModel userViewModel = new UserViewModel
         {
             FirstName = user.FirstName,
             LastName = user.LastName,
@@ -325,9 +365,38 @@ public class AccountController : Controller
             UserIdendityNo = user.UserIdendityNo,
             PhoneNumber = user.PhoneNumber,
             Email = user.Email,
-            DateOfBirth = user.DateOfBirth
-
+            DateOfBirth = user.DateOfBirth,
+            Note = user.Note
         };
-        return View(userDetail);
+
+        List<UserAddressViewModel> userAddressViewModel = new List<UserAddressViewModel>();
+        foreach (var address in user.Addresses)
+        {
+            userAddressViewModel.Add(
+                new UserAddressViewModel() {
+                                                    Note = address.Note, 
+                                                    AddressTitle=address.AddressTitle,
+                                                    AddressType = address.AddressType,
+                                                    Street=address.Street,
+                                                    MainStreet=address.MainStreet,
+                                                    NeighborhoodOrVillage=address.NeighborhoodOrVillage,
+                                                    District=address.District,
+                                                    City=address.City,
+                                                    Country=address.Country,
+                                                    RegionOrState=address.Country,
+                                                    BuildingNo=address.BuildingNo,
+                                                    FlatNo=address.FlatNo,
+                                                    PostalCode=address.PostalCode,
+                                                    AddressDetails=address.AddressDetails
+            });
+        }
+
+        UserDetailViewModel userDetailViewModel = new UserDetailViewModel()
+        {
+           UserViewModel = userViewModel,
+           UserAddressViewModels = userAddressViewModel
+        };
+        
+        return View(userDetailViewModel);
     }
 }

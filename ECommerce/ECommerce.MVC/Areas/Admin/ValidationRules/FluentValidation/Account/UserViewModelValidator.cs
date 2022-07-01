@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace ECommerce.MVC.Areas.Admin.ValidationRules.FluentValidation.Account;
 
-public class UserDetailViewModelValidator:AbstractValidator<UserDetailViewModel>
+public class UserViewModelValidator:AbstractValidator<UserViewModel>
 {
-    public UserDetailViewModelValidator()
+    public UserViewModelValidator()
     {
         RuleFor(x => x.FirstName)
             .NotNull()

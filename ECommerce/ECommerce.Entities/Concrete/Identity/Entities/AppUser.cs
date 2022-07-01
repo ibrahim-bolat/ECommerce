@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using ECommerce.Shared.Entities.Abtract;
 using Microsoft.AspNetCore.Identity;
 
@@ -8,6 +9,7 @@ public class AppUser:IdentityUser<int>,IIdentityEntity
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string UserIdendityNo { get; set; }
+        
         public  DateTime? DateOfBirth{get; set;}
         public  DateTime CreatedTime { get; set; } = DateTime.Now;
         public  DateTime ModifiedTime { get; set; } = DateTime.Now;

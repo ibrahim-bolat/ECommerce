@@ -49,7 +49,7 @@ $(document).ready(function ($) {
             },
             {
                 "data": "id", "width": "50px", "render": function (data) {
-                    return '<a class="btn btn-warning" onclick="return getbyIDforUpdate(' + data + ')"><i class="fa fa-pencil-square-o">Güncelle</i></a>';
+                    return '<a href="Account/EditProfile/'+data+'" class="btn btn-success"><i class="fa fa-pencil-square-o">Güncelle</i></a>';
                 }
             },
             {

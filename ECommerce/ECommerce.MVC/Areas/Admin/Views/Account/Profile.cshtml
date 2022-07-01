@@ -69,10 +69,10 @@
                     <div class="card-body text-center">
                         <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
                              class="rounded-circle img-fluid" style="width: 150px;">
-                        <h5 class="my-3">@Model.FirstName @Model.LastName</h5>
-                        <p class="text-muted mb-1">@Model.UserName</p>
-                        <p class="text-muted mb-1">@Model.Email</p>
-                        <p class="text-muted mb-4">Etlik,Keçiören,Ankara</p>
+                        <h5 class="my-3">@Model.UserViewModel.FirstName @Model.UserViewModel.LastName</h5>
+                        <p class="text-muted mb-1">@Model.UserViewModel.UserName</p>
+                        <p class="text-muted mb-1">@Model.UserViewModel.Email</p>
+                        <p class="text-muted mb-4">@Model.UserAddressViewModels.FirstOrDefault(x=>x.AddressType == ECommerce.Entities.Enums.AddressType.Home)?.AddressDetails</p>
                         <div class="d-flex justify-content-center mb-2">
                             <button type="button" class="btn btn-primary mr-2 rounded">Takip Et</button>
                             <button type="button" class="btn btn-outline-primary ms-1 rounded">Mesaj Gönder</button>
@@ -129,70 +129,109 @@
                 </div>
             </div>
             <div class="col-lg-8">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>Kullanıcı Bilgileri</h3>
-                    </div>
-                    <div class="card-body">
-                        <table class="table border-bottom">
-                            <thead>
-                            <tr>
-                                <th width="30%" class="border-0"></th>
-                                <th width="70%" class="border-0"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td class="border-0">
-                                    <label asp-for="FirstName"></label>
-                                </td>
-                                <td class="text-muted border-0">@Model.FirstName</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label asp-for="LastName"></label>
-                                </td>
-                                <td class="text-muted">@Model.LastName</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label asp-for="UserName"></label>
-                                </td>
-                                <td class="text-muted">@Model.UserName</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label asp-for="UserIdendityNo"></label>
-                                </td>
-                                <td class="text-muted">@Model.UserIdendityNo</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label asp-for="PhoneNumber"></label>
-                                </td>
-                                <td class="text-muted">@Model.PhoneNumber</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label asp-for="Email"></label>
-                                </td>
-                                <td class="text-muted">@Model.Email</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label asp-for="DateOfBirth"></label>
-                                </td>
-                                <td class="text-muted">@Model.DateOfBirth</td>
-                            </tr>
-                            <tr>
-                                <td>Adres</td>
-                                <td class="text-muted">Etlik,Keçiören,Ankara</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+                         <div class="card">
+                             <div class="card-header">
+                                 <h3>Kullanıcı Bilgileri</h3>
+                                 </div>
+                            <div class="card-body">
+                               <div class="custom-tab">
+                                  <nav>
+                                     <div class="nav nav-tabs nav-justified" id="nav-tab" role="tablist">
+                                        <a class="nav-item nav-link active" id="custom-nav-home-tab" data-toggle="tab" href="#custom-nav-profile" role="tab" aria-controls="custom-nav-profile" aria-selected="true">Profil Bilgileri</a>
+                                         <a class="nav-item nav-link" id="custom-nav-contact-tab" data-toggle="tab" href="#custom-nav-address" role="tab" aria-controls="custom-nav-address" aria-selected="false">Adres Bilgileri</a>
+                                     </div>
+                                  </nav>
+                                  <div class="tab-content pl-3 pt-2 mt-5" id="nav-tabContent">
+                                     <div class="tab-pane fade show active" id="custom-nav-profile" role="tabpanel" aria-labelledby="custom-nav-home-tab">
+                                        <table class="table border-bottom">
+                                                            <thead>
+                                                            <tr>
+                                                                <th width="30%" class="border-0"></th>
+                                                                <th width="70%" class="border-0"></th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr>
+                                                                <td class="border-0">
+                                                                    <label asp-for="UserViewModel.FirstName"></label>
+                                                                </td>
+                                                                <td class="text-muted border-0">@Model.UserViewModel.FirstName</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <label asp-for="UserViewModel.LastName"></label>
+                                                                </td>
+                                                                <td class="text-muted">@Model.UserViewModel.LastName</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <label asp-for="UserViewModel.UserName"></label>
+                                                                </td>
+                                                                <td class="text-muted">@Model.UserViewModel.UserName</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <label asp-for="UserViewModel.UserIdendityNo"></label>
+                                                                </td>
+                                                                <td class="text-muted">@Model.UserViewModel.UserIdendityNo</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <label asp-for="UserViewModel.PhoneNumber"></label>
+                                                                </td>
+                                                                <td class="text-muted">@Model.UserViewModel.PhoneNumber</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <label asp-for="UserViewModel.Email"></label>
+                                                                </td>
+                                                                <td class="text-muted">@Model.UserViewModel.Email</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <label asp-for="UserViewModel.DateOfBirth"></label>
+                                                                </td>
+                                                                <td class="text-muted">@(Model.UserViewModel.DateOfBirth.HasValue ? Model.UserViewModel.DateOfBirth.Value.ToString("dd/MM/yyyy") : "") </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <label asp-for="UserViewModel.Note"></label>
+                                                                    </td>
+                                                                <td class="text-muted">@Model.UserViewModel.Note</td>
+                                                                </tr>
+                                                            <tr>
+                                                                <td>Adres</td>
+                                                                <td class="text-muted">@Model.UserAddressViewModels.FirstOrDefault(x=>x.AddressType == ECommerce.Entities.Enums.AddressType.Work)?.AddressDetails</td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                     </div>
+                                      <div class="tab-pane fade" id="custom-nav-address" role="tabpanel" aria-labelledby="custom-nav-address-tab">
+                                          <div class="row">
+                                              @foreach (var address in @Model.UserAddressViewModels)
+                                              {
+                                                  <div class="col-md-6">
+                                                      <div class="card" style="border-radius: 20px;">
+                                                          <div class="card-header">
+                                                              <h5 class="card-title">@address.AddressTitle</h5>
+                                                          </div>
+                                                          <div class="card-body">
+                                                              <p class="card-text">@address.AddressDetails</p>
+                                                              <div class="d-flex justify-content-end">
+                                                                  <a href="#" class="btn btn-primary btn-sm">Düzenle</a>
+                                                                  <a href="#" class="btn btn-danger btn-s ml-2">Sil</a>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              }
+                                          </div>
+                                      </div>
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
+                      </div>
         </div>
     </div>
 </div> <!-- .content -->
