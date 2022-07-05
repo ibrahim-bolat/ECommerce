@@ -136,10 +136,7 @@
                         <th>Soyad</th>
                         <th>Username</th>
                         <th>Email</th>
-                        <th>Rol Atama</th>
-                        <th>Detay</th>
-                        <th>Güncelle</th>
-                        <th>Sil</th>
+                        <th>İşlemler</th>
                     </tr>
                     </thead>
                 </table>
@@ -165,8 +162,8 @@
         <script>
                 document.addEventListener("DOMContentLoaded", function(event) {
                     var registerMessage = '@TempData["RegisterSuccess"]';
-                    var EditProfileMessage = '@TempData["EditProfileSuccess"]';
-                    var EditPasswordMessage = '@TempData["EditPasswordSuccess"]';
+                    var editProfileMessage = '@TempData["EditProfileSuccess"]';
+                    var editPasswordMessage = '@TempData["EditPasswordSuccess"]';
                     if (registerMessage)
                     {
                         const Toast = Swal.mixin({
@@ -188,7 +185,7 @@
                         })
             
                     }
-                                    if (EditProfileMessage)
+                                    if (editProfileMessage)
                                     {
                                         const Toast = Swal.mixin({
                                         toast: true,
@@ -209,7 +206,7 @@
                                         })
                             
                                     }
-                                                                    if (EditPasswordMessage)
+                                                                    if (editPasswordMessage)
                                                                     {
                                                                         const Toast = Swal.mixin({
                                                                         toast: true,

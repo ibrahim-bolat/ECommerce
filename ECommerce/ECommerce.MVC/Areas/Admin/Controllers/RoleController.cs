@@ -1,5 +1,5 @@
+using ECommerce.Business.Dtos.RoleDtos;
 using ECommerce.Entities.Concrete.Identity.Entities;
-using ECommerce.MVC.Areas.Admin.Models.ViewModels.Account;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,7 +28,7 @@ namespace ECommerce.MVC.Areas.Admin.Controllers;
             {
                 AppRole role = await _roleManager.FindByIdAsync(id);
 
-                return View(new RoleViewModel()
+                return View(new RoleDto()
                 {
                     Name = role.Name
                 });
@@ -36,7 +36,7 @@ namespace ECommerce.MVC.Areas.Admin.Controllers;
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CreateRole(RoleViewModel model, string id)
+        public async Task<IActionResult> CreateRole(RoleDto model, string id)
         {
             IdentityResult result = null;
             if (id != null)
@@ -60,8 +60,8 @@ namespace ECommerce.MVC.Areas.Admin.Controllers;
             AppUser user = await _userManager.FindByIdAsync(id);
             List<AppRole> allRoles = _roleManager.Roles.ToList();
             List<string> userRoles = await _userManager.GetRolesAsync(user) as List<string>;
-            List<RoleAssignViewModel> assignRoles = new List<RoleAssignViewModel>();
-            allRoles.ForEach(role => assignRoles.Add(new RoleAssignViewModel
+            List<RoleAssignDto> assignRoles = new List<RoleAssignDto>();
+            allRoles.ForEach(role => assignRoles.Add(new RoleAssignDto
             {
                 HasAssign = userRoles.Contains(role.Name),
                 RoleId = role.Id,
@@ -71,10 +71,10 @@ namespace ECommerce.MVC.Areas.Admin.Controllers;
             return View(assignRoles);
         }
         [HttpPost]
-        public async Task<ActionResult> RoleAssign(List<RoleAssignViewModel> modelList, string id)
+        public async Task<ActionResult> RoleAssign(List<RoleAssignDto> modelList, string id)
         {
             AppUser user = await _userManager.FindByIdAsync(id);
-            foreach (RoleAssignViewModel role in modelList)
+            foreach (RoleAssignDto role in modelList)
             {
                 if (role.HasAssign)
                     await _userManager.AddToRoleAsync(user, role.RoleName);

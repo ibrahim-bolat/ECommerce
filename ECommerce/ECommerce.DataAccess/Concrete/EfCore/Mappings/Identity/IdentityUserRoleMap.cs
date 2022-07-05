@@ -2,9 +2,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace MyWebApp.DataAccess.Concrete.EfCore.Mappings.Identity
-{
-    public class IdentityUserRoleMap: IEntityTypeConfiguration<IdentityUserRole<int>>
+namespace ECommerce.DataAccess.Concrete.EfCore.Mappings.Identity;
+public class IdentityUserRoleMap: IEntityTypeConfiguration<IdentityUserRole<int>>
     {
         public void Configure(EntityTypeBuilder<IdentityUserRole<int>> builder)
         {
@@ -15,4 +14,3 @@ namespace MyWebApp.DataAccess.Concrete.EfCore.Mappings.Identity
             });
         }
     }
-}

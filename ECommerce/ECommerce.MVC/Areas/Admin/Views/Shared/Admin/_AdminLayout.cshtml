@@ -24,7 +24,7 @@
 <aside id="right-panel" class="right-panel">
 
     <!-- Header-->
-    <partial name="Admin/_AdminHeader"/>
+    @await Component.InvokeAsync("AdminHeader")
     <!-- Header-->
 
     @RenderBody()

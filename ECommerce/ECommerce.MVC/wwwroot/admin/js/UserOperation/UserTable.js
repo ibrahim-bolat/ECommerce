@@ -27,7 +27,7 @@ $(document).ready(function ($) {
             "searchable": false
             },
             {
-                "targets": [5, 6, 7, 8],
+                "targets": [5],
                 "searchable": false,
                 "orderable": false
             }],
@@ -39,25 +39,13 @@ $(document).ready(function ($) {
             {"data": "email", "name": "Email", "autoWidth": true},
             {
                 "data": "id", "width": "50px", "render": function (data) {
-                    return '<a class="btn btn-success" onclick="return getRole(' + data + ')"><i class="fa fa-tasks">Rol Atama</i></a>';
-                }
-            },
-            {
-                "data": "id", "width": "50px", "render": function (data) {
-                    return '<a class="btn btn-info" href="Account/Profile/' + data + '"><i class="fa fa-info-circle">Detay</i></a>';
-                }
-            },
-            {
-                "data": "id", "width": "50px", "render": function (data) {
-                    return '<a href="Account/EditProfile/'+data+'" class="btn btn-success"><i class="fa fa-pencil-square-o">Güncelle</i></a>';
-                }
-            },
-            {
-                "data": "id", "width": "50px", "render": function (data) {
-                    return '<a class="btn btn-danger" onclick="getbyIDforDelete(' + data + ')"><i class="fa fa-trash-o">Sil</i></a>';
+                    return '<a class="btn btn-success mr-2" onclick="return getRole(' + data + ')"><i class="fa fa-tasks">Rol Atama</i></a>' +
+                        '<a class="btn btn-info mr-2" href="Account/Profile/' + data + '"><i class="fa fa-info-circle">Detay</i></a>' +
+                        '<a class="btn btn-secondary mr-2" href="Account/EditProfile/'+data+'"><i class="fa fa-pencil-square-o">Profil Güncelle</i></a>' +
+                        '<a class="btn btn-warning mr-2" href="Account/EditPassword/'+data+'"><i class="fa fa-pencil-square-o">Şifre Güncelle</i></a>' +
+                        '<a class="btn btn-danger" onclick="getbyIDforDelete(' + data + ')"><i class="fa fa-trash-o">Sil</i></a>';
                 }
             }
-
         ],
         dom: '<"dt-header"Bf>rt<"dt-footer"ip>',
         buttons: [

@@ -29,7 +29,8 @@ namespace ECommerce.DataAccess.Concrete.EfCore.Mappings.Identity;
             });
             builder.Property(user => user.FirstName).HasMaxLength(100);
             builder.Property(user => user.LastName).HasMaxLength(100);
-            builder.Property(user => user.Note).HasMaxLength(250);
+            builder.Property(user => user.UserIdendityNo).HasMaxLength(11);
+            builder.Property(user => user.Note).HasMaxLength(500);
             builder.Property(user => user.DateOfBirth).HasColumnType("date");
             builder.HasMany(user => user.Addresses).WithOne(address => address.AppUser)
                 .HasForeignKey(address => address.UserId).OnDelete(DeleteBehavior.SetNull);

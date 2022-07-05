@@ -1,10 +1,10 @@
 ﻿using ECommerce.Entities.Concrete.Identity.Entities;
-using ECommerce.Entities.Enums;
-using ECommerce.Shared.Entities.Concrete;
+using ECommerce.Shared.Entities.Abtract;
+using ECommerce.Shared.Entities.Concrete.Enums;
 
 namespace ECommerce.Entities.Concrete;
 
-    public class Address : BaseEntity
+    public class Address : BaseEntity,IEntity
     {
         public  string AddressTitle{ get; set; }
         public  AddressType AddressType { get; set; }
@@ -19,6 +19,8 @@ namespace ECommerce.Entities.Concrete;
         public  string FlatNo{ get; set; }
         public  string PostalCode{ get; set; }
         public  string AddressDetails{ get; set; }
+        
+        public bool DefaultAddress { get; set; }
         public int UserId{ get; set; }
         public virtual AppUser AppUser{ get; set; }
     

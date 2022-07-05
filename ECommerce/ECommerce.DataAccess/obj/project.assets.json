@@ -362,6 +362,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "Microsoft.EntityFrameworkCore": "6.0.5",
           "Microsoft.Extensions.Options": "6.0.0"
         },
         "compile": {

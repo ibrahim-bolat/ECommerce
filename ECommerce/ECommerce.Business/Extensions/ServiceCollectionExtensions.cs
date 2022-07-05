@@ -1,10 +1,27 @@
+using System.Reflection;
 using System.Text.Json.Serialization;
+using ECommerce.Business.Abstract;
+using ECommerce.Business.Concrete;
+using ECommerce.Business.Dtos.AddressDtos;
+using ECommerce.Business.Dtos.RoleDtos;
+using ECommerce.Business.Dtos.UserDtos;
+using ECommerce.Business.Dtos.UserImageDtos;
+using ECommerce.Business.ValidationRules.FluentValidation.Account;
+using ECommerce.Business.ValidationRules.FluentValidation.Address;
+using ECommerce.Business.ValidationRules.FluentValidation.UserImage;
 using ECommerce.Business.Validations.Identity;
+using ECommerce.DataAccess.Abstract;
+using ECommerce.DataAccess.Concrete;
 using ECommerce.DataAccess.Concrete.EfCore.Contexts;
+using ECommerce.DataAccess.Concrete.EfCore.Repository;
 using ECommerce.Entities.Concrete.Identity.Entities;
 using ECommerce.Helpers.MailHelper;
+using ECommerce.Shared.DataAccess.Abstract;
+using ECommerce.Shared.DataAccess.Concrete.EntityFramework;
 using ECommerce.Shared.Helpers.MailHelper;
 using ECommerce.Shared.Service.Abtract;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -20,13 +37,15 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection LoadMyService(this IServiceCollection serviceCollection,IConfiguration configuration)
     {
+        serviceCollection.AddAutoMapper(Assembly.GetExecutingAssembly());
+        serviceCollection.AddControllersWithViews().AddRazorRuntimeCompilation();
+        serviceCollection.AddControllersWithViews().AddFluentValidation(options =>
+        {
+            options.ImplicitlyValidateChildProperties = true;
+            options.ImplicitlyValidateRootCollectionElements = true;
+            options.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+        });
         
-        /*
-        IConfiguration configuration = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json", false)
-            .Build();
-        */
         serviceCollection.AddControllers().AddJsonOptions(options => 
         { 
             options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
@@ -42,10 +61,11 @@ public static class ServiceCollectionExtensions
         
         serviceCollection.AddIdentity<AppUser, AppRole>(options =>
             {
-                options.User.RequireUniqueEmail = true; 
+                options.User.RequireUniqueEmail = true;
                 options.User.AllowedUserNameCharacters =
                     "abcçdefghiıjklmnoöpqrsştuüvwxyzABCÇDEFGHIİJKLMNOÖPQRSŞTUÜVWXYZ0123456789-._@+";
                 options.SignIn.RequireConfirmedEmail = false; 
+                options.SignIn.RequireConfirmedPhoneNumber = false;
             }).AddErrorDescriber<CustomIdentityErrorDescriber>()
             .AddEntityFrameworkStores<DataContext>()
             .AddDefaultTokenProviders();
@@ -84,6 +104,18 @@ public static class ServiceCollectionExtensions
 
         serviceCollection.AddTransient<IEmailService, EmailHelper>();
         
+        
+        //serviceCollection.AddScoped<DbContext, DataContext>(); 
+        //serviceCollection.AddScoped(typeof(IGenericRepository<>), typeof(EfGenericRepository<>));
+        //repositories
+        serviceCollection.AddScoped<IAddressRepository,EfAddressRepository>();
+        serviceCollection.AddScoped<IUserImageRepository,EfUserImageRepository>();
+        serviceCollection.AddScoped<IUnitOfWork, UnitOfWork>();
+        
+        //services
+        serviceCollection.AddScoped<IAddressService, AddressManager>();
+        serviceCollection.AddScoped<IUserImageService, UserImageManager>();
+
         return serviceCollection;
     }
 }

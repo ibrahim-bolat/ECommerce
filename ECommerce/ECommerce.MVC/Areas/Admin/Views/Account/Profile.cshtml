@@ -1,4 +1,4 @@
-@model UserDetailViewModel
+@model UserDetailDto
 @{
     Layout = "Admin/_AdminLayout";
     ViewData["Title"] = "Profil";
@@ -69,10 +69,10 @@
                     <div class="card-body text-center">
                         <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
                              class="rounded-circle img-fluid" style="width: 150px;">
-                        <h5 class="my-3">@Model.UserViewModel.FirstName @Model.UserViewModel.LastName</h5>
-                        <p class="text-muted mb-1">@Model.UserViewModel.UserName</p>
-                        <p class="text-muted mb-1">@Model.UserViewModel.Email</p>
-                        <p class="text-muted mb-4">@Model.UserAddressViewModels.FirstOrDefault(x=>x.AddressType == ECommerce.Entities.Enums.AddressType.Home)?.AddressDetails</p>
+                        <h5 class="my-3">@Model.UserDto.FirstName @Model.UserDto.LastName</h5>
+                        <p class="text-muted mb-1">@Model.UserDto.UserName</p>
+                        <p class="text-muted mb-1">@Model.UserDto.Email</p>
+                        <p class="text-muted mb-4">@Model.UserAddressSummaryDtos.FirstOrDefault(x=>x.DefaultAddress)?.AddressDetails</p>
                         <div class="d-flex justify-content-center mb-2">
                             <button type="button" class="btn btn-primary mr-2 rounded">Takip Et</button>
                             <button type="button" class="btn btn-outline-primary ms-1 rounded">Mesaj Gönder</button>
@@ -141,7 +141,7 @@
                                          <a class="nav-item nav-link" id="custom-nav-contact-tab" data-toggle="tab" href="#custom-nav-address" role="tab" aria-controls="custom-nav-address" aria-selected="false">Adres Bilgileri</a>
                                      </div>
                                   </nav>
-                                  <div class="tab-content pl-3 pt-2 mt-5" id="nav-tabContent">
+                                  <div class="tab-content pl-3 pt-2 mt-3" id="nav-tabContent">
                                      <div class="tab-pane fade show active" id="custom-nav-profile" role="tabpanel" aria-labelledby="custom-nav-home-tab">
                                         <table class="table border-bottom">
                                                             <thead>
@@ -153,62 +153,63 @@
                                                             <tbody>
                                                             <tr>
                                                                 <td class="border-0">
-                                                                    <label asp-for="UserViewModel.FirstName"></label>
+                                                                    <label asp-for="UserDto.FirstName"></label>
                                                                 </td>
-                                                                <td class="text-muted border-0">@Model.UserViewModel.FirstName</td>
+                                                                <td class="text-muted border-0">@Model.UserDto.FirstName</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
-                                                                    <label asp-for="UserViewModel.LastName"></label>
+                                                                    <label asp-for="UserDto.LastName"></label>
                                                                 </td>
-                                                                <td class="text-muted">@Model.UserViewModel.LastName</td>
+                                                                <td class="text-muted">@Model.UserDto.LastName</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
-                                                                    <label asp-for="UserViewModel.UserName"></label>
+                                                                    <label asp-for="UserDto.UserName"></label>
                                                                 </td>
-                                                                <td class="text-muted">@Model.UserViewModel.UserName</td>
+                                                                <td class="text-muted">@Model.UserDto.UserName</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
-                                                                    <label asp-for="UserViewModel.UserIdendityNo"></label>
+                                                                    <label asp-for="UserDto.UserIdendityNo"></label>
                                                                 </td>
-                                                                <td class="text-muted">@Model.UserViewModel.UserIdendityNo</td>
+                                                                <td class="text-muted">@Model.UserDto.UserIdendityNo</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
-                                                                    <label asp-for="UserViewModel.PhoneNumber"></label>
+                                                                    <label asp-for="UserDto.PhoneNumber"></label>
                                                                 </td>
-                                                                <td class="text-muted">@Model.UserViewModel.PhoneNumber</td>
+                                                                <td class="text-muted">@Model.UserDto.PhoneNumber</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
-                                                                    <label asp-for="UserViewModel.Email"></label>
+                                                                    <label asp-for="UserDto.Email"></label>
                                                                 </td>
-                                                                <td class="text-muted">@Model.UserViewModel.Email</td>
+                                                                <td class="text-muted">@Model.UserDto.Email</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
-                                                                    <label asp-for="UserViewModel.DateOfBirth"></label>
+                                                                    <label asp-for="UserDto.DateOfBirth"></label>
                                                                 </td>
-                                                                <td class="text-muted">@(Model.UserViewModel.DateOfBirth.HasValue ? Model.UserViewModel.DateOfBirth.Value.ToString("dd/MM/yyyy") : "") </td>
+                                                                <td class="text-muted">@(Model.UserDto.DateOfBirth.HasValue ? Model.UserDto.DateOfBirth.Value.ToString("dd/MM/yyyy") : "") </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
-                                                                    <label asp-for="UserViewModel.Note"></label>
+                                                                    <label asp-for="UserDto.Note"></label>
                                                                     </td>
-                                                                <td class="text-muted">@Model.UserViewModel.Note</td>
+                                                                <td class="text-muted">@Model.UserDto.Note</td>
                                                                 </tr>
                                                             <tr>
                                                                 <td>Adres</td>
-                                                                <td class="text-muted">@Model.UserAddressViewModels.FirstOrDefault(x=>x.AddressType == ECommerce.Entities.Enums.AddressType.Work)?.AddressDetails</td>
+                                                                <td class="text-muted">@Model.UserAddressSummaryDtos.FirstOrDefault(x=>x.DefaultAddress)?.AddressDetails</td>
                                                             </tr>
                                                             </tbody>
                                                         </table>
                                      </div>
                                       <div class="tab-pane fade" id="custom-nav-address" role="tabpanel" aria-labelledby="custom-nav-address-tab">
+                                          <a asp-area="Admin" asp-controller="" asp-action="Index" class="btn btn-outline-primary mb-2">Adres Ekle</a>
                                           <div class="row">
-                                              @foreach (var address in @Model.UserAddressViewModels)
+                                              @foreach (var address in @Model.UserAddressSummaryDtos)
                                               {
                                                   <div class="col-md-6">
                                                       <div class="card" style="border-radius: 20px;">
@@ -218,7 +219,7 @@
                                                           <div class="card-body">
                                                               <p class="card-text">@address.AddressDetails</p>
                                                               <div class="d-flex justify-content-end">
-                                                                  <a href="#" class="btn btn-primary btn-sm">Düzenle</a>
+                                                                  <a href="#" class="btn btn-success btn-sm">Düzenle</a>
                                                                   <a href="#" class="btn btn-danger btn-s ml-2">Sil</a>
                                                               </div>
                                                           </div>

@@ -15,6 +15,6 @@ public class AppRoleMap : IEntityTypeConfiguration<AppRole>
                 Name = "Admin",
                 NormalizedName = "ADMIN"
             });
-            builder.Property(role => role.Note).HasMaxLength(250);
+            builder.Property(role => role.Note).HasMaxLength(500);
         }
     }

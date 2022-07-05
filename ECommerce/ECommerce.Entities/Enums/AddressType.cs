@@ -1,9 +1,7 @@
-namespace ECommerce.Entities.Enums
-{
-    public enum AddressType
+namespace ECommerce.Shared.Entities.Concrete.Enums;
+public enum AddressType
     {
         Home,
         Work,
         Other
     }
-}

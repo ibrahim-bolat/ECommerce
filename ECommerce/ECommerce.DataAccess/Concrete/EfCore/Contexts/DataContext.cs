@@ -4,7 +4,6 @@ using ECommerce.Entities.Concrete;
 using ECommerce.Entities.Concrete.Identity.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using MyWebApp.DataAccess.Concrete.EfCore.Mappings.Identity;
 
 
 namespace ECommerce.DataAccess.Concrete.EfCore.Contexts;

@@ -1,9 +1,11 @@
 using System.Web;
+using ECommerce.Business.Dtos.AddressDtos;
+using ECommerce.Business.Dtos.UserDtos;
+using ECommerce.Business.ValidationRules.FluentValidation.Account;
 using ECommerce.Entities.Concrete.Identity.Entities;
-using ECommerce.Entities.Enums;
 using ECommerce.Helpers.MailHelper;
-using ECommerce.MVC.Areas.Admin.Models.ViewModels.Account;
 using ECommerce.Shared.Service.Abtract;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -37,21 +39,21 @@ public class AccountController : Controller
 
     [AllowAnonymous]
     [HttpPost] 
-    public async Task<IActionResult> Register(RegisterViewModel Model)
+    public async Task<IActionResult> Register(RegisterDto model)
     {
         if (ModelState.IsValid)
         {
             AppUser applicationUser = new AppUser
             {
-                FirstName = Model.FirstName,
-                LastName = Model.LastName,
-                UserName = Model.UserName,
-                Email = Model.Email
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                UserName = model.UserName,
+                Email = model.Email
             };
             AppRole role = await _roleManager.FindByNameAsync("User");
             if (role == null)
                 await _roleManager.CreateAsync(new AppRole { Name = "User" });
-            IdentityResult userResult = await _userManager.CreateAsync(applicationUser, Model.Password);
+            IdentityResult userResult = await _userManager.CreateAsync(applicationUser, model.Password);
             IdentityResult roleResult = null;
             if (userResult.Succeeded)
             {
@@ -62,12 +64,12 @@ public class AccountController : Controller
                     return RedirectToAction("Login", "Account", new { area = "Admin" });
                 }
                 roleResult.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
-                return View(Model);
+                return View(model);
             }
             userResult.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
-            return View(Model);
+            return View(model);
         }
-        return View(Model);
+        return View(model);
     }
 
     [AllowAnonymous]
@@ -91,24 +93,24 @@ public class AccountController : Controller
 
     [AllowAnonymous]
     [HttpGet] 
-    public IActionResult Login(string ReturnUrl = "Index")
+    public IActionResult Login(string returnUrl = "Index")
     {
-        TempData["returnUrl"] = ReturnUrl;
+        TempData["returnUrl"] = returnUrl;
         return View();
     }
 
     [AllowAnonymous]
     [HttpPost] 
-    public async Task<IActionResult> Login(LoginViewModel Model)
+    public async Task<IActionResult> Login(LoginDto model)
     {
         if (ModelState.IsValid)
         {
-            AppUser user = await _userManager.FindByEmailAsync(Model.Email);
+            AppUser user = await _userManager.FindByEmailAsync(model.Email);
             if (user != null)
             {
                 await _signInManager.SignOutAsync();
                 SignInResult result =
-                    await _signInManager.PasswordSignInAsync(user, Model.Password, Model.Persistent, Model.Lock);
+                    await _signInManager.PasswordSignInAsync(user, model.Password, model.Persistent, model.Lock);
 
                 if (result.Succeeded)
                 {
@@ -138,18 +140,18 @@ public class AccountController : Controller
                         {
                             ModelState.AddModelError("Locked",
                                 "Art arda 3 başarısız giriş denemesi yaptığınızdan dolayı hesabınız 30 dk kilitlenmiştir.");
-                            return View(Model);
+                            return View(model);
                         }
                         ModelState.AddModelError("InvalidEpostaOrPass1", "E-posta veya şifre yanlış.");
-                        return View(Model);
+                        return View(model);
                     }
                 }
             }
             ModelState.AddModelError("NoUser", "Böyle bir kullanıcı bulunmamaktadır.");
             ModelState.AddModelError("InvalidEpostaOrPass2", "E-posta veya şifre yanlış.");
-            return View(Model);
+            return View(model);
         }
-        return View(Model);
+        return View(model);
     }
 
     [HttpGet] 
@@ -167,7 +169,7 @@ public class AccountController : Controller
 
     [AllowAnonymous]
     [HttpPost] 
-    public async Task<IActionResult> ForgetPass(ForgetPassViewModel model)
+    public async Task<IActionResult> ForgetPass(ForgetPassDto model)
     {
         AppUser user = await _userManager.FindByEmailAsync(model.Email);
         if (user != null)
@@ -211,7 +213,7 @@ public class AccountController : Controller
 
     [AllowAnonymous]
     [HttpPost("[action]/{userId}/{token}")] 
-    public async Task<IActionResult> UpdatePassword(UpdatePasswordViewModel model, string userId, string token)
+    public async Task<IActionResult> UpdatePassword(UpdatePasswordDto model, string userId, string token)
     {
         AppUser user = await _userManager.FindByIdAsync(userId);
         IdentityResult result =
@@ -230,35 +232,31 @@ public class AccountController : Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> EditProfile(int Id=0)
+    public async Task<IActionResult> EditProfile(int id)
     {
-        AppUser user = null;
-        if (Id == 0)
+        if (id != 0)
         {
-            user = await _userManager.FindByNameAsync(User.Identity?.Name);
+            AppUser user = await _userManager.FindByIdAsync(id.ToString());
+            UserDto userDto = new UserDto
+            {
+                Id = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                UserName = user.UserName,
+                UserIdendityNo = user.UserIdendityNo,
+                PhoneNumber = user.PhoneNumber,
+                Email = user.Email,
+                DateOfBirth = user.DateOfBirth,
+                Note = user.Note
+            };
+            TempData["oldEmail"] = user.Email;
+            return View(userDto);
         }
-        else
-        {
-            user = await _userManager.FindByIdAsync(Id.ToString());
-        }
-        UserViewModel userViewModel = new UserViewModel
-        {
-            Id = user.Id,
-            FirstName = user.FirstName,
-            LastName = user.LastName,
-            UserName = user.UserName,
-            UserIdendityNo = user.UserIdendityNo,
-            PhoneNumber = user.PhoneNumber,
-            Email = user.Email,
-            DateOfBirth = user.DateOfBirth,
-            Note = user.Note
-        };
-        TempData["oldEmail"] = user.Email;
-        return View(userViewModel);
+        return RedirectToAction("AccessDenied", "ErrorPages");
     }
 
         [HttpPost]
-        public async Task<IActionResult> EditProfile(UserViewModel model)
+        public async Task<IActionResult> EditProfile(UserDto model)
         {
             if (ModelState.IsValid)
             {
@@ -279,7 +277,7 @@ public class AccountController : Controller
                 }
                 else
                 {
-                    user =  _userManager.FindByEmailAsync(TempData["oldEmail"].ToString()).Result;
+                    user =  await _userManager.FindByEmailAsync(TempData["oldEmail"].ToString());
                     user.FirstName = model.FirstName;
                     user.LastName = model.LastName;
                     user.UserName = model.UserName;
@@ -313,90 +311,81 @@ public class AccountController : Controller
         }
     
     [HttpGet]
-    public IActionResult EditPassword()
+    public IActionResult EditPassword(int id)
     {
-        return View();
+        if (id != 0)
+        {
+            ViewBag.userId = id;
+            return View();
+        }
+        return RedirectToAction("AccessDenied", "ErrorPages");
     }
     
     [HttpPost]
-    public async Task<IActionResult> EditPassword(EditPasswordViewModel model)
+    public async Task<IActionResult> EditPassword(EditPasswordDto model,int id)
     {
         if (ModelState.IsValid)
         {
-            AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
-            if (await _userManager.CheckPasswordAsync(user, model.OldPassword))
+            if (id != 0)
             {
-                IdentityResult result =
-                    await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
+                AppUser user = await _userManager.FindByIdAsync(id.ToString());
+                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                IdentityResult result  = await _userManager.ResetPasswordAsync(user, token, model.NewPassword);
                 if (!result.Succeeded)
                 {
                     result.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
                     return View(model);
                 }
-
                 await _userManager.UpdateSecurityStampAsync(user);
-                await _signInManager.SignOutAsync();
-                await _signInManager.SignInAsync(user, true);
+                if (User.Identity.Name==user.UserName)
+                {
+                    await _signInManager.SignOutAsync();
+                    await _signInManager.SignInAsync(user, true);
+                }
+                TempData["EditPasswordSuccess"] = true;
+                return RedirectToAction("Index", "UserOperation", new { area = "Admin" });
             }
+            return RedirectToAction("AccessDenied", "ErrorPages");
         }
-
-        return RedirectToAction("Index", "Home", new { area = "Admin" });
+        return View(model);
     }
 
 
     [HttpGet]
-    public async Task<IActionResult> Profile(int Id = 0)
+    public async Task<IActionResult> Profile(int id)
     {
-        AppUser user = null;
-        if (Id == 0)
+        if (id != 0)
         {
-            user = await _userManager.FindByNameAsync(User.Identity?.Name);
+            AppUser user = await _userManager.FindByIdAsync(id.ToString());
+            UserDto UserDto = new UserDto
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                UserName = user.UserName,
+                UserIdendityNo = user.UserIdendityNo,
+                PhoneNumber = user.PhoneNumber,
+                Email = user.Email,
+                DateOfBirth = user.DateOfBirth,
+                Note = user.Note
+            };
+            List<AddressSummaryDto> addressSummaryDtos = new List<AddressSummaryDto>();
+            foreach (var address in user.Addresses)
+            {
+                addressSummaryDtos.Add(
+                    new AddressSummaryDto() {
+                        Id = address.Id, 
+                        AddressTitle=address.AddressTitle,
+                        AddressDetails=address.AddressDetails,
+                        DefaultAddress = address.DefaultAddress
+                    });
+            }
+            UserDetailDto userDetailDto = new UserDetailDto()
+            {
+                UserDto = UserDto,
+                UserAddressSummaryDtos = addressSummaryDtos
+            };
+            return View(userDetailDto);
         }
-        else
-        {
-            user = await _userManager.FindByIdAsync(Id.ToString());
-        }
-
-        UserViewModel userViewModel = new UserViewModel
-        {
-            FirstName = user.FirstName,
-            LastName = user.LastName,
-            UserName = user.UserName,
-            UserIdendityNo = user.UserIdendityNo,
-            PhoneNumber = user.PhoneNumber,
-            Email = user.Email,
-            DateOfBirth = user.DateOfBirth,
-            Note = user.Note
-        };
-
-        List<UserAddressViewModel> userAddressViewModel = new List<UserAddressViewModel>();
-        foreach (var address in user.Addresses)
-        {
-            userAddressViewModel.Add(
-                new UserAddressViewModel() {
-                                                    Note = address.Note, 
-                                                    AddressTitle=address.AddressTitle,
-                                                    AddressType = address.AddressType,
-                                                    Street=address.Street,
-                                                    MainStreet=address.MainStreet,
-                                                    NeighborhoodOrVillage=address.NeighborhoodOrVillage,
-                                                    District=address.District,
-                                                    City=address.City,
-                                                    Country=address.Country,
-                                                    RegionOrState=address.Country,
-                                                    BuildingNo=address.BuildingNo,
-                                                    FlatNo=address.FlatNo,
-                                                    PostalCode=address.PostalCode,
-                                                    AddressDetails=address.AddressDetails
-            });
-        }
-
-        UserDetailViewModel userDetailViewModel = new UserDetailViewModel()
-        {
-           UserViewModel = userViewModel,
-           UserAddressViewModels = userAddressViewModel
-        };
-        
-        return View(userDetailViewModel);
+        return RedirectToAction("AccessDenied", "ErrorPages");
     }
 }

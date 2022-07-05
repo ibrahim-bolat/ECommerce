@@ -34,11 +34,13 @@
     ".NETCoreApp,Version=v6.0": {
       "ECommerce.MVC/1.0.0": {
         "dependencies": {
+          "AutoMapper": "11.0.0",
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": "11.0.0",
           "ECommerce.Business": "1.0.0",
           "ECommerce.DataAccess": "1.0.0",
           "ECommerce.Entities": "1.0.0",
           "ECommerce.Shared": "1.0.0",
-          "FluentValidation.AspNetCore": "11.0.3",
+          "FluentValidation.AspNetCore": "11.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "6.0.5",
           "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": "6.0.5",
           "Microsoft.EntityFrameworkCore": "6.0.5",
@@ -129,7 +131,7 @@
           "Microsoft.AspNetCore.StaticFiles": "6.0.0.0",
           "Microsoft.AspNetCore.WebSockets": "6.0.0.0",
           "Microsoft.AspNetCore.WebUtilities": "6.0.0.0",
-          "Microsoft.CSharp": "6.0.0.0",
+          "Microsoft.CSharp.Reference": "6.0.0.0",
           "Microsoft.Extensions.Caching.Abstractions.Reference": "6.0.0.0",
           "Microsoft.Extensions.Caching.Memory.Reference": "6.0.0.0",
           "Microsoft.Extensions.Configuration.Abstractions.Reference": "6.0.0.0",
@@ -345,6 +347,35 @@
           "ECommerce.MVC.dll": {}
         }
       },
+      "AutoMapper/11.0.0": {
+        "dependencies": {
+          "Microsoft.CSharp": "4.7.0"
+        },
+        "runtime": {
+          "lib/netstandard2.1/AutoMapper.dll": {
+            "assemblyVersion": "11.0.0.0",
+            "fileVersion": "11.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.1/AutoMapper.dll": {}
+        }
+      },
+      "AutoMapper.Extensions.Microsoft.DependencyInjection/11.0.0": {
+        "dependencies": {
+          "AutoMapper": "11.0.0",
+          "Microsoft.Extensions.Options": "6.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.1/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {
+            "assemblyVersion": "11.0.0.0",
+            "fileVersion": "11.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.1/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
+        }
+      },
       "Castle.Core/4.4.1": {
         "dependencies": {
           "NETStandard.Library": "1.6.1",
@@ -368,41 +399,41 @@
           "lib/netstandard1.5/Castle.Core.dll": {}
         }
       },
-      "FluentValidation/11.0.3": {
+      "FluentValidation/11.0.0": {
         "runtime": {
           "lib/net6.0/FluentValidation.dll": {
             "assemblyVersion": "11.0.0.0",
-            "fileVersion": "11.0.3.0"
+            "fileVersion": "11.0.0.0"
           }
         },
         "compile": {
           "lib/net6.0/FluentValidation.dll": {}
         }
       },
-      "FluentValidation.AspNetCore/11.0.3": {
+      "FluentValidation.AspNetCore/11.0.0": {
         "dependencies": {
-          "FluentValidation": "11.0.3",
-          "FluentValidation.DependencyInjectionExtensions": "11.0.3"
+          "FluentValidation": "11.0.0",
+          "FluentValidation.DependencyInjectionExtensions": "11.0.0"
         },
         "runtime": {
           "lib/net6.0/FluentValidation.AspNetCore.dll": {
             "assemblyVersion": "11.0.0.0",
-            "fileVersion": "11.0.3.0"
+            "fileVersion": "11.0.0.0"
           }
         },
         "compile": {
           "lib/net6.0/FluentValidation.AspNetCore.dll": {}
         }
       },
-      "FluentValidation.DependencyInjectionExtensions/11.0.3": {
+      "FluentValidation.DependencyInjectionExtensions/11.0.0": {
         "dependencies": {
-          "FluentValidation": "11.0.3",
+          "FluentValidation": "11.0.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0"
         },
         "runtime": {
           "lib/netstandard2.1/FluentValidation.DependencyInjectionExtensions.dll": {
             "assemblyVersion": "11.0.0.0",
-            "fileVersion": "11.0.3.0"
+            "fileVersion": "11.0.0.0"
           }
         },
         "compile": {
@@ -626,6 +657,7 @@
           "lib/netstandard2.0/Microsoft.CodeAnalysis.Razor.dll": {}
         }
       },
+      "Microsoft.CSharp/4.7.0": {},
       "Microsoft.EntityFrameworkCore/6.0.5": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Abstractions": "6.0.5",
@@ -1616,10 +1648,13 @@
       },
       "ECommerce.Business/1.0.0": {
         "dependencies": {
+          "AutoMapper": "11.0.0",
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": "11.0.0",
           "ECommerce.DataAccess": "1.0.0",
           "ECommerce.Entities": "1.0.0",
           "ECommerce.Shared": "1.0.0",
-          "FluentValidation.AspNetCore": "11.0.3",
+          "FluentValidation.AspNetCore": "11.0.0",
+          "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": "6.0.5",
           "Microsoft.EntityFrameworkCore.Proxies": "6.0.5"
         },
         "runtime": {
@@ -1661,6 +1696,7 @@
       },
       "ECommerce.Shared/1.0.0": {
         "dependencies": {
+          "Microsoft.EntityFrameworkCore": "6.0.5",
           "Microsoft.Extensions.Options": "6.0.0"
         },
         "runtime": {
@@ -2150,7 +2186,7 @@
         },
         "compileOnly": true
       },
-      "Microsoft.CSharp/6.0.0.0": {
+      "Microsoft.CSharp.Reference/6.0.0.0": {
         "compile": {
           "Microsoft.CSharp.dll": {}
         },
@@ -3406,6 +3442,20 @@
       "serviceable": false,
       "sha512": ""
     },
+    "AutoMapper/11.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+596AnKykYCk9RxXCEF4GYuapSebQtFVvIA1oVG1rrRkCLAC7AkWehJ0brCfYUbdDW3v1H/p0W3hob7JoXGjMw==",
+      "path": "automapper/11.0.0",
+      "hashPath": "automapper.11.0.0.nupkg.sha512"
+    },
+    "AutoMapper.Extensions.Microsoft.DependencyInjection/11.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-0asw5WxdCFh2OTi9Gv+oKyH9SzxwYQSnO8TV5Dd0GggovILzJW4UimP26JAcxc3yB5NnC5urooZ1BBs8ElpiBw==",
+      "path": "automapper.extensions.microsoft.dependencyinjection/11.0.0",
+      "hashPath": "automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512"
+    },
     "Castle.Core/4.4.1": {
       "type": "package",
       "serviceable": true,
@@ -3413,26 +3463,26 @@
       "path": "castle.core/4.4.1",
       "hashPath": "castle.core.4.4.1.nupkg.sha512"
     },
-    "FluentValidation/11.0.3": {
+    "FluentValidation/11.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-UZSn74ufuSpHBSRivPVe1IGhOYnbyzr1jpoWqK3CTcnpDxkADcwoUbrbKhEio3MZLxTv9yVlFT7uDkb/XotOiQ==",
-      "path": "fluentvalidation/11.0.3",
-      "hashPath": "fluentvalidation.11.0.3.nupkg.sha512"
+      "sha512": "sha512-cD0VaOQfVZGxp3UFBDET5KztMe1W0QUgk7vP/e1zus0ofALqab5/B5S319+XEFvhw0KEStS3yfCDGpvQM10C6A==",
+      "path": "fluentvalidation/11.0.0",
+      "hashPath": "fluentvalidation.11.0.0.nupkg.sha512"
     },
-    "FluentValidation.AspNetCore/11.0.3": {
+    "FluentValidation.AspNetCore/11.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-6ie5XUwpG4fjXhyHsKG2j8BZPCcAMrA1cRvyKFHZYs/lkJ1Ct0qBYAFS3B82pWYJHb6XnBIbUlB664mwsMzbqw==",
-      "path": "fluentvalidation.aspnetcore/11.0.3",
-      "hashPath": "fluentvalidation.aspnetcore.11.0.3.nupkg.sha512"
+      "sha512": "sha512-Ld0kH/0BJXxF4vHlZRtpjghGA8eElOn/imgqYcFPJ602gVQcSDmsENxjHZx4kx/U89fNWwTA6Z2bcJcewm3DrQ==",
+      "path": "fluentvalidation.aspnetcore/11.0.0",
+      "hashPath": "fluentvalidation.aspnetcore.11.0.0.nupkg.sha512"
     },
-    "FluentValidation.DependencyInjectionExtensions/11.0.3": {
+    "FluentValidation.DependencyInjectionExtensions/11.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-MLbbooikiH1QqFa9p+Fa/qPi5jUt0vzSWRjf6ERi79GKFsqjFKmgtcsZzWFSbrDUvueaDE6yyHHHvCFWlne4fw==",
-      "path": "fluentvalidation.dependencyinjectionextensions/11.0.3",
-      "hashPath": "fluentvalidation.dependencyinjectionextensions.11.0.3.nupkg.sha512"
+      "sha512": "sha512-jBQjbAxpXWnoalvGKTLyUoArNJ1dnIpxOknENxa7XuXHMy80Gc+VNJk5OoOpVX8JfhpZkLQOaPozycGVtUo7Tg==",
+      "path": "fluentvalidation.dependencyinjectionextensions/11.0.0",
+      "hashPath": "fluentvalidation.dependencyinjectionextensions.11.0.0.nupkg.sha512"
     },
     "Humanizer.Core/2.8.26": {
       "type": "package",
@@ -3510,6 +3560,13 @@
       "sha512": "sha512-hASP/Ift9GVUKWqaC71XqCTYxXGSTuj8Lt+0mI6JBZbyDyNwHLxbNgpcWgddusgwqc6RJnrEkeZXTwFVN1CwOQ==",
       "path": "microsoft.codeanalysis.razor/6.0.5",
       "hashPath": "microsoft.codeanalysis.razor.6.0.5.nupkg.sha512"
+    },
+    "Microsoft.CSharp/4.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-pTj+D3uJWyN3My70i2Hqo+OXixq3Os2D1nJ2x92FFo6sk8fYS1m1WLNTs0Dc1uPaViH0YvEEwvzddQ7y4rhXmA==",
+      "path": "microsoft.csharp/4.7.0",
+      "hashPath": "microsoft.csharp.4.7.0.nupkg.sha512"
     },
     "Microsoft.EntityFrameworkCore/6.0.5": {
       "type": "package",
@@ -4701,7 +4758,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Microsoft.CSharp/6.0.0.0": {
+    "Microsoft.CSharp.Reference/6.0.0.0": {
       "type": "referenceassembly",
       "serviceable": false,
       "sha512": ""

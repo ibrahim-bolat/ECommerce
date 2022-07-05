@@ -227,6 +227,7 @@
       "System.Runtime.CompilerServices.Unsafe/6.0.0": {},
       "ECommerce.Shared/1.0.0": {
         "dependencies": {
+          "Microsoft.EntityFrameworkCore": "6.0.5",
           "Microsoft.Extensions.Options": "6.0.0"
         },
         "runtime": {

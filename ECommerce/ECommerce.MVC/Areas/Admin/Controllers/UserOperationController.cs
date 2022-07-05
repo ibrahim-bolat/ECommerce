@@ -1,5 +1,6 @@
+using ECommerce.Business.Dtos.RoleDtos;
+using ECommerce.Business.Dtos.UserDtos;
 using ECommerce.Entities.Concrete.Identity.Entities;
-using ECommerce.MVC.Areas.Admin.Models.ViewModels.UserOperation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -87,22 +88,22 @@ namespace ECommerce.MVC.Areas.Admin.Controllers;
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(UserBriefDetailsViewModel userBriefDetailsViewModel)
+        public async Task<IActionResult> Add(UserBriefDetailsDto userBriefDetailsDto)
         {
             if (!ModelState.IsValid)
             {
-                return PartialView("PartialViews/_UserCreateModalPartial", userBriefDetailsViewModel);
+                return PartialView("PartialViews/_UserCreateModalPartial", userBriefDetailsDto);
             }
 
             IdentityResult createResult, confirmResult = null;
             AppUser newUsers = new AppUser
             {
-                FirstName = userBriefDetailsViewModel.Name,
-                LastName = userBriefDetailsViewModel.SurName,
-                UserName = userBriefDetailsViewModel.UserName,
-                Email = userBriefDetailsViewModel.Email
+                FirstName = userBriefDetailsDto.Name,
+                LastName = userBriefDetailsDto.SurName,
+                UserName = userBriefDetailsDto.UserName,
+                Email = userBriefDetailsDto.Email
             };
-            createResult = await _userManager.CreateAsync(newUsers, userBriefDetailsViewModel.Password);
+            createResult = await _userManager.CreateAsync(newUsers, userBriefDetailsDto.Password);
             if (createResult.Succeeded)
             {
                 var token = await _userManager.GenerateEmailConfirmationTokenAsync(newUsers);
@@ -127,7 +128,7 @@ namespace ECommerce.MVC.Areas.Admin.Controllers;
             AppUser appUser = await _userManager.FindByIdAsync(ID);
             if (appUser != null)
             {
-                UserBriefDetailsViewModel model = new UserBriefDetailsViewModel
+                UserBriefDetailsDto model = new UserBriefDetailsDto
                 {
                     Id = appUser.Id.ToString(),
                     Name = appUser.FirstName,
@@ -148,25 +149,25 @@ namespace ECommerce.MVC.Areas.Admin.Controllers;
         }
 
         [HttpPost]
-        public async Task<IActionResult> Update(UserBriefDetailsViewModel userViewModel)
+        public async Task<IActionResult> Update(UserBriefDetailsDto userBriefDetailsDto)
         {
             if (!ModelState.IsValid)
             {
-                return PartialView("PartialViews/_UserUpdateModalPartial", userViewModel);
+                return PartialView("PartialViews/_UserUpdateModalPartial", userBriefDetailsDto);
             }
 
             IdentityResult resetResult, confirmResult = null;
-            AppUser updatedUser = await _userManager.FindByIdAsync(userViewModel.Id);
+            AppUser updatedUser = await _userManager.FindByIdAsync(userBriefDetailsDto.Id);
             if (updatedUser != null)
             {
-                updatedUser.FirstName = userViewModel.Name;
-                updatedUser.LastName = userViewModel.SurName;
-                updatedUser.UserName = userViewModel.UserName;
-                updatedUser.Email = userViewModel.Email;
+                updatedUser.FirstName = userBriefDetailsDto.Name;
+                updatedUser.LastName = userBriefDetailsDto.SurName;
+                updatedUser.UserName = userBriefDetailsDto.UserName;
+                updatedUser.Email = userBriefDetailsDto.Email;
 
                 var resetToken = await _userManager.GeneratePasswordResetTokenAsync(updatedUser);
                 resetResult =
-                    await _userManager.ResetPasswordAsync(updatedUser, resetToken, userViewModel.Password);
+                    await _userManager.ResetPasswordAsync(updatedUser, resetToken, userBriefDetailsDto.Password);
 
                 if (resetResult.Succeeded)
                 {
@@ -215,8 +216,8 @@ namespace ECommerce.MVC.Areas.Admin.Controllers;
             AppUser user = await _userManager.FindByIdAsync(Id);
             List<AppRole> allRoles = _roleManager.Roles.ToList();
             List<string> userRoles = await _userManager.GetRolesAsync(user) as List<string>;
-            List<RoleOperationViewModel> assignRoles = new List<RoleOperationViewModel>();
-            allRoles.ForEach(role => assignRoles.Add(new RoleOperationViewModel
+            List<RoleOperationDto> assignRoles = new List<RoleOperationDto>();
+            allRoles.ForEach(role => assignRoles.Add(new RoleOperationDto
             {
                 Id = role.Id,
                 Name = role.Name,
@@ -232,7 +233,7 @@ namespace ECommerce.MVC.Areas.Admin.Controllers;
             {
                 AppUser user = await _userManager.FindByIdAsync(Id);
                 List<AppRole> allRoles = _roleManager.Roles.ToList();
-                List<RoleOperationViewModel> newAssignRoles = new List<RoleOperationViewModel>();
+                List<RoleOperationDto> newAssignRoles = new List<RoleOperationDto>();
                 List<string> userNewRoles = new List<string>();
                 AppRole appR = null;
                 foreach (var role in roles)
@@ -240,13 +241,13 @@ namespace ECommerce.MVC.Areas.Admin.Controllers;
                     appR = await _roleManager.FindByIdAsync(role);
                     userNewRoles.Add(appR.Name);
                 }
-                allRoles.ForEach(role => newAssignRoles.Add(new RoleOperationViewModel
+                allRoles.ForEach(role => newAssignRoles.Add(new RoleOperationDto
                 {
                     HasAssign = userNewRoles.Contains(role.Name),
                     Id = role.Id,
                     Name = role.Name
                 }));
-                foreach (RoleOperationViewModel role in newAssignRoles)
+                foreach (RoleOperationDto role in newAssignRoles)
                 {
                     if (role.HasAssign)
                     {
