@@ -1,6 +1,5 @@
 using System.ComponentModel.DataAnnotations;
 using ECommerce.Shared.Entities.Abtract;
-using ECommerce.Shared.Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.Business.Dtos.RoleDtos;

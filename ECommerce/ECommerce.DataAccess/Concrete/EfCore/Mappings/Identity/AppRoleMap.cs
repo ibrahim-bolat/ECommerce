@@ -1,4 +1,5 @@
 using ECommerce.Entities.Concrete.Identity.Entities;
+using ECommerce.Shared.Entities.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -12,8 +13,8 @@ public class AppRoleMap : IEntityTypeConfiguration<AppRole>
             builder.HasData(new AppRole
             {
                 Id = 1,
-                Name = "Admin",
-                NormalizedName = "ADMIN"
+                Name = RoleEnum.Admin.ToString(),
+                NormalizedName = RoleEnum.Admin.ToString().ToUpper()
             });
             builder.Property(role => role.Note).HasMaxLength(500);
         }

@@ -1,11 +1,11 @@
 using System.Web;
+using AutoMapper;
 using ECommerce.Business.Dtos.AddressDtos;
 using ECommerce.Business.Dtos.UserDtos;
-using ECommerce.Business.ValidationRules.FluentValidation.Account;
 using ECommerce.Entities.Concrete.Identity.Entities;
+using ECommerce.Shared.Entities.Enums;
 using ECommerce.Helpers.MailHelper;
 using ECommerce.Shared.Service.Abtract;
-using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -20,16 +20,17 @@ public class AccountController : Controller
     private readonly SignInManager<AppUser> _signInManager;
     private readonly RoleManager<AppRole> _roleManager;
     private readonly IEmailService _emailService;
+    private readonly IMapper _mapper;
 
-    public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,
-        RoleManager<AppRole> roleManager,IEmailService emailService)
+    public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, RoleManager<AppRole> roleManager, IMapper mapper, IEmailService emailService)
     {
         _userManager = userManager;
         _signInManager = signInManager;
         _roleManager = roleManager;
+        _mapper = mapper;
         _emailService = emailService;
     }
-
+    
     [AllowAnonymous]
     [HttpGet] 
     public IActionResult Register()
@@ -43,21 +44,15 @@ public class AccountController : Controller
     {
         if (ModelState.IsValid)
         {
-            AppUser applicationUser = new AppUser
-            {
-                FirstName = model.FirstName,
-                LastName = model.LastName,
-                UserName = model.UserName,
-                Email = model.Email
-            };
-            AppRole role = await _roleManager.FindByNameAsync("User");
+            AppUser applicationUser = _mapper.Map<AppUser>(model);
+            AppRole role = await _roleManager.FindByNameAsync(RoleEnum.User.ToString());
             if (role == null)
-                await _roleManager.CreateAsync(new AppRole { Name = "User" });
+                await _roleManager.CreateAsync(new AppRole { Name = RoleEnum.User.ToString() });
             IdentityResult userResult = await _userManager.CreateAsync(applicationUser, model.Password);
             IdentityResult roleResult = null;
             if (userResult.Succeeded)
             {
-                roleResult = await _userManager.AddToRoleAsync(applicationUser, "User");
+                roleResult = await _userManager.AddToRoleAsync(applicationUser, RoleEnum.User.ToString());
                 if (roleResult.Succeeded)
                 {
                     TempData["LoginSuccess"] = true;
@@ -111,7 +106,6 @@ public class AccountController : Controller
                 await _signInManager.SignOutAsync();
                 SignInResult result =
                     await _signInManager.PasswordSignInAsync(user, model.Password, model.Persistent, model.Lock);
-
                 if (result.Succeeded)
                 {
                     await _userManager.ResetAccessFailedCountAsync(user);
@@ -122,34 +116,28 @@ public class AccountController : Controller
                     
                     return Redirect(TempData["returnUrl"].ToString());
                 }
-                else
+                await _userManager.AccessFailedAsync(user);
+                int failcount = await _userManager.GetAccessFailedCountAsync(user);
+                if (failcount == 3)
                 {
-                    await _userManager.AccessFailedAsync(user);
-                    int failcount = await _userManager.GetAccessFailedCountAsync(user);
-                    if (failcount == 3)
-                    {
-                        await _userManager.SetLockoutEndDateAsync(user,
+                    await _userManager.SetLockoutEndDateAsync(user,
                             new DateTimeOffset(DateTime.Now
                                 .AddMinutes(30))); 
-                        ModelState.AddModelError("Locked",
+                    ModelState.AddModelError("Locked",
                             "Art arda 3 başarısız giriş denemesi yaptığınızdan dolayı hesabınız 30 dk kilitlenmiştir.");
-                    }
-                    else
-                    {
-                        if (result.IsLockedOut)
-                        {
-                            ModelState.AddModelError("Locked",
-                                "Art arda 3 başarısız giriş denemesi yaptığınızdan dolayı hesabınız 30 dk kilitlenmiştir.");
-                            return View(model);
-                        }
-                        ModelState.AddModelError("InvalidEpostaOrPass1", "E-posta veya şifre yanlış.");
-                        return View(model);
-                    }
+                    return View(model);
                 }
+                if (result.IsLockedOut)
+                {
+                    ModelState.AddModelError("Locked",
+                                "Art arda 3 başarısız giriş denemesi yaptığınızdan dolayı hesabınız 30 dk kilitlenmiştir.");
+                    return View(model);
+                }
+                ModelState.AddModelError("IncorrectPassword", "Yanlış Şifre Girdiniz.");
+                return View(model);
+                
             }
-            ModelState.AddModelError("NoUser", "Böyle bir kullanıcı bulunmamaktadır.");
-            ModelState.AddModelError("InvalidEpostaOrPass2", "E-posta veya şifre yanlış.");
-            return View(model);
+            ModelState.AddModelError("NoUser", "Böyle bir E-posta ya sahip kullanıcı bulunmamaktadır.");
         }
         return View(model);
     }
@@ -234,25 +222,14 @@ public class AccountController : Controller
     [HttpGet]
     public async Task<IActionResult> EditProfile(int id)
     {
-        if (id != 0)
-        {
             AppUser user = await _userManager.FindByIdAsync(id.ToString());
-            UserDto userDto = new UserDto
+            if (user != null)
             {
-                Id = user.Id,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                UserName = user.UserName,
-                UserIdendityNo = user.UserIdendityNo,
-                PhoneNumber = user.PhoneNumber,
-                Email = user.Email,
-                DateOfBirth = user.DateOfBirth,
-                Note = user.Note
-            };
-            TempData["oldEmail"] = user.Email;
-            return View(userDto);
-        }
-        return RedirectToAction("AccessDenied", "ErrorPages");
+                UserDto userDto = _mapper.Map<UserDto>(user);
+                TempData["oldEmail"] = user.Email;
+                return View(userDto);
+            }
+            return RedirectToAction("AllErrorPages", "ErrorPages" ,new { statusCode = 404});
     }
 
         [HttpPost]
@@ -265,40 +242,52 @@ public class AccountController : Controller
                 if (model.Email.Equals(TempData["oldEmail"].ToString()))
                 {
                     user =  await _userManager.FindByEmailAsync(model.Email);
-                    user.FirstName = model.FirstName;
-                    user.LastName = model.LastName;
-                    user.UserName = model.UserName;
-                    user.NormalizedUserName = model.UserName.ToUpper();
-                    user.UserIdendityNo = model.UserIdendityNo;
-                    user.PhoneNumber = model.PhoneNumber;
-                    user.DateOfBirth = model.DateOfBirth;
-                    user.Note = model.Note;
-                    result = await _userManager.UpdateAsync(user);
+                    if (user != null)
+                    {
+                        user = _mapper.Map<UserDto,AppUser>(model,user);
+                    }
+                    else
+                    {
+                        return RedirectToAction("AllErrorPages", "ErrorPages" ,new { statusCode = 404});
+                    }
                 }
                 else
                 {
                     user =  await _userManager.FindByEmailAsync(TempData["oldEmail"].ToString());
-                    user.FirstName = model.FirstName;
-                    user.LastName = model.LastName;
-                    user.UserName = model.UserName;
-                    user.NormalizedUserName = model.UserName.ToUpper();
-                    user.UserIdendityNo = model.UserIdendityNo;
-                    user.PhoneNumber = model.PhoneNumber;
-                    user.Email = model.Email;
-                    user.NormalizedEmail = model.Email.ToUpper();
-                    user.DateOfBirth = model.DateOfBirth;
-                    user.Note = model.Note;
-                    result = await _userManager.UpdateAsync(user);
-                    var token = await _userManager.GenerateChangeEmailTokenAsync(user,user.Email);
-                    result = await _userManager.ChangeEmailAsync(user,user.Email,token);
+                    if (user != null)
+                    {
+                        user = _mapper.Map<UserDto,AppUser>(model,user);
+                        result = await _userManager.SetEmailAsync(user, model.Email);
+                        if (!result.Succeeded)
+                        {
+                            result.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
+                            return View(model);
+                        }
+                    }
+                    else
+                    {
+                        return RedirectToAction("AllErrorPages", "ErrorPages" ,new { statusCode = 404});
+                    }
                 }
+                result = await _userManager.SetUserNameAsync(user, model.UserName);
                 if (!result.Succeeded)
                 {
                     result.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
                     return View(model);
                 }
-                await _userManager.UpdateSecurityStampAsync(user);
-                if (User.Identity.Name==TempData["oldEmail"].ToString() && model.Email != TempData["oldEmail"].ToString())
+                result = await _userManager.UpdateAsync(user);
+                if (!result.Succeeded)
+                {
+                    result.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
+                    return View(model);
+                }
+                result = await _userManager.UpdateSecurityStampAsync(user);
+                if (!result.Succeeded)
+                {
+                    result.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
+                    return View(model);
+                }
+                if (User.Identity?.Name==TempData["oldEmail"].ToString() && model.Email != TempData["oldEmail"].ToString())
                 {
                     await _signInManager.SignOutAsync();
                     await _signInManager.SignInAsync(user, true);
@@ -306,46 +295,52 @@ public class AccountController : Controller
                 TempData["EditProfileSuccess"] = true;
                 return RedirectToAction("Index", "UserOperation", new { area = "Admin" });
             }
-          
             return View(model);
         }
     
     [HttpGet]
-    public IActionResult EditPassword(int id)
+    public async Task<IActionResult> EditPassword(int id)
     {
-        if (id != 0)
-        {
-            ViewBag.userId = id;
-            return View();
-        }
-        return RedirectToAction("AccessDenied", "ErrorPages");
+            AppUser user = await _userManager.FindByIdAsync(id.ToString());
+            if (user != null)
+            {
+                EditPasswordDto editPasswordDto = _mapper.Map<EditPasswordDto>(user);
+                return View(editPasswordDto);
+            }
+            return RedirectToAction("AllErrorPages", "ErrorPages" ,new { statusCode = 404});
     }
     
     [HttpPost]
-    public async Task<IActionResult> EditPassword(EditPasswordDto model,int id)
+    public async Task<IActionResult> EditPassword(EditPasswordDto model)
     {
         if (ModelState.IsValid)
         {
-            if (id != 0)
-            {
-                AppUser user = await _userManager.FindByIdAsync(id.ToString());
-                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-                IdentityResult result  = await _userManager.ResetPasswordAsync(user, token, model.NewPassword);
-                if (!result.Succeeded)
+                IdentityResult result = null;
+                AppUser user = await _userManager.FindByIdAsync(model.Id.ToString());
+                if(user!=null)
                 {
-                    result.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
-                    return View(model);
+                    var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                    result  = await _userManager.ResetPasswordAsync(user, token, model.NewPassword);
+                    if (!result.Succeeded)
+                    {
+                        result.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
+                        return View(model);
+                    }
+                    result = await _userManager.UpdateSecurityStampAsync(user);
+                    if (!result.Succeeded)
+                    {
+                        result.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
+                        return View(model);
+                    }
+                    if (User.Identity.Name==user.UserName)
+                    {
+                        await _signInManager.SignOutAsync();
+                        await _signInManager.SignInAsync(user, true);
+                    }
+                    TempData["EditPasswordSuccess"] = true;
+                    return RedirectToAction("Index", "UserOperation", new { area = "Admin" });
                 }
-                await _userManager.UpdateSecurityStampAsync(user);
-                if (User.Identity.Name==user.UserName)
-                {
-                    await _signInManager.SignOutAsync();
-                    await _signInManager.SignInAsync(user, true);
-                }
-                TempData["EditPasswordSuccess"] = true;
-                return RedirectToAction("Index", "UserOperation", new { area = "Admin" });
-            }
-            return RedirectToAction("AccessDenied", "ErrorPages");
+                return RedirectToAction("AllErrorPages", "ErrorPages" ,new { statusCode = 404});
         }
         return View(model);
     }
@@ -354,38 +349,18 @@ public class AccountController : Controller
     [HttpGet]
     public async Task<IActionResult> Profile(int id)
     {
-        if (id != 0)
-        {
             AppUser user = await _userManager.FindByIdAsync(id.ToString());
-            UserDto UserDto = new UserDto
+            if (user != null)
             {
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                UserName = user.UserName,
-                UserIdendityNo = user.UserIdendityNo,
-                PhoneNumber = user.PhoneNumber,
-                Email = user.Email,
-                DateOfBirth = user.DateOfBirth,
-                Note = user.Note
-            };
-            List<AddressSummaryDto> addressSummaryDtos = new List<AddressSummaryDto>();
-            foreach (var address in user.Addresses)
-            {
-                addressSummaryDtos.Add(
-                    new AddressSummaryDto() {
-                        Id = address.Id, 
-                        AddressTitle=address.AddressTitle,
-                        AddressDetails=address.AddressDetails,
-                        DefaultAddress = address.DefaultAddress
-                    });
+                UserDto UserDto = _mapper.Map<UserDto>(user);
+                List<AddressSummaryDto> addressSummaryDtos = _mapper.Map<List<AddressSummaryDto>>(user.Addresses);
+                UserDetailDto userDetailDto = new UserDetailDto()
+                {
+                    UserDto = UserDto,
+                    UserAddressSummaryDtos = addressSummaryDtos
+                };
+                return View(userDetailDto);
             }
-            UserDetailDto userDetailDto = new UserDetailDto()
-            {
-                UserDto = UserDto,
-                UserAddressSummaryDtos = addressSummaryDtos
-            };
-            return View(userDetailDto);
-        }
-        return RedirectToAction("AccessDenied", "ErrorPages");
+            return RedirectToAction("AllErrorPages", "ErrorPages" ,new { statusCode = 404});
     }
 }

@@ -104,7 +104,7 @@ $(document).ready(function ($) {
 
     $(tables.table().body())
         .addClass('tbody');
-    
+
     //Modal Form Create
     $('#userCreateModalForm').on('submit', '#createModalForm', function () {
         var data = $(this).serialize();
@@ -121,36 +121,18 @@ $(document).ready(function ($) {
                     clearCreateModalTextBox();
                     toastMessage(5000, "success", "Kayıt Başarıyla Eklendi")
                 } else {
-                    $('#userCreateModalForm').html(result);
-                    toastMessage(3000, "error", "Kayıt Eklenemedi")
+                    var mytag=$('<div></div>').html(result);
+                    $('#createModalFormModalBody').html(mytag.find(".modal-body").html());
                 }
+            },
+            error: function (errormessage) {
+                toastMessage(3000, "error", "Kayıt Eklenemedi")
             }
         });
         return false;
     });
     
-    //Modal Form Update
-    $('#userUpdateModalForm').on('submit', '#updateModalForm', function () {
-        var data = $(this).serialize();
-        $.ajax({
-            url: "/Admin/UserOperation/Update",
-            type: "POST",
-            data: data,
-            success: function (result) {
-                if (result.success) {
-                    ReloadTable();
-                    $('#userUpdateModal').modal('hide');
-                    clearUpdateModalTextBox();
-                    toastMessage(5000, "success", "Kayıt Başarıyla Güncellendi")
-                } else {
-                    $('#userUpdateModalForm').html(result);
-                    toastMessage(3000, "error", "Kayıt Güncellenemedi")
-                }
-            }
-        });
-        return false;
-    });
-
+    
     //Modal Form Delete
     $('#userDeleteModalForm').on('submit', '#deleteModalForm', function (e) {
         e.preventDefault();
@@ -214,16 +196,9 @@ $(document).ready(function ($) {
         clearCreateModalTextBox();
     });
     
-    //When Updae Close Modal Reset ModelSate Errors and Form inputs
-    $("#userUpdateModal").on("hidden.bs.modal", function () {
-        var updateModalForm = $(this).find("#updateModalForm");
-        ResetValidation(updateModalForm);
-        clearUpdateModalTextBox();
-    });
-  
 });
 
-//Get User By Id For Update
+//Get Role By Id For Update
 function getRole(Id) {
     var html ="";
     $.ajax({
@@ -256,35 +231,6 @@ function getRole(Id) {
     return false;
 }
 
-//Get User By Id For Update
-function getbyIDforUpdate(Id) {
-    clearUpdateModalTextBox();
-    disabledUpdateModalTextBox(false);
-    $.ajax({
-        url: '/Admin/UserOperation/getbyID/' + Id,
-        typr: "GET",
-        contentType: "application/json;charset=UTF-8",
-        dataType: "json",
-        success: function (result) {
-            if (result.success) {
-                $('#updateID').val(result.user.id);
-                $('#updateName').val(result.user.name);
-                $('#updateSurName').val(result.user.surName);
-                $('#updateUserName').val(result.user.userName);
-                $('#updateEmail').val(result.user.email);
-                $('#userUpdateModal').modal('show');
-                $('#btnUpdate').show();
-            } else {
-                toastMessage(3000, "error", "Kayıt Getirilemedi")
-            }
-      
-        },
-        error: function (errormessage) {
-            toastMessage(3000, "error", "Kayıt Getirilemedi")
-        }
-    });
-    return false;
-}
 //Get User By Id For Delete
 function getbyIDforDelete(Id) {
     clearDeleteModalTextBox();
@@ -297,8 +243,8 @@ function getbyIDforDelete(Id) {
         success: function (result) {
             if (result.success) {
                 $('#deleteID').val(result.user.id);
-                $('#deleteName').val(result.user.name);
-                $('#deleteSurName').val(result.user.surName);
+                $('#deleteFirstName').val(result.user.firstName);
+                $('#deleteLastName').val(result.user.lastName);
                 $('#deleteUserName').val(result.user.userName);
                 $('#deleteEmail').val(result.user.email);
                 $('#userDeleteModal').modal('show');
@@ -333,24 +279,22 @@ function ResetValidation(currentForm) {
 
 //Clear Create Modal Form  Entire Features
 function clearCreateModalTextBox() {
-    $('#createID').val("");
-    $('#createName').val("");
-    $('#createSurName').val("");
+    $('#createFirstName').val("");
+    $('#createLastName').val("");
     $('#createUserName').val("");
     $('#createEmail').val("");
     $('#createPassword').val("");
     $('#createRePassword').val("");
-    $('#createID-error').val("");
-    $('#createName-error').val("");
-    $('#createSurName-error').val("");
+    $('#createFirstName-error').val("");
+    $('#createLastName-error').val("");
     $('#createUserName-error').val("");
     $('#createEmail-error').val("");
     $('#createPassword-error').val("");
     $('#createRePassword-error').val("");
     $('#btnAdd').show();
     $('#createID').css('border-color', 'lightgrey');
-    $('#createName').css('border-color', 'lightgrey');
-    $('#createSurName').css('border-color', 'lightgrey');
+    $('#createFirstName').css('border-color', 'lightgrey');
+    $('#createLastName').css('border-color', 'lightgrey');
     $('#createUserName').css('border-color', 'lightgrey');
     $('#createEmail').css('border-color', 'lightgrey');
     $('#createPassword').css('border-color', 'lightgrey');
@@ -358,74 +302,44 @@ function clearCreateModalTextBox() {
     
 }
 
-//Clear Update Modal Form  Entire Features
-function clearUpdateModalTextBox() {
-    $('#updateID').val("");
-    $('#updateName').val("");
-    $('#updateSurName').val("");
-    $('#updateUserName').val("");
-    $('#updateEmail').val("");
-    $('#updatePassword').val("");
-    $('#updateRePassword').val("");
-    $('#btnUpdate').show();
-    $('#updateID').css('border-color', 'lightgrey');
-    $('#updateName').css('border-color', 'lightgrey');
-    $('#updateSurName').css('border-color', 'lightgrey');
-    $('#updateUserName').css('border-color', 'lightgrey');
-    $('#updateEmail').css('border-color', 'lightgrey');
-    $('#updatePassword').css('border-color', 'lightgrey');
-    $('#updateRePassword').css('border-color', 'lightgrey');
-
-}
-
 //Clear Delete Modal Form  Entire Features
 function clearDeleteModalTextBox() {
     $('#deleteID').val("");
-    $('#deleteName').val("");
-    $('#deleteSurName').val("");
+    $('#deleteFirstName').val("");
+    $('#deleteLastName').val("");
     $('#deleteUserName').val("");
     $('#deleteEmail').val("");
-    $('#deletePassword').val("");
-    $('#deleteRePassword').val("");
+    $('#deleteID-error').val("");
+    $('#deleteFirstName-error').val("");
+    $('#deleteLastName-error').val("");
+    $('#deleteUserName-error').val("");
+    $('#deleteEmail-error').val("");
     $('#lbldeletealert').show();
     $('#deleteID').css('border-color', 'lightgrey');
-    $('#deleteName').css('border-color', 'lightgrey');
-    $('#deleteSurName').css('border-color', 'lightgrey');
+    $('#deleteFirstName').css('border-color', 'lightgrey');
+    $('#deleteLastName').css('border-color', 'lightgrey');
     $('#deleteUserName').css('border-color', 'lightgrey');
     $('#deleteEmail').css('border-color', 'lightgrey');
-    $('#deletePassword').css('border-color', 'lightgrey');
-    $('#deleteRePassword').css('border-color', 'lightgrey');
 
 }
 
 //Disable Create Modal Form  Entire TextBox
 function disabledCreateModalTextBox(value = true) {
-    $('#createName').attr("disabled", value);
-    $('#createSurName').attr("disabled", value);
+    $('#createFirstName').attr("disabled", value);
+    $('#createLastName').attr("disabled", value);
     $('#createUserName').attr("disabled", value);
     $('#createEmail').attr("disabled", value);
     $('#createPassword').attr("disabled", value);
     $('#createRePassword').attr("disabled", value);
 }
 
-//Disable Update Modal Form  Entire TextBox
-function disabledUpdateModalTextBox(value = true) {
-    $('#updateName').attr("disabled", value);
-    $('#updateSurName').attr("disabled", value);
-    $('#updateUserName').attr("disabled", value);
-    $('#updateEmail').attr("disabled", value);
-    $('#updatePassword').attr("disabled", value);
-    $('#updateRePassword').attr("disabled", value);
-}
 
 //Disable Delete Modal Form  Entire TextBox
 function disabledDeleteModalTextBox(value = true) {
-    $('#deleteName').attr("disabled", value);
-    $('#deleteSurName').attr("disabled", value);
+    $('#deleteFirstName').attr("disabled", value);
+    $('#deleteLastName').attr("disabled", value);
     $('#deleteUserName').attr("disabled", value);
     $('#deleteEmail').attr("disabled", value);
-    $('#deletePassword').attr("disabled", value);
-    $('#deleteRePassword').attr("disabled", value);
 }
 
 //Reload DataTable

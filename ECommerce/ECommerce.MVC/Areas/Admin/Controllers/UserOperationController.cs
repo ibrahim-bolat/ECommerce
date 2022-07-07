@@ -1,6 +1,8 @@
+using AutoMapper;
 using ECommerce.Business.Dtos.RoleDtos;
 using ECommerce.Business.Dtos.UserDtos;
 using ECommerce.Entities.Concrete.Identity.Entities;
+using ECommerce.Shared.Entities.Enums;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,12 +16,14 @@ namespace ECommerce.MVC.Areas.Admin.Controllers;
         private readonly RoleManager<AppRole> _roleManager;
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly IMapper _mapper;
 
-        public UserOperationController(RoleManager<AppRole> roleManager, UserManager<AppUser> userManager, SignInManager<AppUser>  signInManager)
+        public UserOperationController(RoleManager<AppRole> roleManager, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IMapper mapper)
         {
             _roleManager = roleManager;
             _userManager = userManager;
             _signInManager = signInManager;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -34,7 +38,6 @@ namespace ECommerce.MVC.Areas.Admin.Controllers;
             try
             {
                 var userData = _userManager.Users.AsQueryable();
-                ;
                 var draw = Request.Form["draw"].FirstOrDefault();
                 var start = Request.Form["start"].FirstOrDefault();
                 var length = Request.Form["length"].FirstOrDefault();
@@ -88,38 +91,37 @@ namespace ECommerce.MVC.Areas.Admin.Controllers;
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(UserBriefDetailsDto userBriefDetailsDto)
+        public async Task<IActionResult> Add(RegisterDto registerDto)
         {
             if (!ModelState.IsValid)
             {
-                return PartialView("PartialViews/_UserCreateModalPartial", userBriefDetailsDto);
+                return PartialView("PartialViews/_UserCreateModalPartial", registerDto);
             }
-
-            IdentityResult createResult, confirmResult = null;
-            AppUser newUsers = new AppUser
-            {
-                FirstName = userBriefDetailsDto.Name,
-                LastName = userBriefDetailsDto.SurName,
-                UserName = userBriefDetailsDto.UserName,
-                Email = userBriefDetailsDto.Email
-            };
-            createResult = await _userManager.CreateAsync(newUsers, userBriefDetailsDto.Password);
+            IdentityResult createResult, confirmResult,roleResult = null;
+            AppUser newUsers = _mapper.Map<AppUser>(registerDto);
+            AppRole role = await _roleManager.FindByNameAsync(RoleEnum.User.ToString());
+            if (role == null)
+                await _roleManager.CreateAsync(new AppRole { Name = RoleEnum.User.ToString() });
+            createResult = await _userManager.CreateAsync(newUsers, registerDto.Password);
             if (createResult.Succeeded)
             {
                 var token = await _userManager.GenerateEmailConfirmationTokenAsync(newUsers);
                 confirmResult = await _userManager.ConfirmEmailAsync(newUsers, token);
                 if (confirmResult.Succeeded)
                 {
-                    return Json(new { success = true });
+                    roleResult = await _userManager.AddToRoleAsync(newUsers, RoleEnum.User.ToString());
+                    if (roleResult.Succeeded)
+                    {
+                        return Json(new { success = true });
+                    }
+                    roleResult.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));   
+                    return PartialView("PartialViews/_UserCreateModalPartial", registerDto);   
                 }
-
                 confirmResult.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
+                return PartialView("PartialViews/_UserCreateModalPartial", registerDto);
             }
-
             createResult.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
-
-            var errors = ModelState.ToDictionary(x => x.Key, x => x.Value.Errors);
-            return Json(new { success = false, errors = errors });
+            return PartialView("PartialViews/_UserCreateModalPartial", registerDto);
         }
 
         [HttpGet]
@@ -128,69 +130,14 @@ namespace ECommerce.MVC.Areas.Admin.Controllers;
             AppUser appUser = await _userManager.FindByIdAsync(ID);
             if (appUser != null)
             {
-                UserBriefDetailsDto model = new UserBriefDetailsDto
-                {
-                    Id = appUser.Id.ToString(),
-                    Name = appUser.FirstName,
-                    SurName = appUser.LastName,
-                    UserName = appUser.UserName,
-                    Email = appUser.Email,
-                    Password = null,
-                    RePassword = null
-                };
+                UserSummaryDto model = _mapper.Map<UserSummaryDto>(appUser);
                 return Json(new { success = true, user = model });
             }
-
-            ModelState.AddModelError("userFindError",
-                "Bu bilgilere sahip bir kullanıcı bulunamadı.");
-
+            ModelState.AddModelError("NoUser", "Bu bilgilere sahip bir kullanıcı bulunamadı.");
             var errors = ModelState.ToDictionary(x => x.Key, x => x.Value.Errors);
             return Json(new { success = false, errors = errors });
         }
-
-        [HttpPost]
-        public async Task<IActionResult> Update(UserBriefDetailsDto userBriefDetailsDto)
-        {
-            if (!ModelState.IsValid)
-            {
-                return PartialView("PartialViews/_UserUpdateModalPartial", userBriefDetailsDto);
-            }
-
-            IdentityResult resetResult, confirmResult = null;
-            AppUser updatedUser = await _userManager.FindByIdAsync(userBriefDetailsDto.Id);
-            if (updatedUser != null)
-            {
-                updatedUser.FirstName = userBriefDetailsDto.Name;
-                updatedUser.LastName = userBriefDetailsDto.SurName;
-                updatedUser.UserName = userBriefDetailsDto.UserName;
-                updatedUser.Email = userBriefDetailsDto.Email;
-
-                var resetToken = await _userManager.GeneratePasswordResetTokenAsync(updatedUser);
-                resetResult =
-                    await _userManager.ResetPasswordAsync(updatedUser, resetToken, userBriefDetailsDto.Password);
-
-                if (resetResult.Succeeded)
-                {
-                    var token = await _userManager.GenerateEmailConfirmationTokenAsync(updatedUser);
-                    confirmResult = await _userManager.ConfirmEmailAsync(updatedUser, token);
-
-                    if (confirmResult.Succeeded)
-                    {
-                        return Json(new { success = true });
-                    }
-
-                    confirmResult.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
-                }
-
-                resetResult.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
-            }
-
-            ModelState.AddModelError("userFindError",
-                "Bu bilgilere sahip bir kullanıcı bulunamadı.");
-
-            var errors = ModelState.ToDictionary(x => x.Key, x => x.Value.Errors);
-            return Json(new { success = false, errors = errors });
-        }
+        
 
         [HttpPost]
         public async Task<IActionResult> Delete(string ID)
@@ -203,9 +150,7 @@ namespace ECommerce.MVC.Areas.Admin.Controllers;
             {
                 return Json(new { success = true });
             }
-
             result.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
-
             var errors = ModelState.ToDictionary(x => x.Key, x => x.Value.Errors);
             return Json(new { success = false, errors = errors });
         }
@@ -214,16 +159,20 @@ namespace ECommerce.MVC.Areas.Admin.Controllers;
         public async Task<IActionResult> GetRole(string Id)
         {
             AppUser user = await _userManager.FindByIdAsync(Id);
-            List<AppRole> allRoles = _roleManager.Roles.ToList();
-            List<string> userRoles = await _userManager.GetRolesAsync(user) as List<string>;
-            List<RoleOperationDto> assignRoles = new List<RoleOperationDto>();
-            allRoles.ForEach(role => assignRoles.Add(new RoleOperationDto
+            if (user != null)
             {
-                Id = role.Id,
-                Name = role.Name,
-                HasAssign = userRoles.Contains(role.Name)
-            }));
-            return Json(new { success = true, roles = assignRoles });
+                List<AppRole> allRoles = _roleManager.Roles.ToList();
+                List<string> userRoles = await _userManager.GetRolesAsync(user) as List<string>;
+                List<RoleOperationDto> assignRoles = new List<RoleOperationDto>();
+                allRoles.ForEach(role => assignRoles.Add(new RoleOperationDto
+                {
+                    Id = role.Id,
+                    Name = role.Name,
+                    HasAssign = userRoles.Contains(role.Name)
+                }));
+                return Json(new { success = true, roles = assignRoles });
+            }
+            return RedirectToAction("AllErrorPages", "ErrorPages" ,new { statusCode = 404});
         }
 
         [HttpPost]
@@ -232,43 +181,46 @@ namespace ECommerce.MVC.Areas.Admin.Controllers;
             if (!string.IsNullOrEmpty(Id) && roles != null)
             {
                 AppUser user = await _userManager.FindByIdAsync(Id);
-                List<AppRole> allRoles = _roleManager.Roles.ToList();
-                List<RoleOperationDto> newAssignRoles = new List<RoleOperationDto>();
-                List<string> userNewRoles = new List<string>();
-                AppRole appR = null;
-                foreach (var role in roles)
+                if (user != null)
                 {
-                    appR = await _roleManager.FindByIdAsync(role);
-                    userNewRoles.Add(appR.Name);
-                }
-                allRoles.ForEach(role => newAssignRoles.Add(new RoleOperationDto
-                {
-                    HasAssign = userNewRoles.Contains(role.Name),
-                    Id = role.Id,
-                    Name = role.Name
-                }));
-                foreach (RoleOperationDto role in newAssignRoles)
-                {
-                    if (role.HasAssign)
+                    List<AppRole> allRoles = _roleManager.Roles.ToList();
+                    List<RoleOperationDto> newAssignRoles = new List<RoleOperationDto>();
+                    List<string> userNewRoles = new List<string>();
+                    AppRole appR = null;
+                    foreach (var role in roles)
                     {
-                        if (!await _userManager.IsInRoleAsync(user, role.Name))
-                            await _userManager.AddToRoleAsync(user, role.Name);
+                        appR = await _roleManager.FindByIdAsync(role);
+                        userNewRoles.Add(appR.Name);
                     }
-                    else
+                    allRoles.ForEach(role => newAssignRoles.Add(new RoleOperationDto
                     {
-                        if (await _userManager.IsInRoleAsync(user, role.Name))
-                            await _userManager.RemoveFromRoleAsync(user, role.Name);
+                        HasAssign = userNewRoles.Contains(role.Name),
+                        Id = role.Id,
+                        Name = role.Name
+                    }));
+                    foreach (RoleOperationDto role in newAssignRoles)
+                    {
+                        if (role.HasAssign)
+                        {
+                            if (!await _userManager.IsInRoleAsync(user, role.Name))
+                                await _userManager.AddToRoleAsync(user, role.Name);
+                        }
+                        else
+                        {
+                            if (await _userManager.IsInRoleAsync(user, role.Name))
+                                await _userManager.RemoveFromRoleAsync(user, role.Name);
+                        }
                     }
-                }
-                var currentUser = await _userManager.GetUserAsync(HttpContext.User);
-                if (currentUser.Id == user.Id)
-                {
                     await _userManager.UpdateSecurityStampAsync(user);
-                    await _signInManager.SignOutAsync();
-                    await _signInManager.SignInAsync(user, true);
+                    var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+                    if (currentUser.Id == user.Id)
+                    {
+                        await _signInManager.SignOutAsync();
+                        await _signInManager.SignInAsync(user, true);
+                    }
+                    return Json(new { success = true });
                 }
-
-                return Json(new { success = true });
+                return RedirectToAction("AllErrorPages", "ErrorPages" ,new { statusCode = 404});
             }
             return Json(new { success = false });
         }

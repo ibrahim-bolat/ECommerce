@@ -31,7 +31,9 @@ namespace ECommerce.DataAccess.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("AddressDetails")
-                        .HasColumnType("text");
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
 
                     b.Property<string>("AddressTitle")
                         .IsRequired()
@@ -43,16 +45,18 @@ namespace ECommerce.DataAccess.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("BuildingNo")
-                        .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(10)
+                        .HasColumnType("character varying(10)");
 
                     b.Property<string>("City")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)");
 
                     b.Property<string>("Country")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)");
 
                     b.Property<string>("CreatedByName")
                         .HasColumnType("text");
@@ -65,11 +69,12 @@ namespace ECommerce.DataAccess.Migrations
 
                     b.Property<string>("District")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)");
 
                     b.Property<string>("FlatNo")
-                        .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(10)
+                        .HasColumnType("character varying(10)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
@@ -78,8 +83,8 @@ namespace ECommerce.DataAccess.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<string>("MainStreet")
-                        .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)");
 
                     b.Property<string>("ModifiedByName")
                         .HasColumnType("text");
@@ -88,20 +93,25 @@ namespace ECommerce.DataAccess.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("NeighborhoodOrVillage")
-                        .HasColumnType("text");
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)");
 
                     b.Property<string>("Note")
-                        .HasColumnType("text");
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
 
                     b.Property<string>("PostalCode")
-                        .HasColumnType("text");
+                        .HasMaxLength(5)
+                        .HasColumnType("character varying(5)");
 
                     b.Property<string>("RegionOrState")
-                        .HasColumnType("text");
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)");
 
                     b.Property<string>("Street")
-                        .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)");
 
                     b.Property<int>("UserId")
                         .HasColumnType("integer");
@@ -118,20 +128,20 @@ namespace ECommerce.DataAccess.Migrations
                             Id = 1,
                             AddressDetails = "Naci Bekir Mahallesi ,Atılım Cad. Ateş Sok. No:40/7 06500 Yenimahalle/Ankara/Türkiye",
                             AddressTitle = "Evim",
-                            AddressType = "Home",
+                            AddressType = "Ev",
                             BuildingNo = "40",
                             City = "Ankara",
                             Country = "Turkiye",
-                            CreatedByName = "Owner",
-                            CreatedTime = new DateTime(2022, 7, 4, 17, 34, 21, 782, DateTimeKind.Local).AddTicks(6829),
+                            CreatedByName = "Admin",
+                            CreatedTime = new DateTime(2022, 7, 7, 14, 44, 50, 390, DateTimeKind.Local).AddTicks(8147),
                             DefaultAddress = false,
                             District = "Yenimahalle",
                             FlatNo = "7",
                             IsActive = false,
                             IsDeleted = false,
                             MainStreet = "Atılım",
-                            ModifiedByName = "Owner",
-                            ModifiedTime = new DateTime(2022, 7, 4, 17, 34, 21, 782, DateTimeKind.Local).AddTicks(6848),
+                            ModifiedByName = "Admin",
+                            ModifiedTime = new DateTime(2022, 7, 7, 14, 44, 50, 390, DateTimeKind.Local).AddTicks(8165),
                             NeighborhoodOrVillage = "Naci Bekir",
                             PostalCode = "06500",
                             RegionOrState = "İç Anadolu",
@@ -143,20 +153,20 @@ namespace ECommerce.DataAccess.Migrations
                             Id = 2,
                             AddressDetails = "Mustafa Kemal Mahallesi ,Eskişehir Yolu  Kütahya Sok. No:280/7 06500 Çankaya/Ankara/Türkiye",
                             AddressTitle = "İş",
-                            AddressType = "Work",
+                            AddressType = "İş",
                             BuildingNo = "280",
                             City = "Ankara",
                             Country = "Turkiye",
-                            CreatedByName = "Owner",
-                            CreatedTime = new DateTime(2022, 7, 4, 17, 34, 21, 782, DateTimeKind.Local).AddTicks(6856),
+                            CreatedByName = "Admin",
+                            CreatedTime = new DateTime(2022, 7, 7, 14, 44, 50, 390, DateTimeKind.Local).AddTicks(8189),
                             DefaultAddress = true,
                             District = "Çankaya",
                             FlatNo = "7",
                             IsActive = false,
                             IsDeleted = false,
                             MainStreet = "Eskişehir Yolu",
-                            ModifiedByName = "Owner",
-                            ModifiedTime = new DateTime(2022, 7, 4, 17, 34, 21, 782, DateTimeKind.Local).AddTicks(6857),
+                            ModifiedByName = "Admin",
+                            ModifiedTime = new DateTime(2022, 7, 7, 14, 44, 50, 390, DateTimeKind.Local).AddTicks(8191),
                             NeighborhoodOrVillage = "Mustafa Kemal",
                             PostalCode = "06100",
                             RegionOrState = "İç Anadolu",
@@ -204,8 +214,8 @@ namespace ECommerce.DataAccess.Migrations
                         .HasColumnType("character varying(256)");
 
                     b.Property<string>("Note")
-                        .HasMaxLength(250)
-                        .HasColumnType("character varying(250)");
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
 
                     b.HasKey("Id");
 
@@ -219,15 +229,15 @@ namespace ECommerce.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "4a11ae65-a887-4ccc-89fb-5dc06c41dcf8",
+                            ConcurrencyStamp = "d9f0a9c9-544b-484d-8ab3-d73b86f34834",
                             CreatedByName = "Owner",
-                            CreatedTime = new DateTime(2022, 7, 4, 17, 34, 21, 776, DateTimeKind.Local).AddTicks(4887),
+                            CreatedTime = new DateTime(2022, 7, 7, 14, 44, 50, 385, DateTimeKind.Local).AddTicks(48),
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByName = "Owner",
-                            ModifiedTime = new DateTime(2022, 7, 4, 17, 34, 21, 776, DateTimeKind.Local).AddTicks(4912),
+                            ModifiedTime = new DateTime(2022, 7, 7, 14, 44, 50, 385, DateTimeKind.Local).AddTicks(70),
                             Name = "Admin",
-                            NormalizedName = "ADMIN"
+                            NormalizedName = "ADMİN"
                         });
                 });
 
@@ -297,8 +307,8 @@ namespace ECommerce.DataAccess.Migrations
                         .HasColumnType("character varying(256)");
 
                     b.Property<string>("Note")
-                        .HasMaxLength(250)
-                        .HasColumnType("character varying(250)");
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("text");
@@ -316,7 +326,8 @@ namespace ECommerce.DataAccess.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<string>("UserIdendityNo")
-                        .HasColumnType("text");
+                        .HasMaxLength(11)
+                        .HasColumnType("character varying(11)");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
@@ -338,9 +349,9 @@ namespace ECommerce.DataAccess.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0cb80a46-24cb-4c91-a053-f09df5515e1e",
+                            ConcurrencyStamp = "9e014250-39c1-4c0e-9ee3-d3ca985d1b39",
                             CreatedByName = "Owner",
-                            CreatedTime = new DateTime(2022, 7, 4, 17, 34, 21, 776, DateTimeKind.Local).AddTicks(5461),
+                            CreatedTime = new DateTime(2022, 7, 7, 14, 44, 50, 385, DateTimeKind.Local).AddTicks(558),
                             Email = "bolat6606@hotmail.com",
                             EmailConfirmed = true,
                             FirstName = "İbrahim",
@@ -349,10 +360,10 @@ namespace ECommerce.DataAccess.Migrations
                             LastName = "Bolat",
                             LockoutEnabled = false,
                             ModifiedByName = "Owner",
-                            ModifiedTime = new DateTime(2022, 7, 4, 17, 34, 21, 776, DateTimeKind.Local).AddTicks(5466),
+                            ModifiedTime = new DateTime(2022, 7, 7, 14, 44, 50, 385, DateTimeKind.Local).AddTicks(562),
                             NormalizedEmail = "BOLAT6606@HOTMAIL.COM",
                             NormalizedUserName = "BOLAT6606",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOS+wDdpUkuY41XxDSI7IVdlcuoVVfnrBizBIaG57ZCSlwp0rHsLllcKRonvgvbK5w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELbMT15PmL8MZkLw7q5htVFb4KhxPp21z84UTY+Lv6xdXg+s60dQN+l6VjldkY/cSQ==",
                             PhoneNumber = "05325757966",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "VVPCRDAS3MJWQD5CSW2GWPRADBXEZINA",
@@ -376,11 +387,13 @@ namespace ECommerce.DataAccess.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("ImageAltText")
-                        .HasColumnType("text");
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)");
 
                     b.Property<string>("ImagePath")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
 
                     b.Property<string>("ImageTitle")
                         .IsRequired()
@@ -400,8 +413,8 @@ namespace ECommerce.DataAccess.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Note")
-                        .HasMaxLength(250)
-                        .HasColumnType("character varying(250)");
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
 
                     b.Property<bool>("Profil")
                         .HasColumnType("boolean");
@@ -419,15 +432,15 @@ namespace ECommerce.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedByName = "Owner",
-                            CreatedTime = new DateTime(2022, 7, 4, 17, 34, 21, 782, DateTimeKind.Local).AddTicks(7842),
+                            CreatedByName = "Admin",
+                            CreatedTime = new DateTime(2022, 7, 7, 14, 44, 50, 390, DateTimeKind.Local).AddTicks(9206),
                             ImageAltText = "Profil",
                             ImagePath = "/admin/images/layout_img/g1.jpg",
                             ImageTitle = "ProfilResmi",
                             IsActive = false,
                             IsDeleted = false,
-                            ModifiedByName = "Owner",
-                            ModifiedTime = new DateTime(2022, 7, 4, 17, 34, 21, 782, DateTimeKind.Local).AddTicks(7847),
+                            ModifiedByName = "Admin",
+                            ModifiedTime = new DateTime(2022, 7, 7, 14, 44, 50, 390, DateTimeKind.Local).AddTicks(9212),
                             Profil = true,
                             UserId = 1
                         });

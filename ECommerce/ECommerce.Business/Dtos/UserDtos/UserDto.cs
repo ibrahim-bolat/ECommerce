@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using ECommerce.Business.ValidationRules.CustomValidation.Account;
 using ECommerce.Shared.Entities.Abtract;
-using ECommerce.Shared.Entities.Concrete;
 
 namespace ECommerce.Business.Dtos.UserDtos;
 

@@ -207,7 +207,7 @@
                                                         </table>
                                      </div>
                                       <div class="tab-pane fade" id="custom-nav-address" role="tabpanel" aria-labelledby="custom-nav-address-tab">
-                                          <a asp-area="Admin" asp-controller="" asp-action="Index" class="btn btn-outline-primary mb-2">Adres Ekle</a>
+                                          <a asp-area="Admin" asp-controller="Address" asp-action="AddAddress" asp-route-userId="@Model.UserDto.Id" class="btn btn-outline-primary mb-2">Adres Ekle</a>
                                           <div class="row">
                                               @foreach (var address in @Model.UserAddressSummaryDtos)
                                               {
@@ -219,7 +219,7 @@
                                                           <div class="card-body">
                                                               <p class="card-text">@address.AddressDetails</p>
                                                               <div class="d-flex justify-content-end">
-                                                                  <a href="#" class="btn btn-success btn-sm">Düzenle</a>
+                                                                  <a asp-area="Admin" asp-controller="Address" asp-action="UpdateAddress" asp-route-userId="@Model.UserDto.Id" asp-route-addressId="@address.Id" class="btn btn-success btn-sm">Düzenle</a>
                                                                   <a href="#" class="btn btn-danger btn-s ml-2">Sil</a>
                                                               </div>
                                                           </div>

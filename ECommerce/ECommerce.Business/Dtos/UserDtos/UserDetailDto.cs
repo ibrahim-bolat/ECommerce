@@ -1,6 +1,5 @@
 using ECommerce.Business.Dtos.AddressDtos;
 using ECommerce.Shared.Entities.Abtract;
-using ECommerce.Shared.Entities.Concrete;
 
 namespace ECommerce.Business.Dtos.UserDtos;
 

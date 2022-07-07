@@ -1,5 +1,5 @@
 using ECommerce.Entities.Concrete;
-using ECommerce.Shared.Entities.Concrete.Enums;
+using ECommerce.Shared.Entities.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -15,7 +15,7 @@ namespace ECommerce.DataAccess.Concrete.EfCore.Mappings;
             builder.Property(address => address.AddressType)
                 .HasConversion(
                     a=>a.ToString(),
-                    a=>(AddressType)Enum.Parse(typeof(AddressType),a))
+                    a=>(AddressEnum)Enum.Parse(typeof(AddressEnum),a))
                 .IsRequired();
             builder.Property(address => address.Street).HasMaxLength(250);
             builder.Property(address => address.MainStreet).HasMaxLength(250);
@@ -35,7 +35,7 @@ namespace ECommerce.DataAccess.Concrete.EfCore.Mappings;
             {
                 Id = 1, 
                 AddressTitle = "Evim",
-                AddressType = AddressType.Home,
+                AddressType = AddressEnum.Ev,
                 Street = "Ateş",
                 MainStreet = "Atılım",
                 NeighborhoodOrVillage = "Naci Bekir",
@@ -54,7 +54,7 @@ namespace ECommerce.DataAccess.Concrete.EfCore.Mappings;
             {
                 Id = 2, 
                 AddressTitle = "İş",
-                AddressType = AddressType.Work,
+                AddressType = AddressEnum.İş,
                 Street = "Kütahya",
                 MainStreet = "Eskişehir Yolu",
                 NeighborhoodOrVillage = "Mustafa Kemal",

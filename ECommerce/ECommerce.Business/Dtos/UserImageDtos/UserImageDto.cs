@@ -1,7 +1,5 @@
 using System.ComponentModel.DataAnnotations;
 using ECommerce.Shared.Entities.Abtract;
-using ECommerce.Shared.Entities.Concrete;
-
 namespace ECommerce.Business.Dtos.UserImageDtos;
 
 public class UserImageDto:BaseDto,IDto

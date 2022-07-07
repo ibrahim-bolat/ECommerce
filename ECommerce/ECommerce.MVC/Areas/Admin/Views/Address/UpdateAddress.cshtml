@@ -1,0 +1,178 @@
+@using ECommerce.Shared.Entities.Enums
+@model AddressDto
+
+@{
+    Layout = "Admin/_AdminLayout";
+    ViewBag.Title = "Adres";
+}
+
+<div class="breadcrumbs">
+        <div class="col-sm-4">
+            <div class="page-header float-left">
+                <div class="page-title">
+                    <h1>Dashboard</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="page-header float-right">
+                <div class="page-title">
+                    <ol class="breadcrumb text-right">
+                        <li class="active">Dashboard</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content mt-3">
+                <div class="col-sm-12">
+                    <div class="alert  alert-success alert-dismissible fade show" role="alert">
+                        <span class="badge badge-pill badge-success">Success</span> You successfully read this important alert message.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+        <div class="container py-5">
+        <div class="card">
+            <div class="card-header">
+                <h2>Adres Ekle</h2>
+            </div>
+            <div class="card-body">
+                <form asp-area="Admin" asp-controller="Address" asp-action="UpdateAddress" method="post">
+                    <div class="form-group row offset-3 col-9 text-danger" asp-validation-summary="All">
+                    </div>
+                    <input type="hidden" asp-for="Id" class="form-control"/>
+                    <div class="form-group row">
+                        <label asp-for="AddressTitle" class="col-sm-3 col-form-label"></label>
+                        <div class="col-sm-9">
+                            <input asp-for="AddressTitle" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="AddressType" class="col-sm-3 col-form-label"></label>
+                        <div class="col-sm-9">
+                            <select class="custom-select" asp-for="AddressType" asp-items="Html.GetEnumSelectList<AddressEnum>()">
+                                <option disabled selected="selected" value="">Adres Tipi Seçiniz</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="Street" class="col-sm-3 col-form-label"></label>
+                        <div class="col-sm-9">
+                            <input asp-for="Street" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="MainStreet" class="col-sm-3 col-form-label"></label>
+                        <div class="col-sm-9">
+                            <input asp-for="MainStreet" class="form-control"/>
+                        </div>
+                        <span asp-validation-for="MainStreet" class="text-danger"></span>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="NeighborhoodOrVillage" class="col-sm-3 col-form-label"></label>
+                        <div class="col-sm-9">
+                            <input asp-for="NeighborhoodOrVillage" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="District" class="col-sm-3 col-form-label"></label>
+                        <div class="col-sm-9">
+                            <input asp-for="District"  class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="City" class="col-sm-3 col-form-label"></label>
+                        <div class="col-sm-9">
+                            <input asp-for="City" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="Country" class="col-sm-3 col-form-label"></label>
+                        <div class="col-sm-9">
+                            <input asp-for="Country" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="RegionOrState" class="col-sm-3 col-form-label"></label>
+                        <div class="col-sm-9">
+                            <input asp-for="RegionOrState" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="BuildingNo" class="col-sm-3 col-form-label"></label>
+                        <div class="col-sm-9">
+                            <input asp-for="BuildingNo" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="FlatNo" class="col-sm-3 col-form-label"></label>
+                        <div class="col-sm-9">
+                            <input asp-for="FlatNo" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="PostalCode" class="col-sm-3 col-form-label"></label>
+                        <div class="col-sm-9">
+                            <input asp-for="PostalCode" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="AddressDetails" class="col-sm-3 col-form-label"></label>
+                        <div class="col-sm-9">
+                            <textarea asp-for="AddressDetails" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="Note" class="col-sm-3 col-form-label"></label>
+                        <div class="col-sm-9">
+                            <textarea asp-for="Note" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="DefaultAddress" class="col-sm-3 col-form-label"></label>
+                        <div class="col-sm-9">
+                            <input asp-for="DefaultAddress" class="mt-3"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="offset-sm-3 col-sm-9">
+                            <input type="submit" value="Güncelle" class="btn btn-info"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> <!-- .content -->
+
+@section Scripts {
+    <script>
+                document.addEventListener("DOMContentLoaded", function(event) {
+                    var updateAddressMessage = '@TempData["UpdateAddressSuccess"]';
+                    if (updateAddressMessage)
+                    {
+                        const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 5000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                        })
+            
+                     Toast.fire({
+                    icon: 'success',
+                    title: 'Adres Güncellendi',
+                    text: 'Kullanıca ait Adres Güncelleme İşlemi Başarıyla Gerçekleştirildi.',
+                        })
+            
+                    }
+            });
+        </script>
+}

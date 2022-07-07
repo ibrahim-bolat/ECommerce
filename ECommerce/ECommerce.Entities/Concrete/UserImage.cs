@@ -1,6 +1,5 @@
 using ECommerce.Entities.Concrete.Identity.Entities;
 using ECommerce.Shared.Entities.Abtract;
-using ECommerce.Shared.Entities.Concrete;
 
 namespace ECommerce.Entities.Concrete;
 public class UserImage:BaseEntity,IEntity

@@ -9,8 +9,8 @@ public class UserProfile:Profile
     public UserProfile()
     {
         CreateMap<AppUser, RegisterDto>().ReverseMap();
-        CreateMap<AppUser, UserAllDetailsDto>().ReverseMap();
-        CreateMap<AppUser, UserBriefDetailsDto>().ReverseMap();
+        CreateMap<AppUser, UserSummaryDto>().ReverseMap();
         CreateMap<AppUser, UserDto>().ReverseMap();
+        CreateMap<AppUser, EditPasswordDto>().ReverseMap();
     }
 }

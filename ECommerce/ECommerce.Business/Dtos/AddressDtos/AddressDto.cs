@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
+using ECommerce.Shared.Entities.Enums;
 using ECommerce.Shared.Entities.Abtract;
-using ECommerce.Shared.Entities.Concrete.Enums;
 
 namespace ECommerce.Business.Dtos.AddressDtos;
 
@@ -15,7 +15,7 @@ public class AddressDto:BaseDto,IDto
     public  string AddressTitle{ get; set; }
     
     [Display(Name = "Adres Tipi")]
-    public  AddressType AddressType { get; set; }
+    public  AddressEnum AddressType { get; set; }
     
     [Display(Name = "Sokak")]
     public  string Street{ get; set; }
@@ -50,6 +50,6 @@ public class AddressDto:BaseDto,IDto
     [Display(Name = "Detaylı Adres")]
     public  string AddressDetails{ get; set; }
     
-    [Display(Name = "Varsayılan Adres")]
+    [Display(Name = "Varsayılan Adresmi?")]
     public bool DefaultAddress { get; set; }
 }

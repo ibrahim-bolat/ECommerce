@@ -13,6 +13,7 @@ namespace ECommerce.DataAccess.Concrete.EfCore.Contexts;
         public DbSet<Address> Addresses;
         public DbSet<UserImage> UserIMages;
         
+        
         public DataContext(DbContextOptions<DataContext> dbContext):base(dbContext)
         {
             

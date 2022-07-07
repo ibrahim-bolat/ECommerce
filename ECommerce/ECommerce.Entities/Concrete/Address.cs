@@ -1,13 +1,13 @@
 ﻿using ECommerce.Entities.Concrete.Identity.Entities;
 using ECommerce.Shared.Entities.Abtract;
-using ECommerce.Shared.Entities.Concrete.Enums;
+using ECommerce.Shared.Entities.Enums;
 
 namespace ECommerce.Entities.Concrete;
 
     public class Address : BaseEntity,IEntity
     {
         public  string AddressTitle{ get; set; }
-        public  AddressType AddressType { get; set; }
+        public  AddressEnum AddressType { get; set; }
         public  string Street{ get; set; }
         public  string MainStreet{ get; set; }
         public  string NeighborhoodOrVillage{ get; set; }

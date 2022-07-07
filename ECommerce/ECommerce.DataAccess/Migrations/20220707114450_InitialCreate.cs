@@ -22,7 +22,7 @@ namespace ECommerce.DataAccess.Migrations
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
                     CreatedByName = table.Column<string>(type: "text", nullable: true),
                     ModifiedByName = table.Column<string>(type: "text", nullable: true),
-                    Note = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
+                    Note = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: true),
                     Name = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "text", nullable: true)
@@ -40,7 +40,7 @@ namespace ECommerce.DataAccess.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     FirstName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
                     LastName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
-                    UserIdendityNo = table.Column<string>(type: "text", nullable: true),
+                    UserIdendityNo = table.Column<string>(type: "character varying(11)", maxLength: 11, nullable: true),
                     DateOfBirth = table.Column<DateTime>(type: "date", nullable: true),
                     CreatedTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     ModifiedTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
@@ -48,7 +48,7 @@ namespace ECommerce.DataAccess.Migrations
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
                     CreatedByName = table.Column<string>(type: "text", nullable: true),
                     ModifiedByName = table.Column<string>(type: "text", nullable: true),
-                    Note = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
+                    Note = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: true),
                     UserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
@@ -98,17 +98,17 @@ namespace ECommerce.DataAccess.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     AddressTitle = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     AddressType = table.Column<string>(type: "text", nullable: false),
-                    Street = table.Column<string>(type: "text", nullable: false),
-                    MainStreet = table.Column<string>(type: "text", nullable: false),
-                    NeighborhoodOrVillage = table.Column<string>(type: "text", nullable: true),
-                    District = table.Column<string>(type: "text", nullable: false),
-                    City = table.Column<string>(type: "text", nullable: false),
-                    Country = table.Column<string>(type: "text", nullable: false),
-                    RegionOrState = table.Column<string>(type: "text", nullable: true),
-                    BuildingNo = table.Column<string>(type: "text", nullable: false),
-                    FlatNo = table.Column<string>(type: "text", nullable: false),
-                    PostalCode = table.Column<string>(type: "text", nullable: true),
-                    AddressDetails = table.Column<string>(type: "text", nullable: true),
+                    Street = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
+                    MainStreet = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
+                    NeighborhoodOrVillage = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: false),
+                    District = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: false),
+                    City = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: false),
+                    Country = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: false),
+                    RegionOrState = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
+                    BuildingNo = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: true),
+                    FlatNo = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: true),
+                    PostalCode = table.Column<string>(type: "character varying(5)", maxLength: 5, nullable: true),
+                    AddressDetails = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
                     DefaultAddress = table.Column<bool>(type: "boolean", nullable: false),
                     UserId = table.Column<int>(type: "integer", nullable: false),
                     CreatedTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
@@ -117,7 +117,7 @@ namespace ECommerce.DataAccess.Migrations
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
                     CreatedByName = table.Column<string>(type: "text", nullable: true),
                     ModifiedByName = table.Column<string>(type: "text", nullable: true),
-                    Note = table.Column<string>(type: "text", nullable: true)
+                    Note = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -222,8 +222,8 @@ namespace ECommerce.DataAccess.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     ImageTitle = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    ImagePath = table.Column<string>(type: "text", nullable: false),
-                    ImageAltText = table.Column<string>(type: "text", nullable: true),
+                    ImagePath = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
+                    ImageAltText = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
                     Profil = table.Column<bool>(type: "boolean", nullable: false),
                     UserId = table.Column<int>(type: "integer", nullable: false),
                     CreatedTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
@@ -232,7 +232,7 @@ namespace ECommerce.DataAccess.Migrations
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
                     CreatedByName = table.Column<string>(type: "text", nullable: true),
                     ModifiedByName = table.Column<string>(type: "text", nullable: true),
-                    Note = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true)
+                    Note = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -248,20 +248,20 @@ namespace ECommerce.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "CreatedByName", "CreatedTime", "IsActive", "IsDeleted", "ModifiedByName", "ModifiedTime", "Name", "NormalizedName", "Note" },
-                values: new object[] { 1, "4a11ae65-a887-4ccc-89fb-5dc06c41dcf8", "Owner", new DateTime(2022, 7, 4, 17, 34, 21, 776, DateTimeKind.Local).AddTicks(4887), true, false, "Owner", new DateTime(2022, 7, 4, 17, 34, 21, 776, DateTimeKind.Local).AddTicks(4912), "Admin", "ADMIN", null });
+                values: new object[] { 1, "d9f0a9c9-544b-484d-8ab3-d73b86f34834", "Owner", new DateTime(2022, 7, 7, 14, 44, 50, 385, DateTimeKind.Local).AddTicks(48), true, false, "Owner", new DateTime(2022, 7, 7, 14, 44, 50, 385, DateTimeKind.Local).AddTicks(70), "Admin", "ADMİN", null });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreatedByName", "CreatedTime", "DateOfBirth", "Email", "EmailConfirmed", "FirstName", "IsActive", "IsDeleted", "LastName", "LockoutEnabled", "LockoutEnd", "ModifiedByName", "ModifiedTime", "NormalizedEmail", "NormalizedUserName", "Note", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserIdendityNo", "UserName" },
-                values: new object[] { 1, 0, "0cb80a46-24cb-4c91-a053-f09df5515e1e", "Owner", new DateTime(2022, 7, 4, 17, 34, 21, 776, DateTimeKind.Local).AddTicks(5461), null, "bolat6606@hotmail.com", true, "İbrahim", true, false, "Bolat", false, null, "Owner", new DateTime(2022, 7, 4, 17, 34, 21, 776, DateTimeKind.Local).AddTicks(5466), "BOLAT6606@HOTMAIL.COM", "BOLAT6606", null, "AQAAAAEAACcQAAAAEOS+wDdpUkuY41XxDSI7IVdlcuoVVfnrBizBIaG57ZCSlwp0rHsLllcKRonvgvbK5w==", "05325757966", false, "VVPCRDAS3MJWQD5CSW2GWPRADBXEZINA", false, null, "bolat6606" });
+                values: new object[] { 1, 0, "9e014250-39c1-4c0e-9ee3-d3ca985d1b39", "Owner", new DateTime(2022, 7, 7, 14, 44, 50, 385, DateTimeKind.Local).AddTicks(558), null, "bolat6606@hotmail.com", true, "İbrahim", true, false, "Bolat", false, null, "Owner", new DateTime(2022, 7, 7, 14, 44, 50, 385, DateTimeKind.Local).AddTicks(562), "BOLAT6606@HOTMAIL.COM", "BOLAT6606", null, "AQAAAAEAACcQAAAAELbMT15PmL8MZkLw7q5htVFb4KhxPp21z84UTY+Lv6xdXg+s60dQN+l6VjldkY/cSQ==", "05325757966", false, "VVPCRDAS3MJWQD5CSW2GWPRADBXEZINA", false, null, "bolat6606" });
 
             migrationBuilder.InsertData(
                 table: "Address",
                 columns: new[] { "Id", "AddressDetails", "AddressTitle", "AddressType", "BuildingNo", "City", "Country", "CreatedByName", "CreatedTime", "DefaultAddress", "District", "FlatNo", "IsActive", "IsDeleted", "MainStreet", "ModifiedByName", "ModifiedTime", "NeighborhoodOrVillage", "Note", "PostalCode", "RegionOrState", "Street", "UserId" },
                 values: new object[,]
                 {
-                    { 1, "Naci Bekir Mahallesi ,Atılım Cad. Ateş Sok. No:40/7 06500 Yenimahalle/Ankara/Türkiye", "Evim", "Home", "40", "Ankara", "Turkiye", "Owner", new DateTime(2022, 7, 4, 17, 34, 21, 782, DateTimeKind.Local).AddTicks(6829), false, "Yenimahalle", "7", false, false, "Atılım", "Owner", new DateTime(2022, 7, 4, 17, 34, 21, 782, DateTimeKind.Local).AddTicks(6848), "Naci Bekir", null, "06500", "İç Anadolu", "Ateş", 1 },
-                    { 2, "Mustafa Kemal Mahallesi ,Eskişehir Yolu  Kütahya Sok. No:280/7 06500 Çankaya/Ankara/Türkiye", "İş", "Work", "280", "Ankara", "Turkiye", "Owner", new DateTime(2022, 7, 4, 17, 34, 21, 782, DateTimeKind.Local).AddTicks(6856), true, "Çankaya", "7", false, false, "Eskişehir Yolu", "Owner", new DateTime(2022, 7, 4, 17, 34, 21, 782, DateTimeKind.Local).AddTicks(6857), "Mustafa Kemal", null, "06100", "İç Anadolu", "Kütahya", 1 }
+                    { 1, "Naci Bekir Mahallesi ,Atılım Cad. Ateş Sok. No:40/7 06500 Yenimahalle/Ankara/Türkiye", "Evim", "Ev", "40", "Ankara", "Turkiye", "Admin", new DateTime(2022, 7, 7, 14, 44, 50, 390, DateTimeKind.Local).AddTicks(8147), false, "Yenimahalle", "7", false, false, "Atılım", "Admin", new DateTime(2022, 7, 7, 14, 44, 50, 390, DateTimeKind.Local).AddTicks(8165), "Naci Bekir", null, "06500", "İç Anadolu", "Ateş", 1 },
+                    { 2, "Mustafa Kemal Mahallesi ,Eskişehir Yolu  Kütahya Sok. No:280/7 06500 Çankaya/Ankara/Türkiye", "İş", "İş", "280", "Ankara", "Turkiye", "Admin", new DateTime(2022, 7, 7, 14, 44, 50, 390, DateTimeKind.Local).AddTicks(8189), true, "Çankaya", "7", false, false, "Eskişehir Yolu", "Admin", new DateTime(2022, 7, 7, 14, 44, 50, 390, DateTimeKind.Local).AddTicks(8191), "Mustafa Kemal", null, "06100", "İç Anadolu", "Kütahya", 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -272,7 +272,7 @@ namespace ECommerce.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "UserImage",
                 columns: new[] { "Id", "CreatedByName", "CreatedTime", "ImageAltText", "ImagePath", "ImageTitle", "IsActive", "IsDeleted", "ModifiedByName", "ModifiedTime", "Note", "Profil", "UserId" },
-                values: new object[] { 1, "Owner", new DateTime(2022, 7, 4, 17, 34, 21, 782, DateTimeKind.Local).AddTicks(7842), "Profil", "/admin/images/layout_img/g1.jpg", "ProfilResmi", false, false, "Owner", new DateTime(2022, 7, 4, 17, 34, 21, 782, DateTimeKind.Local).AddTicks(7847), null, true, 1 });
+                values: new object[] { 1, "Admin", new DateTime(2022, 7, 7, 14, 44, 50, 390, DateTimeKind.Local).AddTicks(9206), "Profil", "/admin/images/layout_img/g1.jpg", "ProfilResmi", false, false, "Admin", new DateTime(2022, 7, 7, 14, 44, 50, 390, DateTimeKind.Local).AddTicks(9212), null, true, 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Address_UserId",

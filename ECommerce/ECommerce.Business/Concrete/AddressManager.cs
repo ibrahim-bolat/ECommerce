@@ -1,6 +1,7 @@
 using System.Linq.Expressions;
 using AutoMapper;
 using ECommerce.Business.Abstract;
+using ECommerce.Business.Constants;
 using ECommerce.Business.Dtos.AddressDtos;
 using ECommerce.DataAccess.Abstract;
 using ECommerce.Entities.Concrete;
@@ -21,9 +22,9 @@ public class AddressManager:IAddressService
         _mapper = mapper;
     }
 
-    public async Task<IDataResult<AddressDto>> AddAsync(AddressDto addressViewDto, string createdByName)
+    public async Task<IDataResult<AddressDto>> AddAsync(AddressDto addressDto, string createdByName)
     {
-        var address = _mapper.Map<Address>(addressViewDto);
+        var address = _mapper.Map<Address>(addressDto);
         address.CreatedByName = createdByName;
         address.ModifiedByName = createdByName;
         address.CreatedTime=DateTime.Now;
@@ -32,8 +33,7 @@ public class AddressManager:IAddressService
         address.IsDeleted = false;
         var addedAddress = await _unitOfWork.AddressRepository.AddAsync(address);
         await _unitOfWork.SaveAsync();
-        return new DataResult<AddressDto>(ResultStatus.Success,
-            $"{addressViewDto.AddressTitle} başlıklı adres başarılı bir şekilde kayıt edilmiştir!", addressViewDto);
+        return new DataResult<AddressDto>(ResultStatus.Success,Messages.AddressAdded, addressDto);
 
     }
 
@@ -45,7 +45,7 @@ public class AddressManager:IAddressService
         var updatedAddress = await _unitOfWork.AddressRepository.UpdateAsync(address);
         await _unitOfWork.SaveAsync();
         return new DataResult<AddressDto>(ResultStatus.Success,
-            $"{addressViewDto.AddressTitle} başlıklı adres başarılı bir şekilde güncellenmiştir!",addressViewDto);
+            Messages.AddressUpdated,addressViewDto);
     }
 
 
@@ -60,9 +60,9 @@ public class AddressManager:IAddressService
             address.ModifiedTime = DateTime.Now;
             await _unitOfWork.AddressRepository.UpdateAsync(address);
             await _unitOfWork.SaveAsync();
-            return new Result(ResultStatus.Success, $"{address.AddressTitle} başlıklı adres başarılı bir şekilde silinmiştir.");
+            return new Result(ResultStatus.Success, Messages.AddressDeleted);
         }
-        return new Result(ResultStatus.Error, "Hata, kayıt bulunamadı!");
+        return new Result(ResultStatus.Error, Messages.NotFound);
     }
 
     public async Task<IDataResult<AddressDto>> GetAsync(int id)
@@ -74,7 +74,7 @@ public class AddressManager:IAddressService
             return new DataResult<AddressDto>(ResultStatus.Success,addressViewDto);
         }
 
-        return new DataResult<AddressDto>(ResultStatus.Error, "Hata, kayıt bulunamadı!",addressViewDto);
+        return new DataResult<AddressDto>(ResultStatus.Error, Messages.NotFound,addressViewDto);
     }
 
     public async Task<IDataResult<IList<AddressDto>>> GetAllAsync()
@@ -85,6 +85,6 @@ public class AddressManager:IAddressService
         {
             return new DataResult<IList<AddressDto>>(ResultStatus.Success,addressViewDtoList);
         }
-        return new DataResult<IList<AddressDto>>(ResultStatus.Error, "Hata, kayıtlar bulunamadı!",null);
+        return new DataResult<IList<AddressDto>>(ResultStatus.Error, Messages.NotFound,null);
     }
 }

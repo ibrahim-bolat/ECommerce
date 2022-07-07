@@ -1,5 +1,6 @@
 using AutoMapper;
 using ECommerce.Business.Abstract;
+using ECommerce.Business.Constants;
 using ECommerce.Business.Dtos.UserImageDtos;
 using ECommerce.DataAccess.Abstract;
 using ECommerce.Entities.Concrete;
@@ -32,7 +33,7 @@ public class UserImageManager:IUserImageService
         var addedUserImage= await _unitOfWork.UserImageRepository.AddAsync(userImage);
         await _unitOfWork.SaveAsync();
         return new DataResult<UserImageDto>(ResultStatus.Success,
-            $"{userImageDto.ImageTitle} başlıklı resim başarılı bir şekilde kayıt edilmiştir!", userImageDto);
+            Messages.ImageAdded, userImageDto);
 
     }
 
@@ -44,7 +45,7 @@ public class UserImageManager:IUserImageService
         var updatedUserImage= await _unitOfWork.UserImageRepository.UpdateAsync(userImage);
         await _unitOfWork.SaveAsync();
         return new DataResult<UserImageDto>(ResultStatus.Success,
-            $"{userImageDto.ImageTitle} başlıklı resim başarılı bir şekilde güncellenmiştir!",userImageDto);
+            Messages.ImageUpdated,userImageDto);
     }
 
 
@@ -59,9 +60,9 @@ public class UserImageManager:IUserImageService
             userImage.ModifiedTime = DateTime.Now;
             await _unitOfWork.UserImageRepository.UpdateAsync(userImage);
             await _unitOfWork.SaveAsync();
-            return new Result(ResultStatus.Success, $"{userImage.ImageTitle} başlıklı resim başarılı bir şekilde silinmiştir.");
+            return new Result(ResultStatus.Success, Messages.ImageDeleted);
         }
-        return new Result(ResultStatus.Error, "Hata, kayıt bulunamadı!");
+        return new Result(ResultStatus.Error, Messages.NotFound);
     }
 
     public async Task<IDataResult<UserImageDto>> GetAsync(int id)
@@ -73,7 +74,7 @@ public class UserImageManager:IUserImageService
             return new DataResult<UserImageDto>(ResultStatus.Success,userImageViewDto);
         }
 
-        return new DataResult<UserImageDto>(ResultStatus.Error, "Hata, kayıt bulunamadı!",userImageViewDto);
+        return new DataResult<UserImageDto>(ResultStatus.Error, Messages.NotFound,userImageViewDto);
     }
 
     public async Task<IDataResult<IList<UserImageDto>>> GetAllAsync()
@@ -84,6 +85,6 @@ public class UserImageManager:IUserImageService
         {
             return new DataResult<IList<UserImageDto>>(ResultStatus.Success,userImagesViewDtoList);
         }
-        return new DataResult<IList<UserImageDto>>(ResultStatus.Error, "Hata, kayıtlar bulunamadı!",null);
+        return new DataResult<IList<UserImageDto>>(ResultStatus.Error, Messages.NotFound,null);
     }
 }
