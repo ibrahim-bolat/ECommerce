@@ -4,10 +4,13 @@ using ECommerce.Business.Abstract;
 using ECommerce.Business.Constants;
 using ECommerce.Business.Dtos.AddressDtos;
 using ECommerce.DataAccess.Abstract;
+using ECommerce.DataAccess.Concrete.EfCore.Contexts;
 using ECommerce.Entities.Concrete;
+using ECommerce.Entities.Concrete.Identity.Entities;
 using ECommerce.Shared.Utilities.Abstract;
 using ECommerce.Shared.Utilities.ComplexTypes;
 using ECommerce.Shared.Utilities.Concrete;
+using Microsoft.EntityFrameworkCore;
 
 namespace ECommerce.Business.Concrete;
 
@@ -15,11 +18,13 @@ public class AddressManager:IAddressService
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
+    private readonly DataContext _dataContext;
 
-    public AddressManager(IUnitOfWork unitOfWork, IMapper mapper)
+    public AddressManager(IUnitOfWork unitOfWork, IMapper mapper, DataContext dataContext)
     {
         _unitOfWork = unitOfWork;
         _mapper = mapper;
+        _dataContext = dataContext;
     }
 
     public async Task<IDataResult<AddressDto>> AddAsync(AddressDto addressDto, string createdByName)
@@ -37,15 +42,16 @@ public class AddressManager:IAddressService
 
     }
 
-    public async Task<IDataResult<AddressDto>> UpdateAsync(AddressDto addressViewDto, string modifiedByName)
+    public async Task<IDataResult<AddressDto>> UpdateAsync(AddressDto addressDto, string modifiedByName)
     {
-        var address = _mapper.Map<Address>(addressViewDto);
+
+        var address = _mapper.Map<AddressDto,Address>(addressDto);
         address.ModifiedByName = modifiedByName;
         address.ModifiedTime = DateTime.Now;
-        var updatedAddress = await _unitOfWork.AddressRepository.UpdateAsync(address);
+        var updatedAddress = _unitOfWork.AddressRepository.UpdateAsync(address);
         await _unitOfWork.SaveAsync();
         return new DataResult<AddressDto>(ResultStatus.Success,
-            Messages.AddressUpdated,addressViewDto);
+            Messages.AddressUpdated, addressDto);
     }
 
 
@@ -68,13 +74,12 @@ public class AddressManager:IAddressService
     public async Task<IDataResult<AddressDto>> GetAsync(int id)
     {
         var address = await _unitOfWork.AddressRepository.GetAsync(x => x.Id == id, x => x.AppUser);
-        var addressViewDto = _mapper.Map<AddressDto>(address);
         if (address != null)
         {
-            return new DataResult<AddressDto>(ResultStatus.Success,addressViewDto);
+            var addressDto = _mapper.Map<AddressDto>(address);
+            return new DataResult<AddressDto>(ResultStatus.Success, addressDto);
         }
-
-        return new DataResult<AddressDto>(ResultStatus.Error, Messages.NotFound,addressViewDto);
+        return new DataResult<AddressDto>(ResultStatus.Error, Messages.NotFound,null);
     }
 
     public async Task<IDataResult<IList<AddressDto>>> GetAllAsync()

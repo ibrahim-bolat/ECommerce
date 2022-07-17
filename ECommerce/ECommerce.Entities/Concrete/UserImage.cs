@@ -9,5 +9,5 @@ public class UserImage:BaseEntity,IEntity
         public string ImageAltText { get; set; }
         public bool Profil { get; set; }
         public int UserId { get; set; }
-        public virtual AppUser AppUser { get; set; }
+        public AppUser AppUser { get; set; }
     }

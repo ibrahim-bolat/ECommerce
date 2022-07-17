@@ -22,6 +22,6 @@ namespace ECommerce.Entities.Concrete;
         
         public bool DefaultAddress { get; set; }
         public int UserId{ get; set; }
-        public virtual AppUser AppUser{ get; set; }
+        public AppUser AppUser{ get; set; }
     
 }

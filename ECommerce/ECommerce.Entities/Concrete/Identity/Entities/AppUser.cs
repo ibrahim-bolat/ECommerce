@@ -18,7 +18,7 @@ public class AppUser:IdentityUser<int>,IIdentityEntity
         public  string CreatedByName { get; set; } = "Owner";
         public  string ModifiedByName { get; set; } = "Owner";
         public  string Note { get; set; }
-        public virtual List<Address> Addresses{ get; set; }
-        public virtual List<UserImage> UserImages{ get; set; }
+        public  List<Address> Addresses{ get; set; }
+        public  List<UserImage> UserImages{ get; set; }
     }
     

@@ -10,12 +10,12 @@ public class AppRoleMap : IEntityTypeConfiguration<AppRole>
     {
         public void Configure(EntityTypeBuilder<AppRole> builder)
         {
+            builder.Property(role => role.Note).HasMaxLength(500);
             builder.HasData(new AppRole
             {
                 Id = 1,
                 Name = RoleEnum.Admin.ToString(),
                 NormalizedName = RoleEnum.Admin.ToString().ToUpper()
             });
-            builder.Property(role => role.Note).HasMaxLength(500);
-        }
+    }
     }

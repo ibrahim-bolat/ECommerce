@@ -10,3 +10,15 @@
 /home/ibrahim.bolat/RiderProjects/ECommerce/ECommerce.Shared/obj/Debug/net6.0/refint/ECommerce.Shared.dll
 /home/ibrahim.bolat/RiderProjects/ECommerce/ECommerce.Shared/obj/Debug/net6.0/ECommerce.Shared.pdb
 /home/ibrahim.bolat/RiderProjects/ECommerce/ECommerce.Shared/obj/Debug/net6.0/ref/ECommerce.Shared.dll
+D:\Yazılımlar\VisualStudioProjects\ECommerce\ECommerce\ECommerce.Shared\bin\Debug\net6.0\ECommerce.Shared.deps.json
+D:\Yazılımlar\VisualStudioProjects\ECommerce\ECommerce\ECommerce.Shared\bin\Debug\net6.0\ECommerce.Shared.dll
+D:\Yazılımlar\VisualStudioProjects\ECommerce\ECommerce\ECommerce.Shared\bin\Debug\net6.0\ECommerce.Shared.pdb
+D:\Yazılımlar\VisualStudioProjects\ECommerce\ECommerce\ECommerce.Shared\obj\Debug\net6.0\ECommerce.Shared.csproj.AssemblyReference.cache
+D:\Yazılımlar\VisualStudioProjects\ECommerce\ECommerce\ECommerce.Shared\obj\Debug\net6.0\ECommerce.Shared.GeneratedMSBuildEditorConfig.editorconfig
+D:\Yazılımlar\VisualStudioProjects\ECommerce\ECommerce\ECommerce.Shared\obj\Debug\net6.0\ECommerce.Shared.AssemblyInfoInputs.cache
+D:\Yazılımlar\VisualStudioProjects\ECommerce\ECommerce\ECommerce.Shared\obj\Debug\net6.0\ECommerce.Shared.AssemblyInfo.cs
+D:\Yazılımlar\VisualStudioProjects\ECommerce\ECommerce\ECommerce.Shared\obj\Debug\net6.0\ECommerce.Shared.csproj.CoreCompileInputs.cache
+D:\Yazılımlar\VisualStudioProjects\ECommerce\ECommerce\ECommerce.Shared\obj\Debug\net6.0\ECommerce.Shared.dll
+D:\Yazılımlar\VisualStudioProjects\ECommerce\ECommerce\ECommerce.Shared\obj\Debug\net6.0\refint\ECommerce.Shared.dll
+D:\Yazılımlar\VisualStudioProjects\ECommerce\ECommerce\ECommerce.Shared\obj\Debug\net6.0\ECommerce.Shared.pdb
+D:\Yazılımlar\VisualStudioProjects\ECommerce\ECommerce\ECommerce.Shared\obj\Debug\net6.0\ref\ECommerce.Shared.dll

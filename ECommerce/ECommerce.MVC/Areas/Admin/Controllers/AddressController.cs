@@ -84,7 +84,7 @@ public class AddressController : Controller
         return View();
     }
     
-        [HttpGet]
+    [HttpGet]
     public async Task<IActionResult>  UpdateAddress(int userId,int addressId)
     {
         TempData["userId"] = userId.ToString();
@@ -110,19 +110,36 @@ public class AddressController : Controller
             IdentityResult result = null;
             if (userId != null)
             {
-                var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+                var currentUser = await _userManager.FindByNameAsync(User.Identity?.Name);
                 AppUser user = await _userManager.FindByIdAsync(userId);
+                Address updatedAddress = user.Addresses.Where(a => a.Id == addressDto.Id).FirstOrDefault();
                 if (user != null)
                 {
-                    for (int i = 0; i < user.Addresses.Count; i++)
+                    if (updatedAddress != null)
                     {
-                        if (user.Addresses[i].Id == addressDto.Id)
+                        user.Addresses.ForEach(x =>
                         {
-                            user.Addresses[i] = _mapper.Map<AddressDto,Address>(addressDto);
-                            user.Addresses[i].ModifiedByName = currentUser.UserName;
-                            user.Addresses[i].ModifiedTime=DateTime.Now;
-                            break;
-                        }
+                            if (x.Id == addressDto.Id)
+                            {
+                                x.AddressTitle=addressDto.AddressTitle;
+                                x.AddressType=addressDto.AddressType;
+                                x.Street=addressDto.Street;
+                                x.MainStreet=addressDto.MainStreet;
+                                x.NeighborhoodOrVillage=addressDto.NeighborhoodOrVillage;
+                                x.District=addressDto.District;
+                                x.City=addressDto.City;
+                                x.Country=addressDto.Country;
+                                x.RegionOrState= addressDto.RegionOrState;
+                                x.BuildingNo = addressDto.BuildingNo;
+                                x.FlatNo = addressDto.FlatNo;
+                                x.PostalCode = addressDto.PostalCode;
+                                x.AddressDetails = addressDto.AddressDetails;
+                                x.DefaultAddress = addressDto.DefaultAddress;
+                                x.Note = addressDto.Note;
+                                x.ModifiedByName = currentUser.UserName;
+                                x.ModifiedTime = DateTime.Now;
+                            }
+                        });
                     }
                     result = await _userManager.UpdateAsync(user);
                     if (!result.Succeeded)
@@ -143,5 +160,16 @@ public class AddressController : Controller
             return RedirectToAction("AllErrorPages", "ErrorPages" ,new { statusCode = 404});
         }
         return View();
+    }
+
+    [HttpGet]
+    public IActionResult DetailAddress(int addressId)
+    {
+        var dresult = _addressService.GetAsync(addressId);
+        if (dresult.ResultSatus != ResultStatus.Error)
+        {
+            return View(dresult.Data);
+        }
+        return RedirectToAction("AllErrorPages", "ErrorPages", new { statusCode = 404 });
     }
 }

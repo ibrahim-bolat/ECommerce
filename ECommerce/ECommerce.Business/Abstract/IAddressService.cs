@@ -9,6 +9,6 @@ public interface IAddressService
     Task<IDataResult<AddressDto>> AddAsync(AddressDto userAddressDto, string createdByName);
     Task<IDataResult<AddressDto>> UpdateAsync(AddressDto articleUpdateDto, string modifiedByName);
     Task<IResult> DeleteAsync(int id, string modifiedByName);
-    Task<IDataResult<AddressDto>> GetAsync(int articleId);
+    Task<IDataResult<AddressDto>> GetAsync(int id);
     Task<IDataResult<IList<AddressDto>>> GetAllAsync();
 }

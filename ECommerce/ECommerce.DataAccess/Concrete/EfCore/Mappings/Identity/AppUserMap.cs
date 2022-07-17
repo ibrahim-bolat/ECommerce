@@ -10,6 +10,19 @@ namespace ECommerce.DataAccess.Concrete.EfCore.Mappings.Identity;
     {
         public void Configure(EntityTypeBuilder<AppUser> builder)
         {
+            builder.Property(user => user.FirstName).HasMaxLength(100);
+            builder.Property(user => user.LastName).HasMaxLength(100);
+            builder.Property(user => user.UserIdendityNo).HasMaxLength(11);
+            builder.Property(user => user.Note).HasMaxLength(500);
+            builder.Property(user => user.DateOfBirth).HasColumnType("date");
+            builder.HasMany(user => user.Addresses).WithOne(address => address.AppUser)
+                .HasForeignKey(address => address.UserId).OnDelete(DeleteBehavior.Cascade);
+            builder.Navigation(u => u.Addresses).AutoInclude();
+            builder.HasMany(user => user.UserImages).WithOne(userImage => userImage.AppUser)
+                .HasForeignKey(userImage => userImage.UserId).OnDelete(DeleteBehavior.Cascade);
+            builder.Navigation(u => u.UserImages).AutoInclude();
+
+
             var hasher = new PasswordHasher<AppUser>();
             builder.HasData(new AppUser
             {
@@ -27,14 +40,5 @@ namespace ECommerce.DataAccess.Concrete.EfCore.Mappings.Identity;
                 //SecurityStamp = GenerateSecurityStamp(), bu şekilde oluşturulabilir ama 
                 //her migrationda yenisi oluşur o yüzden sabit değer verilmeli
             });
-            builder.Property(user => user.FirstName).HasMaxLength(100);
-            builder.Property(user => user.LastName).HasMaxLength(100);
-            builder.Property(user => user.UserIdendityNo).HasMaxLength(11);
-            builder.Property(user => user.Note).HasMaxLength(500);
-            builder.Property(user => user.DateOfBirth).HasColumnType("date");
-            builder.HasMany(user => user.Addresses).WithOne(address => address.AppUser)
-                .HasForeignKey(address => address.UserId).OnDelete(DeleteBehavior.SetNull);
-            builder.HasMany(user => user.UserImages).WithOne(userImage => userImage.AppUser)
-                .HasForeignKey(userImage => userImage.UserId).OnDelete(DeleteBehavior.SetNull);
-        }
+    }
     }

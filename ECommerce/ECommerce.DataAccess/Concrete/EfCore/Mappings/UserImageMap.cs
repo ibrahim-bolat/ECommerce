@@ -15,7 +15,7 @@ namespace ECommerce.DataAccess.Concrete.EfCore.Mappings;
             builder.Property(userImage => userImage.ImageAltText).HasMaxLength(250);
             builder.Property(userImage => userImage.Note).HasMaxLength(500);
             builder.HasOne(userImage => userImage.AppUser).WithMany(user => user.UserImages)
-                .HasForeignKey(userImage => userImage.UserId).OnDelete(DeleteBehavior.SetNull);
+                .HasForeignKey(userImage => userImage.UserId).OnDelete(DeleteBehavior.Cascade);
             builder.HasData(new UserImage()
             {
                 Id = 1, 

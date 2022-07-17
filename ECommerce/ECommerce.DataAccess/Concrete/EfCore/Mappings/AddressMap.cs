@@ -30,7 +30,7 @@ namespace ECommerce.DataAccess.Concrete.EfCore.Mappings;
             builder.Property(address => address.AddressDetails).HasMaxLength(500).IsRequired();
             builder.Property(address => address.Note).HasMaxLength(500);
             builder.HasOne(address => address.AppUser).WithMany(user => user.Addresses)
-                .HasForeignKey(address => address.UserId).OnDelete(DeleteBehavior.SetNull);
+                .HasForeignKey(address => address.UserId).OnDelete(DeleteBehavior.Cascade);
             builder.HasData(new Address
             {
                 Id = 1, 
