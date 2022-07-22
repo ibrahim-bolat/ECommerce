@@ -38,8 +38,9 @@ namespace ECommerce.DataAccess.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    FirstName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
-                    LastName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    FirstName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    LastName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    GenderType = table.Column<string>(type: "text", nullable: false),
                     UserIdendityNo = table.Column<string>(type: "character varying(11)", maxLength: 11, nullable: true),
                     DateOfBirth = table.Column<DateTime>(type: "date", nullable: true),
                     CreatedTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
@@ -96,17 +97,15 @@ namespace ECommerce.DataAccess.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    FirstName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    LastName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    Email = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    PhoneNumber = table.Column<string>(type: "character varying(17)", maxLength: 17, nullable: false),
                     AddressTitle = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     AddressType = table.Column<string>(type: "text", nullable: false),
-                    Street = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
-                    MainStreet = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
                     NeighborhoodOrVillage = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: false),
                     District = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: false),
                     City = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: false),
-                    Country = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: false),
-                    RegionOrState = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
-                    BuildingNo = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: true),
-                    FlatNo = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: true),
                     PostalCode = table.Column<string>(type: "character varying(5)", maxLength: 5, nullable: true),
                     AddressDetails = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
                     DefaultAddress = table.Column<bool>(type: "boolean", nullable: false),
@@ -248,20 +247,20 @@ namespace ECommerce.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "CreatedByName", "CreatedTime", "IsActive", "IsDeleted", "ModifiedByName", "ModifiedTime", "Name", "NormalizedName", "Note" },
-                values: new object[] { 1, "6c95e1a1-27eb-4a06-9760-df0449f4352d", "Owner", new DateTime(2022, 7, 15, 23, 5, 45, 309, DateTimeKind.Local).AddTicks(6602), true, false, "Owner", new DateTime(2022, 7, 15, 23, 5, 45, 309, DateTimeKind.Local).AddTicks(6614), "Admin", "ADMİN", null });
+                values: new object[] { 1, "81c10c40-1680-48e0-b0c6-827a9d1a872a", "Owner", new DateTime(2022, 7, 20, 15, 34, 17, 287, DateTimeKind.Local).AddTicks(9334), true, false, "Owner", new DateTime(2022, 7, 20, 15, 34, 17, 287, DateTimeKind.Local).AddTicks(9359), "Admin", "ADMİN", null });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreatedByName", "CreatedTime", "DateOfBirth", "Email", "EmailConfirmed", "FirstName", "IsActive", "IsDeleted", "LastName", "LockoutEnabled", "LockoutEnd", "ModifiedByName", "ModifiedTime", "NormalizedEmail", "NormalizedUserName", "Note", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserIdendityNo", "UserName" },
-                values: new object[] { 1, 0, "49bbccdd-4dfc-4eff-8ef2-247811da2391", "Owner", new DateTime(2022, 7, 15, 23, 5, 45, 310, DateTimeKind.Local).AddTicks(6176), null, "bolat6606@hotmail.com", true, "İbrahim", true, false, "Bolat", false, null, "Owner", new DateTime(2022, 7, 15, 23, 5, 45, 310, DateTimeKind.Local).AddTicks(6183), "BOLAT6606@HOTMAIL.COM", "BOLAT6606", null, "AQAAAAEAACcQAAAAEI/T4NTywSt9IgSGWtRLed/xepGxofVv0o0x3Cw61DL+AJxo2e1kwfAnqLfk4D5wYg==", "05325757966", false, "VVPCRDAS3MJWQD5CSW2GWPRADBXEZINA", false, null, "bolat6606" });
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreatedByName", "CreatedTime", "DateOfBirth", "Email", "EmailConfirmed", "FirstName", "GenderType", "IsActive", "IsDeleted", "LastName", "LockoutEnabled", "LockoutEnd", "ModifiedByName", "ModifiedTime", "NormalizedEmail", "NormalizedUserName", "Note", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserIdendityNo", "UserName" },
+                values: new object[] { 1, 0, "a45e27c1-da0b-4ce4-846c-04948d79f0d9", "Owner", new DateTime(2022, 7, 20, 15, 34, 17, 288, DateTimeKind.Local).AddTicks(4985), null, "bolat6606@hotmail.com", true, "İbrahim", "Belirtilmemiş", true, false, "Bolat", false, null, "Owner", new DateTime(2022, 7, 20, 15, 34, 17, 288, DateTimeKind.Local).AddTicks(4992), "BOLAT6606@HOTMAIL.COM", "BOLAT6606", null, "AQAAAAEAACcQAAAAEA0+98edPuQNv/qgaoKHLAHvuRt8Ohxf8MnXYtREpCjxzkMVAFtED7hz/WC29slWDQ==", "+90(532)575-79-66", false, "VVPCRDAS3MJWQD5CSW2GWPRADBXEZINA", false, null, "bolat6606" });
 
             migrationBuilder.InsertData(
                 table: "Addresses",
-                columns: new[] { "Id", "AddressDetails", "AddressTitle", "AddressType", "BuildingNo", "City", "Country", "CreatedByName", "CreatedTime", "DefaultAddress", "District", "FlatNo", "IsActive", "IsDeleted", "MainStreet", "ModifiedByName", "ModifiedTime", "NeighborhoodOrVillage", "Note", "PostalCode", "RegionOrState", "Street", "UserId" },
+                columns: new[] { "Id", "AddressDetails", "AddressTitle", "AddressType", "City", "CreatedByName", "CreatedTime", "DefaultAddress", "District", "Email", "FirstName", "IsActive", "IsDeleted", "LastName", "ModifiedByName", "ModifiedTime", "NeighborhoodOrVillage", "Note", "PhoneNumber", "PostalCode", "UserId" },
                 values: new object[,]
                 {
-                    { 1, "Naci Bekir Mahallesi ,Atılım Cad. Ateş Sok. No:40/7 06500 Yenimahalle/Ankara/Türkiye", "Evim", "Ev", "40", "Ankara", "Turkiye", "Admin", new DateTime(2022, 7, 15, 23, 5, 45, 319, DateTimeKind.Local).AddTicks(1835), false, "Yenimahalle", "7", false, false, "Atılım", "Admin", new DateTime(2022, 7, 15, 23, 5, 45, 319, DateTimeKind.Local).AddTicks(1848), "Naci Bekir", null, "06500", "İç Anadolu", "Ateş", 1 },
-                    { 2, "Mustafa Kemal Mahallesi ,Eskişehir Yolu  Kütahya Sok. No:280/7 06500 Çankaya/Ankara/Türkiye", "İş", "İş", "280", "Ankara", "Turkiye", "Admin", new DateTime(2022, 7, 15, 23, 5, 45, 319, DateTimeKind.Local).AddTicks(1875), true, "Çankaya", "7", false, false, "Eskişehir Yolu", "Admin", new DateTime(2022, 7, 15, 23, 5, 45, 319, DateTimeKind.Local).AddTicks(1876), "Mustafa Kemal", null, "06100", "İç Anadolu", "Kütahya", 1 }
+                    { 1, "Naci Bekir Mahallesi ,Atılım Cad. Ateş Sok. No:40/7 06500 Yenimahalle/Ankara/Türkiye", "Evim", "Ev", "Ankara", "Admin", new DateTime(2022, 7, 20, 15, 34, 17, 293, DateTimeKind.Local).AddTicks(5809), false, "Yenimahalle", "bolatcan@email.com", "ibo", false, false, "BOL", "Admin", new DateTime(2022, 7, 20, 15, 34, 17, 293, DateTimeKind.Local).AddTicks(5820), "Naci Bekir", null, "+90(532)5757966", "06500", 1 },
+                    { 2, "Mustafa Kemal Mahallesi ,Eskişehir Yolu  Kütahya Sok. No:280/7 06500 Çankaya/Ankara/Türkiye", "İş", "İş", "Ankara", "Admin", new DateTime(2022, 7, 20, 15, 34, 17, 293, DateTimeKind.Local).AddTicks(5839), true, "Çankaya", "bolatcan@email.com", "ibo", false, false, "BOLAT", "Admin", new DateTime(2022, 7, 20, 15, 34, 17, 293, DateTimeKind.Local).AddTicks(5840), "Mustafa Kemal", null, "+90(532)5757966", "06100", 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -272,7 +271,7 @@ namespace ECommerce.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "UserImages",
                 columns: new[] { "Id", "CreatedByName", "CreatedTime", "ImageAltText", "ImagePath", "ImageTitle", "IsActive", "IsDeleted", "ModifiedByName", "ModifiedTime", "Note", "Profil", "UserId" },
-                values: new object[] { 1, "Admin", new DateTime(2022, 7, 15, 23, 5, 45, 319, DateTimeKind.Local).AddTicks(3165), "Profil", "/admin/images/layout_img/g1.jpg", "ProfilResmi", false, false, "Admin", new DateTime(2022, 7, 15, 23, 5, 45, 319, DateTimeKind.Local).AddTicks(3168), null, true, 1 });
+                values: new object[] { 1, "Admin", new DateTime(2022, 7, 20, 15, 34, 17, 293, DateTimeKind.Local).AddTicks(6799), "Profil", "/admin/images/layout_img/g1.jpg", "ProfilResmi", false, false, "Admin", new DateTime(2022, 7, 20, 15, 34, 17, 293, DateTimeKind.Local).AddTicks(6804), null, true, 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Addresses_UserId",

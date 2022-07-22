@@ -36,139 +36,85 @@ public class AddressController : Controller
     }
 
     [HttpGet]
-    public IActionResult AddAddress(int userId)
+    public IActionResult AddressAdd(int userId)
     {
         TempData["userId"] = userId.ToString();
         return View();
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddAddress(AddressDto addressDto)
+    public async Task<IActionResult> AddressAdd(AddressDto addressDto)
     {
         if (ModelState.IsValid)
         {
-            var userId = TempData["userId"]?.ToString();
-            IdentityResult result = null;
-            if (userId != null)
+            var dresult= await _addressService.AddAsync(addressDto, User.Identity?.Name);
+            if (dresult.ResultStatus == ResultStatus.Success)
             {
-                var currentUser = await _userManager.GetUserAsync(HttpContext.User);
-                AppUser user = await _userManager.FindByIdAsync(userId);
-                if (user != null)
-                {
-                    Address address = _mapper.Map<Address>(addressDto);
-                    address.CreatedByName = currentUser.UserName;
-                    address.ModifiedByName = currentUser.UserName;
-                    address.CreatedTime=DateTime.Now;
-                    address.ModifiedTime=DateTime.Now;
-                    address.IsActive = true;
-                    address.IsDeleted = false;
-                    user.Addresses.Add(address);
-                    result = await _userManager.UpdateAsync(user);
-                    if (!result.Succeeded)
-                    {
-                        result.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
-                        return View(addressDto);
-                    }
-                    result = await _userManager.UpdateSecurityStampAsync(user);
-                    if (!result.Succeeded)
-                    {
-                        result.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
-                        return View(addressDto);
-                    }
-                    TempData["AddAddressSuccess"] = true;
-                    return RedirectToAction("AddAddress", "Address" ,new { userId = userId});
-                }
+                TempData["AddAddressSuccess"] = true;
+                return RedirectToAction("AddressAdd", "Address");
             }
-            return RedirectToAction("AllErrorPages", "ErrorPages" ,new { statusCode = 404});
         }
         return View();
     }
-    
+
     [HttpGet]
-    public async Task<IActionResult>  UpdateAddress(int userId,int addressId)
+    public async Task<IActionResult> AddressUpdate(int addressId)
     {
-        TempData["userId"] = userId.ToString();
-        AppUser user = await _userManager.FindByIdAsync(userId.ToString());
-        if (user != null)
+        if (addressId > 0)
         {
-            Address address = user.Addresses.Where(a => a.Id == addressId).FirstOrDefault();
-            if (address != null)
+            var dresult = await _addressService.GetAsync(addressId);
+            if (dresult.ResultStatus==ResultStatus.Success)
             {
-                AddressDto addressDto = _mapper.Map<AddressDto>(address);
+                AddressDto addressDto = _mapper.Map<AddressDto>(dresult.Data);
+                return View(addressDto);
+            }
+            
+        }
+        return RedirectToAction("AllErrorPages", "ErrorPages", new { statusCode = 404 });
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> AddressUpdate(AddressDto addressDto)
+    {
+        if (ModelState.IsValid)
+        {
+            var dresult= await _addressService.UpdateAsync(addressDto, User.Identity?.Name);
+            if (dresult.ResultStatus == ResultStatus.Success)
+            {
+                TempData["UpdateAddressSuccess"] = true;
+                return RedirectToAction("AddressUpdate", "Address" ,new { addressId=addressDto.Id});
+            }
+        }
+        return View();
+    }
+
+    [HttpGet]
+    public async Task<IActionResult>  AddressDetail(int addressId)
+    {
+        if (addressId > 0)
+        {
+            var dresult = await _addressService.GetAsync(addressId);
+            if (dresult.ResultStatus==ResultStatus.Success)
+            {
+                AddressDto addressDto = _mapper.Map<AddressDto>(dresult.Data);
                 return View(addressDto);
             }
         }
-        return RedirectToAction("AllErrorPages", "ErrorPages" ,new { statusCode = 404});
+        return RedirectToAction("AllErrorPages", "ErrorPages", new { statusCode = 404 });
     }
-
+    
     [HttpPost]
-    public async Task<IActionResult> UpdateAddress(AddressDto addressDto)
+    public async Task<IActionResult> AddressDelete(int addressId)
     {
-        if (ModelState.IsValid)
+        if (addressId > 0)
         {
-            var userId = TempData["userId"]?.ToString();
-            IdentityResult result = null;
-            if (userId != null)
+            var dresult = await _addressService.DeleteAsync(addressId,User.Identity?.Name);
+            if (dresult.ResultStatus==ResultStatus.Success)
             {
-                var currentUser = await _userManager.FindByNameAsync(User.Identity?.Name);
-                AppUser user = await _userManager.FindByIdAsync(userId);
-                Address updatedAddress = user.Addresses.Where(a => a.Id == addressDto.Id).FirstOrDefault();
-                if (user != null)
-                {
-                    if (updatedAddress != null)
-                    {
-                        user.Addresses.ForEach(x =>
-                        {
-                            if (x.Id == addressDto.Id)
-                            {
-                                x.AddressTitle=addressDto.AddressTitle;
-                                x.AddressType=addressDto.AddressType;
-                                x.Street=addressDto.Street;
-                                x.MainStreet=addressDto.MainStreet;
-                                x.NeighborhoodOrVillage=addressDto.NeighborhoodOrVillage;
-                                x.District=addressDto.District;
-                                x.City=addressDto.City;
-                                x.Country=addressDto.Country;
-                                x.RegionOrState= addressDto.RegionOrState;
-                                x.BuildingNo = addressDto.BuildingNo;
-                                x.FlatNo = addressDto.FlatNo;
-                                x.PostalCode = addressDto.PostalCode;
-                                x.AddressDetails = addressDto.AddressDetails;
-                                x.DefaultAddress = addressDto.DefaultAddress;
-                                x.Note = addressDto.Note;
-                                x.ModifiedByName = currentUser.UserName;
-                                x.ModifiedTime = DateTime.Now;
-                            }
-                        });
-                    }
-                    result = await _userManager.UpdateAsync(user);
-                    if (!result.Succeeded)
-                    {
-                        result.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
-                        return View(addressDto);
-                    }
-                    result = await _userManager.UpdateSecurityStampAsync(user);
-                    if (!result.Succeeded)
-                    {
-                        result.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
-                        return View(addressDto);
-                    }
-                    TempData["UpdateAddressSuccess"] = true;
-                    return RedirectToAction("UpdateAddress", "Address" ,new { userId = userId,addressId=addressDto.Id});
-                }
+                var userId = dresult.Data.UserId;
+                return Json(new { success = true, userId = userId });
             }
-            return RedirectToAction("AllErrorPages", "ErrorPages" ,new { statusCode = 404});
-        }
-        return View();
-    }
-
-    [HttpGet]
-    public IActionResult DetailAddress(int addressId)
-    {
-        var dresult = _addressService.GetAsync(addressId);
-        if (dresult.ResultSatus != ResultStatus.Error)
-        {
-            return View(dresult.Data);
+            return Json(new { success = false});
         }
         return RedirectToAction("AllErrorPages", "ErrorPages", new { statusCode = 404 });
     }

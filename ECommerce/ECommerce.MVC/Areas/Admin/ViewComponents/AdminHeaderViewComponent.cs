@@ -5,18 +5,19 @@ using Microsoft.AspNetCore.Mvc;
 namespace ECommerce.MVC.Areas.Admin.ViewComponents;
 
 [ViewComponent]
-public class AdminHeaderViewComponent : ViewComponent
+public class AdminHeaderAvatarViewComponent : ViewComponent
     {
         private readonly UserManager<AppUser> _userManager;
 
-        public AdminHeaderViewComponent(UserManager<AppUser> userManager)
+        public AdminHeaderAvatarViewComponent(UserManager<AppUser> userManager)
         {
             _userManager = userManager;
         }
 
-        public  IViewComponentResult Invoke()
+        public async Task<IViewComponentResult> InvokeAsync()
         {
-            AppUser user =  _userManager.FindByNameAsync(User.Identity?.Name).Result;
-            return View(user);
+            AppUser appUser =  await _userManager.FindByNameAsync(User.Identity?.Name);
+            ViewBag.UserId = appUser.Id;
+            return View();
         }
     }

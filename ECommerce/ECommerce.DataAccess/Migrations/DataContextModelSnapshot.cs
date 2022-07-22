@@ -44,16 +44,7 @@ namespace ECommerce.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("BuildingNo")
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)");
-
                     b.Property<string>("City")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("character varying(250)");
-
-                    b.Property<string>("Country")
                         .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("character varying(250)");
@@ -72,9 +63,15 @@ namespace ECommerce.DataAccess.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("character varying(250)");
 
-                    b.Property<string>("FlatNo")
-                        .HasMaxLength(10)
-                        .HasColumnType("character varying(10)");
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
@@ -82,9 +79,10 @@ namespace ECommerce.DataAccess.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("MainStreet")
-                        .HasMaxLength(250)
-                        .HasColumnType("character varying(250)");
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<string>("ModifiedByName")
                         .HasColumnType("text");
@@ -101,17 +99,14 @@ namespace ECommerce.DataAccess.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("character varying(500)");
 
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(17)
+                        .HasColumnType("character varying(17)");
+
                     b.Property<string>("PostalCode")
                         .HasMaxLength(5)
                         .HasColumnType("character varying(5)");
-
-                    b.Property<string>("RegionOrState")
-                        .HasMaxLength(250)
-                        .HasColumnType("character varying(250)");
-
-                    b.Property<string>("Street")
-                        .HasMaxLength(250)
-                        .HasColumnType("character varying(250)");
 
                     b.Property<int>("UserId")
                         .HasColumnType("integer");
@@ -129,23 +124,21 @@ namespace ECommerce.DataAccess.Migrations
                             AddressDetails = "Naci Bekir Mahallesi ,Atılım Cad. Ateş Sok. No:40/7 06500 Yenimahalle/Ankara/Türkiye",
                             AddressTitle = "Evim",
                             AddressType = "Ev",
-                            BuildingNo = "40",
                             City = "Ankara",
-                            Country = "Turkiye",
                             CreatedByName = "Admin",
-                            CreatedTime = new DateTime(2022, 7, 15, 23, 5, 45, 319, DateTimeKind.Local).AddTicks(1835),
+                            CreatedTime = new DateTime(2022, 7, 20, 15, 34, 17, 293, DateTimeKind.Local).AddTicks(5809),
                             DefaultAddress = false,
                             District = "Yenimahalle",
-                            FlatNo = "7",
+                            Email = "bolatcan@email.com",
+                            FirstName = "ibo",
                             IsActive = false,
                             IsDeleted = false,
-                            MainStreet = "Atılım",
+                            LastName = "BOL",
                             ModifiedByName = "Admin",
-                            ModifiedTime = new DateTime(2022, 7, 15, 23, 5, 45, 319, DateTimeKind.Local).AddTicks(1848),
+                            ModifiedTime = new DateTime(2022, 7, 20, 15, 34, 17, 293, DateTimeKind.Local).AddTicks(5820),
                             NeighborhoodOrVillage = "Naci Bekir",
+                            PhoneNumber = "+90(532)5757966",
                             PostalCode = "06500",
-                            RegionOrState = "İç Anadolu",
-                            Street = "Ateş",
                             UserId = 1
                         },
                         new
@@ -154,23 +147,21 @@ namespace ECommerce.DataAccess.Migrations
                             AddressDetails = "Mustafa Kemal Mahallesi ,Eskişehir Yolu  Kütahya Sok. No:280/7 06500 Çankaya/Ankara/Türkiye",
                             AddressTitle = "İş",
                             AddressType = "İş",
-                            BuildingNo = "280",
                             City = "Ankara",
-                            Country = "Turkiye",
                             CreatedByName = "Admin",
-                            CreatedTime = new DateTime(2022, 7, 15, 23, 5, 45, 319, DateTimeKind.Local).AddTicks(1875),
+                            CreatedTime = new DateTime(2022, 7, 20, 15, 34, 17, 293, DateTimeKind.Local).AddTicks(5839),
                             DefaultAddress = true,
                             District = "Çankaya",
-                            FlatNo = "7",
+                            Email = "bolatcan@email.com",
+                            FirstName = "ibo",
                             IsActive = false,
                             IsDeleted = false,
-                            MainStreet = "Eskişehir Yolu",
+                            LastName = "BOLAT",
                             ModifiedByName = "Admin",
-                            ModifiedTime = new DateTime(2022, 7, 15, 23, 5, 45, 319, DateTimeKind.Local).AddTicks(1876),
+                            ModifiedTime = new DateTime(2022, 7, 20, 15, 34, 17, 293, DateTimeKind.Local).AddTicks(5840),
                             NeighborhoodOrVillage = "Mustafa Kemal",
+                            PhoneNumber = "+90(532)5757966",
                             PostalCode = "06100",
-                            RegionOrState = "İç Anadolu",
-                            Street = "Kütahya",
                             UserId = 1
                         });
                 });
@@ -229,13 +220,13 @@ namespace ECommerce.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "6c95e1a1-27eb-4a06-9760-df0449f4352d",
+                            ConcurrencyStamp = "81c10c40-1680-48e0-b0c6-827a9d1a872a",
                             CreatedByName = "Owner",
-                            CreatedTime = new DateTime(2022, 7, 15, 23, 5, 45, 309, DateTimeKind.Local).AddTicks(6602),
+                            CreatedTime = new DateTime(2022, 7, 20, 15, 34, 17, 287, DateTimeKind.Local).AddTicks(9334),
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByName = "Owner",
-                            ModifiedTime = new DateTime(2022, 7, 15, 23, 5, 45, 309, DateTimeKind.Local).AddTicks(6614),
+                            ModifiedTime = new DateTime(2022, 7, 20, 15, 34, 17, 287, DateTimeKind.Local).AddTicks(9359),
                             Name = "Admin",
                             NormalizedName = "ADMİN"
                         });
@@ -273,8 +264,13 @@ namespace ECommerce.DataAccess.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
+
+                    b.Property<string>("GenderType")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
@@ -283,6 +279,7 @@ namespace ECommerce.DataAccess.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
@@ -349,22 +346,23 @@ namespace ECommerce.DataAccess.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "49bbccdd-4dfc-4eff-8ef2-247811da2391",
+                            ConcurrencyStamp = "a45e27c1-da0b-4ce4-846c-04948d79f0d9",
                             CreatedByName = "Owner",
-                            CreatedTime = new DateTime(2022, 7, 15, 23, 5, 45, 310, DateTimeKind.Local).AddTicks(6176),
+                            CreatedTime = new DateTime(2022, 7, 20, 15, 34, 17, 288, DateTimeKind.Local).AddTicks(4985),
                             Email = "bolat6606@hotmail.com",
                             EmailConfirmed = true,
                             FirstName = "İbrahim",
+                            GenderType = "Belirtilmemiş",
                             IsActive = true,
                             IsDeleted = false,
                             LastName = "Bolat",
                             LockoutEnabled = false,
                             ModifiedByName = "Owner",
-                            ModifiedTime = new DateTime(2022, 7, 15, 23, 5, 45, 310, DateTimeKind.Local).AddTicks(6183),
+                            ModifiedTime = new DateTime(2022, 7, 20, 15, 34, 17, 288, DateTimeKind.Local).AddTicks(4992),
                             NormalizedEmail = "BOLAT6606@HOTMAIL.COM",
                             NormalizedUserName = "BOLAT6606",
-                            PasswordHash = "AQAAAAEAACcQAAAAEI/T4NTywSt9IgSGWtRLed/xepGxofVv0o0x3Cw61DL+AJxo2e1kwfAnqLfk4D5wYg==",
-                            PhoneNumber = "05325757966",
+                            PasswordHash = "AQAAAAEAACcQAAAAEA0+98edPuQNv/qgaoKHLAHvuRt8Ohxf8MnXYtREpCjxzkMVAFtED7hz/WC29slWDQ==",
+                            PhoneNumber = "+90(532)575-79-66",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "VVPCRDAS3MJWQD5CSW2GWPRADBXEZINA",
                             TwoFactorEnabled = false,
@@ -433,14 +431,14 @@ namespace ECommerce.DataAccess.Migrations
                         {
                             Id = 1,
                             CreatedByName = "Admin",
-                            CreatedTime = new DateTime(2022, 7, 15, 23, 5, 45, 319, DateTimeKind.Local).AddTicks(3165),
+                            CreatedTime = new DateTime(2022, 7, 20, 15, 34, 17, 293, DateTimeKind.Local).AddTicks(6799),
                             ImageAltText = "Profil",
                             ImagePath = "/admin/images/layout_img/g1.jpg",
                             ImageTitle = "ProfilResmi",
                             IsActive = false,
                             IsDeleted = false,
                             ModifiedByName = "Admin",
-                            ModifiedTime = new DateTime(2022, 7, 15, 23, 5, 45, 319, DateTimeKind.Local).AddTicks(3168),
+                            ModifiedTime = new DateTime(2022, 7, 20, 15, 34, 17, 293, DateTimeKind.Local).AddTicks(6804),
                             Profil = true,
                             UserId = 1
                         });

@@ -938,37 +938,35 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\bolat\\.nuget\\packages\\": {}
+    "/home/ibrahim.bolat/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Yazılımlar\\VisualStudioProjects\\ECommerce\\ECommerce\\ECommerce.DataAccess\\ECommerce.DataAccess.csproj",
+      "projectUniqueName": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.DataAccess/ECommerce.DataAccess.csproj",
       "projectName": "ECommerce.DataAccess",
-      "projectPath": "D:\\Yazılımlar\\VisualStudioProjects\\ECommerce\\ECommerce\\ECommerce.DataAccess\\ECommerce.DataAccess.csproj",
-      "packagesPath": "C:\\Users\\bolat\\.nuget\\packages\\",
-      "outputPath": "D:\\Yazılımlar\\VisualStudioProjects\\ECommerce\\ECommerce\\ECommerce.DataAccess\\obj\\",
+      "projectPath": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.DataAccess/ECommerce.DataAccess.csproj",
+      "packagesPath": "/home/ibrahim.bolat/.nuget/packages/",
+      "outputPath": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.DataAccess/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\bolat\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/home/ibrahim.bolat/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\Yazılımlar\\VisualStudioProjects\\ECommerce\\ECommerce\\ECommerce.Entities\\ECommerce.Entities.csproj": {
-              "projectPath": "D:\\Yazılımlar\\VisualStudioProjects\\ECommerce\\ECommerce\\ECommerce.Entities\\ECommerce.Entities.csproj"
+            "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.Entities/ECommerce.Entities.csproj": {
+              "projectPath": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.Entities/ECommerce.Entities.csproj"
             },
-            "D:\\Yazılımlar\\VisualStudioProjects\\ECommerce\\ECommerce\\ECommerce.Shared\\ECommerce.Shared.csproj": {
-              "projectPath": "D:\\Yazılımlar\\VisualStudioProjects\\ECommerce\\ECommerce\\ECommerce.Shared\\ECommerce.Shared.csproj"
+            "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.Shared/ECommerce.Shared.csproj": {
+              "projectPath": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.Shared/ECommerce.Shared.csproj"
             }
           }
         }
@@ -1031,7 +1029,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/home/ibrahim.bolat/.dotnet/sdk/6.0.301/RuntimeIdentifierGraph.json"
       }
     }
   }

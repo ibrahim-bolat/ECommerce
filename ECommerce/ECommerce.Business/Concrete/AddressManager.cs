@@ -27,7 +27,7 @@ public class AddressManager:IAddressService
         _dataContext = dataContext;
     }
 
-    public async Task<IDataResult<AddressDto>> AddAsync(AddressDto addressDto, string createdByName)
+    public async Task<IResult> AddAsync(AddressDto addressDto, string createdByName)
     {
         var address = _mapper.Map<Address>(addressDto);
         address.CreatedByName = createdByName;
@@ -37,25 +37,32 @@ public class AddressManager:IAddressService
         address.IsActive = true;
         address.IsDeleted = false;
         var addedAddress = await _unitOfWork.AddressRepository.AddAsync(address);
-        await _unitOfWork.SaveAsync();
-        return new DataResult<AddressDto>(ResultStatus.Success,Messages.AddressAdded, addressDto);
-
+        int result = await _unitOfWork.SaveAsync();
+        if(result>0)
+            return new DataResult<AddressDto>(ResultStatus.Success,Messages.AddressAdded, addressDto);
+        return new Result(ResultStatus.Error,Messages.AddressNotAdded);
     }
 
-    public async Task<IDataResult<AddressDto>> UpdateAsync(AddressDto addressDto, string modifiedByName)
+    public async Task<IResult> UpdateAsync(AddressDto addressDto, string modifiedByName)
     {
-
-        var address = _mapper.Map<AddressDto,Address>(addressDto);
-        address.ModifiedByName = modifiedByName;
-        address.ModifiedTime = DateTime.Now;
-        var updatedAddress = _unitOfWork.AddressRepository.UpdateAsync(address);
-        await _unitOfWork.SaveAsync();
-        return new DataResult<AddressDto>(ResultStatus.Success,
-            Messages.AddressUpdated, addressDto);
+        var address = await _unitOfWork.AddressRepository.GetAsync(x=>x.Id==addressDto.Id);
+        if (address != null)
+        {
+            address = _mapper.Map<AddressDto,Address>(addressDto,address);
+            address.ModifiedByName = modifiedByName;
+            address.ModifiedTime = DateTime.Now;
+            var updatedAddress = _unitOfWork.AddressRepository.UpdateAsync(address);
+            var result = await _unitOfWork.SaveAsync();
+            if(result>0)
+                return new DataResult<AddressDto>(ResultStatus.Success,
+                Messages.AddressUpdated, addressDto);
+            return new Result(ResultStatus.Error,Messages.AddressNotUpdated);
+        }
+        return new Result(ResultStatus.Error,Messages.NotFound);
     }
 
 
-    public async Task<IResult> DeleteAsync(int id, string modifiedByName)
+    public async Task<IDataResult<AddressDto>> DeleteAsync(int id, string modifiedByName)
     {
         var address = await _unitOfWork.AddressRepository.GetAsync(x => x.Id == id);
         if (address != null)
@@ -64,16 +71,19 @@ public class AddressManager:IAddressService
             address.IsDeleted = true;
             address.ModifiedByName = modifiedByName;
             address.ModifiedTime = DateTime.Now;
-            await _unitOfWork.AddressRepository.UpdateAsync(address);
-            await _unitOfWork.SaveAsync();
-            return new Result(ResultStatus.Success, Messages.AddressDeleted);
+            var deletedAddress = _unitOfWork.AddressRepository.UpdateAsync(address);
+            var result = await _unitOfWork.SaveAsync();
+            var addressDto  = _mapper.Map<AddressDto>(address);
+            if(result>0)
+                return new DataResult<AddressDto>(ResultStatus.Success, addressDto);
+            return new DataResult<AddressDto>(ResultStatus.Error, Messages.AddressNotDeleted,null);
         }
-        return new Result(ResultStatus.Error, Messages.NotFound);
+        return new DataResult<AddressDto>(ResultStatus.Error, Messages.NotFound,null);
     }
 
     public async Task<IDataResult<AddressDto>> GetAsync(int id)
     {
-        var address = await _unitOfWork.AddressRepository.GetAsync(x => x.Id == id, x => x.AppUser);
+        var address = await _unitOfWork.AddressRepository.GetAsync(x => x.Id == id && x.IsActive==true, x => x.AppUser);
         if (address != null)
         {
             var addressDto = _mapper.Map<AddressDto>(address);

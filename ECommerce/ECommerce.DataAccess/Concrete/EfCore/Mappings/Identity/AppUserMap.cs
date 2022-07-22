@@ -1,5 +1,6 @@
 using System;
 using ECommerce.Entities.Concrete.Identity.Entities;
+using ECommerce.Shared.Entities.Enums;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -10,9 +11,13 @@ namespace ECommerce.DataAccess.Concrete.EfCore.Mappings.Identity;
     {
         public void Configure(EntityTypeBuilder<AppUser> builder)
         {
-            builder.Property(user => user.FirstName).HasMaxLength(100);
-            builder.Property(user => user.LastName).HasMaxLength(100);
+            builder.Property(user => user.FirstName).HasMaxLength(100).IsRequired();
+            builder.Property(user => user.LastName).HasMaxLength(100).IsRequired();
             builder.Property(user => user.UserIdendityNo).HasMaxLength(11);
+            builder.Property(user => user.GenderType)
+                .HasConversion(
+                    a => a.ToString(),
+                    a => (GenderEnum)Enum.Parse(typeof(GenderEnum), a));
             builder.Property(user => user.Note).HasMaxLength(500);
             builder.Property(user => user.DateOfBirth).HasColumnType("date");
             builder.HasMany(user => user.Addresses).WithOne(address => address.AppUser)
@@ -30,7 +35,7 @@ namespace ECommerce.DataAccess.Concrete.EfCore.Mappings.Identity;
                 FirstName = "İbrahim",
                 LastName = "Bolat",
                 UserName = "bolat6606",
-                PhoneNumber = "05325757966",
+                PhoneNumber = "+90(532)575-79-66",
                 NormalizedUserName = "BOLAT6606",
                 Email = "bolat6606@hotmail.com",
                 NormalizedEmail = "BOLAT6606@HOTMAIL.COM",

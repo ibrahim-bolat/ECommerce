@@ -352,11 +352,11 @@ public class AccountController : Controller
             AppUser user = await _userManager.FindByIdAsync(id.ToString());
             if (user != null)
             {
-                UserDto UserDto = _mapper.Map<UserDto>(user);
+                UserDto userDto = _mapper.Map<UserDto>(user);
                 List<AddressSummaryDto> addressSummaryDtos = _mapper.Map<List<AddressSummaryDto>>(user.Addresses);
                 UserDetailDto userDetailDto = new UserDetailDto()
                 {
-                    UserDto = UserDto,
+                    UserDto = userDto,
                     UserAddressSummaryDtos = addressSummaryDtos
                 };
                 return View(userDetailDto);

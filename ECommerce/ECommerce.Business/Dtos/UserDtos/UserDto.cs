@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using ECommerce.Business.ValidationRules.CustomValidation.Account;
 using ECommerce.Shared.Entities.Abtract;
+using ECommerce.Shared.Entities.Enums;
 
 namespace ECommerce.Business.Dtos.UserDtos;
 
@@ -17,10 +18,14 @@ public class UserDto:BaseDto,IDto
         [Display(Name = "Kullanıcı Adı")]
         public string UserName { get; set; }
         
+        [Display(Name = "Cinsiyet")]
+        public GenderEnum GenderType { get; set; }
+        
         [Display(Name = "Kimlik No")]
         public string UserIdendityNo { get; set; }
         
         [Display(Name = "Telefon")]
+        [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
         
         [Display(Name = "Email")]

@@ -11,21 +11,19 @@ namespace ECommerce.DataAccess.Concrete.EfCore.Mappings;
         {
             builder.HasKey(address => address.Id);
             builder.Property(address => address.Id).ValueGeneratedOnAdd();
+            builder.Property(address => address.FirstName).HasMaxLength(100).IsRequired();
+            builder.Property(address => address.LastName).HasMaxLength(100).IsRequired();
+            builder.Property(address => address.Email).HasMaxLength(100).IsRequired();
+            builder.Property(address => address.PhoneNumber).HasMaxLength(17).IsRequired();
             builder.Property(address => address.AddressTitle).HasMaxLength(100).IsRequired();
             builder.Property(address => address.AddressType)
                 .HasConversion(
                     a=>a.ToString(),
                     a=>(AddressEnum)Enum.Parse(typeof(AddressEnum),a))
                 .IsRequired();
-            builder.Property(address => address.Street).HasMaxLength(250);
-            builder.Property(address => address.MainStreet).HasMaxLength(250);
             builder.Property(address => address.NeighborhoodOrVillage).HasMaxLength(250).IsRequired();
             builder.Property(address => address.District).HasMaxLength(250).IsRequired();
             builder.Property(address => address.City).HasMaxLength(250).IsRequired();
-            builder.Property(address => address.Country).HasMaxLength(250).IsRequired();
-            builder.Property(address => address.RegionOrState).HasMaxLength(250);
-            builder.Property(address => address.BuildingNo).HasMaxLength(10);
-            builder.Property(address => address.FlatNo).HasMaxLength(10);
             builder.Property(address => address.PostalCode).HasMaxLength(5);
             builder.Property(address => address.AddressDetails).HasMaxLength(500).IsRequired();
             builder.Property(address => address.Note).HasMaxLength(500);
@@ -34,17 +32,15 @@ namespace ECommerce.DataAccess.Concrete.EfCore.Mappings;
             builder.HasData(new Address
             {
                 Id = 1, 
+                FirstName = "ibo",
+                LastName = "BOL",
+                Email = "bolatcan@email.com",
+                PhoneNumber = "+90(532)5757966",
                 AddressTitle = "Evim",
                 AddressType = AddressEnum.Ev,
-                Street = "Ateş",
-                MainStreet = "Atılım",
                 NeighborhoodOrVillage = "Naci Bekir",
                 District = "Yenimahalle",
                 City ="Ankara",
-                Country = "Turkiye",
-                RegionOrState = "İç Anadolu",
-                BuildingNo = "40",
-                FlatNo = "7",
                 PostalCode = "06500",
                 AddressDetails = "Naci Bekir Mahallesi ,Atılım Cad. Ateş Sok. No:40/7 06500 Yenimahalle/Ankara/Türkiye",
                 DefaultAddress = false,
@@ -53,17 +49,15 @@ namespace ECommerce.DataAccess.Concrete.EfCore.Mappings;
             new Address
             {
                 Id = 2, 
+                FirstName = "ibo",
+                LastName = "BOLAT",
+                Email = "bolatcan@email.com",
+                PhoneNumber = "+90(532)5757966",
                 AddressTitle = "İş",
                 AddressType = AddressEnum.İş,
-                Street = "Kütahya",
-                MainStreet = "Eskişehir Yolu",
                 NeighborhoodOrVillage = "Mustafa Kemal",
                 District = "Çankaya",
                 City ="Ankara",
-                Country = "Turkiye",
-                RegionOrState = "İç Anadolu",
-                BuildingNo = "280",
-                FlatNo = "7",
                 PostalCode = "06100",
                 AddressDetails = "Mustafa Kemal Mahallesi ,Eskişehir Yolu  Kütahya Sok. No:280/7 06500 Çankaya/Ankara/Türkiye",
                 DefaultAddress = true,

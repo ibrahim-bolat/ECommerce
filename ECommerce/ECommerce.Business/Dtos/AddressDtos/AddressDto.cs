@@ -11,18 +11,25 @@ public class AddressDto:BaseDto,IDto
     [Display(Name = "Not")]
     public  string Note { get; set; }
     
+    [Display(Name = "Adı")]
+    public string FirstName { get; set; }
+    
+    [Display(Name = "Soyadı")]
+    public string LastName { get; set; }
+    
+    [Display(Name = "Email")]
+    public string Email{ get; set; }
+    
+    [Display(Name = "Telefon")]
+    [DataType(DataType.PhoneNumber)]
+    public string PhoneNumber{ get; set; }
+    
     [Display(Name = "Adres Başlığı")]
     public  string AddressTitle{ get; set; }
     
     [Display(Name = "Adres Tipi")]
     public  AddressEnum AddressType { get; set; }
-    
-    [Display(Name = "Sokak")]
-    public  string Street{ get; set; }
-    
-    [Display(Name = "Cadde")]
-    public  string MainStreet{ get; set; }
-    
+
     [Display(Name = "Mahalle ya da Köy")]
     public  string NeighborhoodOrVillage{ get; set; }
     
@@ -31,19 +38,7 @@ public class AddressDto:BaseDto,IDto
     
     [Display(Name = "İl")]
     public  string City{ get; set; }
-    
-    [Display(Name = "Ülke")]
-    public  string Country{ get; set; }
-    
-    [Display(Name = "Bölge ya da Eyalet")]
-    public  string RegionOrState{ get; set; }
-    
-    [Display(Name = "Bina No")]
-    public  string BuildingNo{ get; set; }
-    
-    [Display(Name = "Daire No")]
-    public  string FlatNo{ get; set; }
-    
+
     [Display(Name = "Posta Kodu")]
     public  string PostalCode{ get; set; }
     
@@ -52,4 +47,6 @@ public class AddressDto:BaseDto,IDto
     
     [Display(Name = "Varsayılan Adresmi?")]
     public bool DefaultAddress { get; set; }
+    
+    public int UserId { get; set; }
 }

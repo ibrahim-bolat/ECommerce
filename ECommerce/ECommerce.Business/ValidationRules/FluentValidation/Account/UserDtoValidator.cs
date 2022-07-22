@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using ECommerce.Business.Dtos.UserDtos;
 using FluentValidation;
 
@@ -38,5 +39,9 @@ public class UserDtoValidator:AbstractValidator<UserDto>
             .WithMessage("Lütfen emaili boş geçmeyiniz...")
             .EmailAddress()
             .WithMessage("Lütfen uygun formatta e-mail adresi giriniz.");
+        
+        RuleFor(x => x.PhoneNumber)
+            .Matches(new Regex(@"^((\+90))\(?([0-9]{3})\)?([0-9]{3})[-]?([0-9]{2})[-]?([0-9]{2})$"))
+            .WithMessage("Lütfen uygun formatta telefon giriniz.");
     }
 }

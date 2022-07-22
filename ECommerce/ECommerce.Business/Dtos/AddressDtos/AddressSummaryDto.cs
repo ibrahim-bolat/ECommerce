@@ -7,6 +7,12 @@ public class AddressSummaryDto:BaseDto,IDto
 {
     public int Id { get; set; }
     
+    [Display(Name = "Ad Soyad")]
+    public  string FullName{ get; set; }
+    
+    [Display(Name = "Telefon")]
+    public string PhoneNumber { get; set; }
+    
     [Display(Name = "Adres Başlığı")]
     public  string AddressTitle{ get; set; }
     

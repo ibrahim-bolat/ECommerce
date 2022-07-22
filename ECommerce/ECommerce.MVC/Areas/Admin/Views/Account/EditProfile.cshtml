@@ -1,3 +1,4 @@
+@using ECommerce.Shared.Entities.Enums
 @model UserDto
 @{
     Layout = "Admin/_AdminLayout";
@@ -55,6 +56,18 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label asp-for="GenderType" class="col-sm-2 col-form-label"></label>
+                        <div class="col-sm-10">
+                            @foreach (var item in System.Enum.GetValues(typeof(GenderEnum)).OfType<GenderEnum>())
+                            {
+                                <label>
+                                    <input  type="radio" asp-for="GenderType" value="@Convert.ToInt32(item)" checked="@(item == Model?.GenderType)"/>
+                                    @item
+                                </label>
+                            }
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label asp-for="UserName" class="col-sm-2 col-form-label"></label>
                         <div class="col-sm-10">
                             <input asp-for="UserName" class="form-control"/>
@@ -69,7 +82,7 @@
                     <div class="form-group row">
                         <label asp-for="PhoneNumber" class="col-sm-2 col-form-label"></label>
                         <div class="col-sm-10">
-                            <input asp-for="PhoneNumber" class="form-control"/>
+                            <input asp-for="PhoneNumber" id="userphonemasc" class="form-control"/>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -100,4 +113,13 @@
         </div>
     </div>
 </div> <!-- .content -->
+
+@section Scripts {
+    <script src="~/js/inputmask/jquery.inputmask.min.js"></script>
+    <script type="text/javascript">
+           (function($) {
+               $("#userphonemasc").inputmask("+\\90(999)999-99-99");
+               })(jQuery);
+    </script>
+}
 

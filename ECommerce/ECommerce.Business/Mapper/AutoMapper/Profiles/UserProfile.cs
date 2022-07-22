@@ -10,6 +10,9 @@ public class UserProfile:Profile
     {
         CreateMap<AppUser, RegisterDto>().ReverseMap();
         CreateMap<AppUser, UserSummaryDto>().ReverseMap();
+        CreateMap<AppUser, UserCardSummaryDto>().ForMember(dest => dest.DefaultAddressDetail
+                , opt => opt.MapFrom(src => src.Addresses.FirstOrDefault(x=>x.DefaultAddress).AddressDetails))
+            .ReverseMap();
         CreateMap<AppUser, UserDto>().ReverseMap();
         CreateMap<AppUser, EditPasswordDto>().ReverseMap();
     }
