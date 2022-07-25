@@ -353,7 +353,7 @@ public class AccountController : Controller
             if (user != null)
             {
                 UserDto userDto = _mapper.Map<UserDto>(user);
-                List<AddressSummaryDto> addressSummaryDtos = _mapper.Map<List<AddressSummaryDto>>(user.Addresses);
+                List<AddressSummaryDto> addressSummaryDtos = _mapper.Map<List<AddressSummaryDto>>(user.Addresses.Where(a=>a.IsActive==true));
                 UserDetailDto userDetailDto = new UserDetailDto()
                 {
                     UserDto = userDto,

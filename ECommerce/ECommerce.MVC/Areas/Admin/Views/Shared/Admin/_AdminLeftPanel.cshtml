@@ -23,7 +23,10 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-users"></i>Kullanıcı Yönetimi</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li>
-                                <i class="fa fa-user"></i><a asp-area="Admin" asp-controller="UserOperation"  asp-action="Index"  class="nav-link" >Tüm Kullanıcılar</a>
+                                <i class="fa fa-user"></i><a asp-area="Admin" asp-controller="UserOperation"  asp-action="Index"  class="nav-link" >Aktif Kullanıcılar</a>
+                            </li>
+                            <li>
+                                <i class="fa fa-user"></i><a asp-area="Admin" asp-controller="UserOperation"  asp-action=""  class="nav-link" >Silinmiş Kullanıcılar</a>
                             </li>
                             <li>
                                 <i class="fa fa-cogs"></i><a asp-area="Admin" asp-controller="Role"  asp-action="Index" class="nav-link" >Rol İşlemleri</a>

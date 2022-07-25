@@ -37,7 +37,7 @@ namespace ECommerce.MVC.Areas.Admin.Controllers;
         {
             try
             {
-                var userData = _userManager.Users.AsQueryable();
+                var userData = _userManager.Users.Where(u=>u.IsActive==true).AsQueryable();
                 var draw = Request.Form["draw"].FirstOrDefault();
                 var start = Request.Form["start"].FirstOrDefault();
                 var length = Request.Form["length"].FirstOrDefault();
@@ -137,7 +137,7 @@ namespace ECommerce.MVC.Areas.Admin.Controllers;
             var errors = ModelState.ToDictionary(x => x.Key, x => x.Value.Errors);
             return Json(new { success = false, errors = errors });
         }
-        
+
 
         [HttpPost]
         public async Task<IActionResult> Delete(string ID)
@@ -145,12 +145,29 @@ namespace ECommerce.MVC.Areas.Admin.Controllers;
             IdentityResult result = null;
             AppUser deletedUser = await _userManager.FindByIdAsync(ID);
             if (deletedUser != null)
-                result = await _userManager.DeleteAsync(deletedUser);
-            if (result.Succeeded)
             {
-                return Json(new { success = true });
+                deletedUser.IsActive = false;
+                deletedUser.IsDeleted = true;
+                deletedUser.ModifiedTime = DateTime.Now;
+                deletedUser.ModifiedByName = User.Identity?.Name;
+                result = await _userManager.UpdateAsync(deletedUser);
+                if (!result.Succeeded)
+                {
+                    result.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
+                    return Json(new { success = false});
+                }
+                result = await _userManager.UpdateSecurityStampAsync(deletedUser);
+                if (!result.Succeeded)
+                {
+                    result.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
+                    return Json(new { success = false});
+                }
+                if (result.Succeeded)
+                {
+                    return Json(new { success = true });
+                }
             }
-            result.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
+            //result.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
             var errors = ModelState.ToDictionary(x => x.Key, x => x.Value.Errors);
             return Json(new { success = false, errors = errors });
         }
