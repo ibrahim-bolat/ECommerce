@@ -134,6 +134,7 @@
       <_ContentIncludedByDefault Remove="wwwroot\fonts\errorpage\fonts\u-4n0qyriQwlOrhSvowK_l52_wFZWMf6.woff2" />
       <_ContentIncludedByDefault Remove="wwwroot\js\site.js" />
       <_ContentIncludedByDefault Remove="wwwroot\js\sweetalert2\sweetalert2.all.min.js" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Pages\DeletedAccount\Index.cshtml" />
     </ItemGroup>
 
     <ItemGroup>

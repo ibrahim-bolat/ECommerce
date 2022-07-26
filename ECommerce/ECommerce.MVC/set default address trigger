@@ -1,0 +1,23 @@
+-- trigger fonksiyonu
+create or replace function setdefaultadres()
+returns trigger
+language plpgsql
+as
+$$
+begin
+if new."DefaultAddress" = 'true' and new."DefaultAddress" != old."DefaultAddress" 
+and new."IsActive" = 'true' then
+ update "Addresses" set "DefaultAddress" = 'false' 
+ where "Id" != new."Id" and "UserId" = new."UserId" and "IsActive" = 'true';
+end if;
+return new;
+end;
+$$
+
+
+-- trigger
+create trigger defaultadres
+after insert or update 
+on "Addresses"
+for each row
+execute procedure setdefaultadres();

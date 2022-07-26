@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "XW7RBhFLwY+TACiMRG5aYoWG2J3Po0HExQ97JYxTEe0=",
+  "Hash": "EquLrY0ild46Jwdg8j/R+sXCN7N1k/dEg/BHQKEIpvI=",
   "Source": "ECommerce.MVC",
   "BasePath": "_content/ECommerce.MVC",
   "Mode": "Default",
@@ -1596,6 +1596,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/admin/js/admin.js"
+    },
+    {
+      "Identity": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.MVC/wwwroot/admin/js/DeletedAccount/DeletedUserTable.js",
+      "SourceId": "ECommerce.MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.MVC/wwwroot/",
+      "BasePath": "_content/ECommerce.MVC",
+      "RelativePath": "admin/js/DeletedAccount/DeletedUserTable.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/admin/js/DeletedAccount/DeletedUserTable.js"
     },
     {
       "Identity": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.MVC/wwwroot/admin/js/UserOperation/UserTable.js",
