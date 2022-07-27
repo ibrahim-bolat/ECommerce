@@ -1,6 +1,6 @@
 namespace ECommerce.Shared.Entities.Abtract;
 
-public interface IIdentityEntity
+public interface IIdentityEntity:IEntity
     {
         public DateTime CreatedTime { get; set; } 
         public DateTime ModifiedTime { get; set; }

@@ -247,20 +247,20 @@ namespace ECommerce.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "CreatedByName", "CreatedTime", "IsActive", "IsDeleted", "ModifiedByName", "ModifiedTime", "Name", "NormalizedName", "Note" },
-                values: new object[] { 1, "81c10c40-1680-48e0-b0c6-827a9d1a872a", "Owner", new DateTime(2022, 7, 20, 15, 34, 17, 287, DateTimeKind.Local).AddTicks(9334), true, false, "Owner", new DateTime(2022, 7, 20, 15, 34, 17, 287, DateTimeKind.Local).AddTicks(9359), "Admin", "ADMİN", null });
+                values: new object[] { 1, "235f1511-ff3d-4439-b459-90052eb94751", "Owner", new DateTime(2022, 7, 27, 9, 50, 36, 394, DateTimeKind.Local).AddTicks(1561), true, false, "Owner", new DateTime(2022, 7, 27, 9, 50, 36, 394, DateTimeKind.Local).AddTicks(1582), "Admin", "ADMİN", null });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreatedByName", "CreatedTime", "DateOfBirth", "Email", "EmailConfirmed", "FirstName", "GenderType", "IsActive", "IsDeleted", "LastName", "LockoutEnabled", "LockoutEnd", "ModifiedByName", "ModifiedTime", "NormalizedEmail", "NormalizedUserName", "Note", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserIdendityNo", "UserName" },
-                values: new object[] { 1, 0, "a45e27c1-da0b-4ce4-846c-04948d79f0d9", "Owner", new DateTime(2022, 7, 20, 15, 34, 17, 288, DateTimeKind.Local).AddTicks(4985), null, "bolat6606@hotmail.com", true, "İbrahim", "Belirtilmemiş", true, false, "Bolat", false, null, "Owner", new DateTime(2022, 7, 20, 15, 34, 17, 288, DateTimeKind.Local).AddTicks(4992), "BOLAT6606@HOTMAIL.COM", "BOLAT6606", null, "AQAAAAEAACcQAAAAEA0+98edPuQNv/qgaoKHLAHvuRt8Ohxf8MnXYtREpCjxzkMVAFtED7hz/WC29slWDQ==", "+90(532)575-79-66", false, "VVPCRDAS3MJWQD5CSW2GWPRADBXEZINA", false, null, "bolat6606" });
+                values: new object[] { 1, 0, "2874128b-5c62-4be0-a825-7eb8f255b0ec", "Owner", new DateTime(2022, 7, 27, 9, 50, 36, 394, DateTimeKind.Local).AddTicks(7640), null, "bolat6606@hotmail.com", true, "İbrahim", "Belirtilmemiş", true, false, "Bolat", false, null, "Owner", new DateTime(2022, 7, 27, 9, 50, 36, 394, DateTimeKind.Local).AddTicks(7647), "BOLAT6606@HOTMAIL.COM", "BOLAT6606", null, "AQAAAAEAACcQAAAAEMH40accgne7qlzc9qBQkWxOpJHEp3bvmV5mQ/eIBSige/OWAtgCMATAkwxmS3DfhQ==", "+90(532)575-79-66", false, "VVPCRDAS3MJWQD5CSW2GWPRADBXEZINA", false, null, "bolat6606" });
 
             migrationBuilder.InsertData(
                 table: "Addresses",
                 columns: new[] { "Id", "AddressDetails", "AddressTitle", "AddressType", "City", "CreatedByName", "CreatedTime", "DefaultAddress", "District", "Email", "FirstName", "IsActive", "IsDeleted", "LastName", "ModifiedByName", "ModifiedTime", "NeighborhoodOrVillage", "Note", "PhoneNumber", "PostalCode", "UserId" },
                 values: new object[,]
                 {
-                    { 1, "Naci Bekir Mahallesi ,Atılım Cad. Ateş Sok. No:40/7 06500 Yenimahalle/Ankara/Türkiye", "Evim", "Ev", "Ankara", "Admin", new DateTime(2022, 7, 20, 15, 34, 17, 293, DateTimeKind.Local).AddTicks(5809), false, "Yenimahalle", "bolatcan@email.com", "ibo", false, false, "BOL", "Admin", new DateTime(2022, 7, 20, 15, 34, 17, 293, DateTimeKind.Local).AddTicks(5820), "Naci Bekir", null, "+90(532)5757966", "06500", 1 },
-                    { 2, "Mustafa Kemal Mahallesi ,Eskişehir Yolu  Kütahya Sok. No:280/7 06500 Çankaya/Ankara/Türkiye", "İş", "İş", "Ankara", "Admin", new DateTime(2022, 7, 20, 15, 34, 17, 293, DateTimeKind.Local).AddTicks(5839), true, "Çankaya", "bolatcan@email.com", "ibo", false, false, "BOLAT", "Admin", new DateTime(2022, 7, 20, 15, 34, 17, 293, DateTimeKind.Local).AddTicks(5840), "Mustafa Kemal", null, "+90(532)5757966", "06100", 1 }
+                    { 1, "Naci Bekir Mahallesi ,Atılım Cad. Ateş Sok. No:40/7 06500 Yenimahalle/Ankara/Türkiye", "Evim", "Ev", "Ankara", "Admin", new DateTime(2022, 7, 27, 9, 50, 36, 399, DateTimeKind.Local).AddTicks(9501), false, "Yenimahalle", "bolatcan@email.com", "ibo", false, false, "BOL", "Admin", new DateTime(2022, 7, 27, 9, 50, 36, 399, DateTimeKind.Local).AddTicks(9512), "Naci Bekir", null, "+90(532)5757966", "06500", 1 },
+                    { 2, "Mustafa Kemal Mahallesi ,Eskişehir Yolu  Kütahya Sok. No:280/7 06500 Çankaya/Ankara/Türkiye", "İş", "İş", "Ankara", "Admin", new DateTime(2022, 7, 27, 9, 50, 36, 399, DateTimeKind.Local).AddTicks(9537), true, "Çankaya", "bolatcan@email.com", "ibo", false, false, "BOLAT", "Admin", new DateTime(2022, 7, 27, 9, 50, 36, 399, DateTimeKind.Local).AddTicks(9538), "Mustafa Kemal", null, "+90(532)5757966", "06100", 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -271,7 +271,7 @@ namespace ECommerce.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "UserImages",
                 columns: new[] { "Id", "CreatedByName", "CreatedTime", "ImageAltText", "ImagePath", "ImageTitle", "IsActive", "IsDeleted", "ModifiedByName", "ModifiedTime", "Note", "Profil", "UserId" },
-                values: new object[] { 1, "Admin", new DateTime(2022, 7, 20, 15, 34, 17, 293, DateTimeKind.Local).AddTicks(6799), "Profil", "/admin/images/layout_img/g1.jpg", "ProfilResmi", false, false, "Admin", new DateTime(2022, 7, 20, 15, 34, 17, 293, DateTimeKind.Local).AddTicks(6804), null, true, 1 });
+                values: new object[] { 1, "Admin", new DateTime(2022, 7, 27, 9, 50, 36, 400, DateTimeKind.Local).AddTicks(580), "Profil", "/admin/images/layout_img/g1.jpg", "ProfilResmi", false, false, "Admin", new DateTime(2022, 7, 27, 9, 50, 36, 400, DateTimeKind.Local).AddTicks(586), null, true, 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Addresses_UserId",

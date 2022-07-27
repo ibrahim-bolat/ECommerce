@@ -1,11 +1,13 @@
 using System.Web;
 using AutoMapper;
+using ECommerce.Business.Abstract;
 using ECommerce.Business.Dtos.AddressDtos;
 using ECommerce.Business.Dtos.UserDtos;
 using ECommerce.Entities.Concrete.Identity.Entities;
 using ECommerce.Shared.Entities.Enums;
 using ECommerce.Helpers.MailHelper;
 using ECommerce.Shared.Service.Abtract;
+using ECommerce.Shared.Utilities.ComplexTypes;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -19,6 +21,7 @@ public class AccountController : Controller
     private readonly UserManager<AppUser> _userManager;
     private readonly SignInManager<AppUser> _signInManager;
     private readonly RoleManager<AppRole> _roleManager;
+    private readonly IUserService _userService;
     private readonly IEmailService _emailService;
     private readonly IMapper _mapper;
 
@@ -26,13 +29,15 @@ public class AccountController : Controller
         SignInManager<AppUser> signInManager, 
         RoleManager<AppRole> roleManager, 
         IMapper mapper, 
-        IEmailService emailService)
+        IEmailService emailService,
+        IUserService userService)
     {
         _userManager = userManager;
         _signInManager = signInManager;
         _roleManager = roleManager;
         _mapper = mapper;
         _emailService = emailService;
+        _userService = userService;
     }
     
     [AllowAnonymous]
@@ -404,22 +409,14 @@ public class AccountController : Controller
     [HttpGet]
     public async Task<IActionResult> Profile(int id)
     {
-            AppUser user = await _userManager.FindByIdAsync(id.ToString());
-            if (user != null)
+        if (id > 0)
+        {
+            var dresult = await _userService.GetAsync(id);
+            if (dresult.ResultStatus==ResultStatus.Success)
             {
-                if (user.IsActive)
-                {
-                    UserDto userDto = _mapper.Map<UserDto>(user);
-                    List<AddressSummaryDto> addressSummaryDtos =
-                        _mapper.Map<List<AddressSummaryDto>>(user.Addresses.Where(a => a.IsActive == true));
-                    UserDetailDto userDetailDto = new UserDetailDto()
-                    {
-                        UserDto = userDto,
-                        UserAddressSummaryDtos = addressSummaryDtos
-                    };
-                    return View(userDetailDto);
-                }
+                return View(dresult.Data);
             }
-            return RedirectToAction("AllErrorPages", "ErrorPages" ,new { statusCode = 404});
+        }
+        return RedirectToAction("AllErrorPages", "ErrorPages", new { statusCode = 404 });
     }
 }

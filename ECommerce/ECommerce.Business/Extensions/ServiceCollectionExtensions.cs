@@ -111,11 +111,13 @@ public static class ServiceCollectionExtensions
         //repositories
         serviceCollection.AddScoped<IAddressRepository,EfAddressRepository>();
         serviceCollection.AddScoped<IUserImageRepository,EfUserImageRepository>();
+        serviceCollection.AddScoped<IUserRepository,EfUserRepository>();
         serviceCollection.AddScoped<IUnitOfWork, UnitOfWork>();
         
         //services
         serviceCollection.AddScoped<IAddressService, AddressManager>();
         serviceCollection.AddScoped<IUserImageService, UserImageManager>();
+        serviceCollection.AddScoped<IUserService, UserManager>();
 
         return serviceCollection;
     }

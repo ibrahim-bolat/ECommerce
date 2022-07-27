@@ -1,5 +1,6 @@
 using AutoMapper;
 using ECommerce.Business.Abstract;
+using ECommerce.Business.Constants;
 using ECommerce.Business.Dtos.AddressDtos;
 using ECommerce.Entities.Concrete;
 using ECommerce.Entities.Concrete.Identity.Entities;
@@ -38,8 +39,9 @@ public class AddressController : Controller
     [HttpGet]
     public IActionResult AddressAdd(int userId)
     {
-        TempData["userId"] = userId.ToString();
-        return View();
+        AddressDto addressDto = new AddressDto();
+        addressDto.UserId = userId;
+        return View(addressDto);
     }
 
     [HttpPost]
@@ -48,6 +50,11 @@ public class AddressController : Controller
         if (ModelState.IsValid)
         {
             var dresult= await _addressService.AddAsync(addressDto, User.Identity?.Name);
+            if (dresult.Message == Messages.AddressCountMoreThan10)
+            {
+                ModelState.AddModelError("AddressCountMoreThan10", Messages.AddressCountMoreThan10);
+                return View(addressDto);
+            }
             if (dresult.ResultStatus == ResultStatus.Success)
             {
                 TempData["AddAddressSuccess"] = true;

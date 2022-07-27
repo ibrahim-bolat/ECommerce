@@ -206,13 +206,13 @@
                                           <div class="row">
                                               @foreach (var address in @Model.UserAddressSummaryDtos)
                                               {
-                                                  <div class="col-md-6 mb-3">
+                                                  <div class="col-md-6 col-lg-12 col-xl-6 mb-3">
                                                       <div class="card" style="border-radius: 20px;">
                                                           <div class="card-header">
                                                               <h5 class="card-title">@address.AddressTitle</h5>
                                                           </div>
                                                           <div class="card-body">
-                                                              <div class="card-text">
+                                                              <div class="card-text" style="height: 200px">
                                                                   <p class="font-weight-bold">@address.FullName</p>
                                                                   @if (address.AddressDetails.Length < 150)
                                                                            {

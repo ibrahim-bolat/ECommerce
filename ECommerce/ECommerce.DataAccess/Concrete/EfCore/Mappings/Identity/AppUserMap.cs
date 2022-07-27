@@ -22,10 +22,8 @@ namespace ECommerce.DataAccess.Concrete.EfCore.Mappings.Identity;
             builder.Property(user => user.DateOfBirth).HasColumnType("date");
             builder.HasMany(user => user.Addresses).WithOne(address => address.AppUser)
                 .HasForeignKey(address => address.UserId).OnDelete(DeleteBehavior.Cascade);
-            builder.Navigation(u => u.Addresses).AutoInclude();
             builder.HasMany(user => user.UserImages).WithOne(userImage => userImage.AppUser)
                 .HasForeignKey(userImage => userImage.UserId).OnDelete(DeleteBehavior.Cascade);
-            builder.Navigation(u => u.UserImages).AutoInclude();
 
 
             var hasher = new PasswordHasher<AppUser>();
