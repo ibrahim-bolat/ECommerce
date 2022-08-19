@@ -4,6 +4,7 @@ using ECommerce.Business.Abstract;
 using ECommerce.Business.Constants;
 using ECommerce.Business.Dtos.AddressDtos;
 using ECommerce.Business.Dtos.UserDtos;
+using ECommerce.Business.Dtos.UserImageDtos;
 using ECommerce.DataAccess.Abstract;
 using ECommerce.DataAccess.Concrete.EfCore.Contexts;
 using ECommerce.Entities.Concrete;
@@ -81,7 +82,7 @@ public class UserManager:IUserService
         return new DataResult<UserDto>(ResultStatus.Error, Messages.NotFound,null);
     }
     
-    public async Task<IDataResult<UserDetailDto>> GetAsync(int id)
+    public async Task<IDataResult<UserDetailDto>> GetWithAddressAsync(int id)
     {
         var user = await _unitOfWork.UserRepository.GetAsync(x => x.Id == id && x.IsActive==true, x => x.Addresses);
         if (user != null)
@@ -102,7 +103,13 @@ public class UserManager:IUserService
         return new DataResult<UserDetailDto>(ResultStatus.Error, Messages.NotFound,null);
     }
     
-    public async Task<IDataResult<IList<UserDto>>> GetAllAsync()
+    public async Task<IDataResult<int>> GetUserImageCountAsync(int id)
+    {
+        var count = await _unitOfWork.UserImageRepository.CountAsync(x => x.UserId == id && x.IsActive);
+        return new DataResult<int>(ResultStatus.Success, count);
+    }
+    
+    public async Task<IDataResult<IList<UserDto>>> GetAllWithAddressAsync()
     {
         var users = await _unitOfWork.UserRepository.GetAllAsync(null, x => x.Addresses);
         var userDtoList = _mapper.Map<IList<UserDto>>(users);
@@ -112,5 +119,6 @@ public class UserManager:IUserService
         }
         return new DataResult<IList<UserDto>>(ResultStatus.Error, Messages.NotFound,null);
     }
+    
     
 }

@@ -15,6 +15,24 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes = true
 build_property.MSBuildProjectDirectory = /home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.MVC
 build_property._RazorSourceGeneratorDebug = 
 
+[/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.MVC/Areas/Admin/Views/Shared/Components/UserImageCard/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU2hhcmVkL0NvbXBvbmVudHMvVXNlckltYWdlQ2FyZC9EZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.MVC/Areas/Admin/Views/UserImage/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvVXNlckltYWdlL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.MVC/Areas/Admin/Views/UserImage/UserImageAdd.cshtml]
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvVXNlckltYWdlL1VzZXJJbWFnZUFkZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.MVC/Areas/Admin/Views/Account/ConfirmEmail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWNjb3VudC9Db25maXJtRW1haWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

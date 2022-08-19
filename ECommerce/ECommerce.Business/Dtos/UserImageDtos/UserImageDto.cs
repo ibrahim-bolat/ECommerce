@@ -20,4 +20,6 @@ public class UserImageDto:BaseDto,IDto
     
     [Display(Name = "Profil Resmimi?")]
     public bool Profil { get; set; }
+    
+    public int UserId { get; set; }
 }

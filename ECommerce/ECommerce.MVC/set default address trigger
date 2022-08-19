@@ -5,8 +5,7 @@ language plpgsql
 as
 $$
 begin
-if new."DefaultAddress" = 'true' and new."DefaultAddress" != old."DefaultAddress" 
-and new."IsActive" = 'true' then
+if new."DefaultAddress" = 'true' and new."DefaultAddress" != old."DefaultAddress" and new."IsActive" = 'true' then
  update "Addresses" set "DefaultAddress" = 'false' 
  where "Id" != new."Id" and "UserId" = new."UserId" and "IsActive" = 'true';
 end if;

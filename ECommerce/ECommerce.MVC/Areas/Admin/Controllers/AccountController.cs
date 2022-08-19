@@ -411,7 +411,7 @@ public class AccountController : Controller
     {
         if (id > 0)
         {
-            var dresult = await _userService.GetAsync(id);
+            var dresult = await _userService.GetWithAddressAsync(id);
             if (dresult.ResultStatus==ResultStatus.Success)
             {
                 return View(dresult.Data);

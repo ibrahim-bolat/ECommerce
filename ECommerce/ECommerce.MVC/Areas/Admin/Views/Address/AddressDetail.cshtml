@@ -3,6 +3,35 @@
     Layout = "Admin/_AdminLayout";
     ViewData["Title"] = "Adres Detay";
 }
+@section Style {
+    <style>
+      /*------------------------------------------------------------------
+          17. Gallery Section   
+      -------------------------------------------------------------------*/
+      
+      .gallery_section_inner .column {
+          background: #fff;
+          box-shadow: 0 0 13px -10px #000;
+          overflow: hidden;
+      }
+      
+      .heading_section {
+          border-top: solid #1ed085 2px;
+          background: #15283c;
+      }
+      
+      .heading_section h4 {
+          color: #fff;
+          margin: 0;
+          font-weight: 200;
+          text-align: center;
+          padding: 16px 0 16px;
+          font-size: 15px;
+      }
+   </style>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.css">
+}
+
 <div class="breadcrumbs">
     <div class="col-sm-4">
         <div class="page-header float-left">
@@ -35,9 +64,12 @@
     <div class="container-fluid py-5" style="background-color: #eee;">
         <div class="row">
             <div class="col-lg-4">
-                    <!-- User Card Summary-->
-                    @await Component.InvokeAsync("UserSummaryCard")
-                    <!-- User Card Summary-->
+                                <!-- User Card Summary-->
+                                @await Component.InvokeAsync("UserSummaryCard",new { userId=Model.UserId })
+                                <!-- User Card Summary-->
+                                <!-- UserImage Card-->
+                                @await Component.InvokeAsync("UserImageCard",new { userId=Model.UserId })
+                                <!-- UserImage Card-->
             </div>
             <div class="col-lg-8">
                          <div class="card">
@@ -133,6 +165,7 @@
     </div>
 </div> <!-- .content -->
 @section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
     <script>
     (function($) {
         $("#addressdeletebutton").on("click", function() {

@@ -36,9 +36,12 @@
                 <div class="container-fluid py-5" style="background-color: #eee;">
                         <div class="row">
                             <div class="col-lg-4">
-                                    <!-- User Card Summary-->
-                                    @await Component.InvokeAsync("UserSummaryCard")
-                                    <!-- User Card Summary-->
+                                <!-- User Card Summary-->
+                                @await Component.InvokeAsync("UserSummaryCard",new { userId=Model.UserId })
+                                <!-- User Card Summary-->
+                                <!-- UserImage Card-->
+                                @await Component.InvokeAsync("UserImageCard",new { userId=Model.UserId })
+                                <!-- UserImage Card-->
                             </div>
                             <div class="col-lg-8">
                                 <div class="card">

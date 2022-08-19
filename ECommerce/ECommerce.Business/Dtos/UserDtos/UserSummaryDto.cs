@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using ECommerce.Shared.Entities.Abtract;
+using ECommerce.Shared.Entities.Enums;
 
 namespace ECommerce.Business.Dtos.UserDtos;
 
@@ -21,5 +22,5 @@ public class UserSummaryDto:BaseDto,IDto
 
         [Display(Name = "Email")]
         public string Email { get; set; }
-        
+
     }

@@ -140,6 +140,7 @@
     <ItemGroup>
       <Folder Include="Areas\Admin\Models\ViewModels\Account" />
       <Folder Include="Models\ViewModels" />
+      <Folder Include="wwwroot\admin\images\userimages" />
     </ItemGroup>
 
     <ItemGroup>
@@ -161,6 +162,12 @@
       <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="6.0.5" />
       <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
       <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.5" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Areas\Admin\Views\Shared\Components\UserImageCard\Default.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\UserImage\Index.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\UserImage\UserImageAdd.cshtml" />
     </ItemGroup>
 
 </Project>

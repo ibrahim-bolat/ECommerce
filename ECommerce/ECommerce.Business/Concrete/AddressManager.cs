@@ -81,10 +81,9 @@ public class AddressManager : IAddressService
             var result = await _unitOfWork.SaveAsync();
             var addressDto = _mapper.Map<AddressDto>(address);
             if (result > 0)
-                return new DataResult<AddressDto>(ResultStatus.Success, addressDto);
+                return new DataResult<AddressDto>(ResultStatus.Success, Messages.AddressDeleted,addressDto);
             return new DataResult<AddressDto>(ResultStatus.Error, Messages.AddressNotDeleted, null);
         }
-
         return new DataResult<AddressDto>(ResultStatus.Error, Messages.NotFound, null);
     }
 

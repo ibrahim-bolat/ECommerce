@@ -66,56 +66,11 @@
         <div class="row">
             <div class="col-lg-4">
                     <!-- User Card Summary-->
-                    @await Component.InvokeAsync("UserSummaryCard")
+                    @await Component.InvokeAsync("UserSummaryCard",new { userId=Model.UserDto.Id })
                     <!-- User Card Summary-->
-                <div class="card">
-                    <div class="card-header">
-                        <h3>Kullanıcı Fotoğrafları</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="row column4 graph">
-                            <!-- Gallery section -->
-                            <div class="col-md-12">
-                                <div class="white_shd full margin_bottom_30">
-                                    <div class="full gallery_section_inner padding_infor_info">
-                                        <div class="row">
-                                            <div class="col-xl-6 margin_bottom_30">
-                                                <div class="column">
-                                                    <a data-fancybox="gallery" href="~/admin/images/layout_img/g1.jpg">
-                                                        <img class="img-responsive" src="~/admin/images/layout_img/g1.jpg" alt="#"/>
-                                                    </a>
-                                                </div>
-                                                <div class="heading_section">
-                                                    <h4>Sed ut perspiciatis</h4>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-6 margin_bottom_30">
-                                                <div class="column">
-                                                    <a data-fancybox="gallery" href="~/admin/images/layout_img/g2.jpg">
-                                                        <img class="img-responsive" src="~/admin/images/layout_img/g2.jpg" alt="#"/>
-                                                    </a>
-                                                </div>
-                                                <div class="heading_section">
-                                                    <h4>Sed ut perspiciatis</h4>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-6 margin_bottom_30">
-                                                <div class="column">
-                                                    <a data-fancybox="gallery" href="~/admin/images/layout_img/g3.jpg">
-                                                        <img class="img-responsive" src="~/admin/images/layout_img/g3.jpg" alt="#"/>
-                                                    </a>
-                                                </div>
-                                                <div class="heading_section">
-                                                    <h4>Sed ut perspiciatis</h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    <!-- UserImage Card-->
+                    @await Component.InvokeAsync("UserImageCard",new { userId=Model.UserDto.Id })
+                    <!-- UserImage Card-->
             </div>
             <div class="col-lg-8">
                          <div class="card">
@@ -204,7 +159,7 @@
                                       <div class="tab-pane fade" id="custom-nav-address" role="tabpanel" aria-labelledby="custom-nav-address-tab">
                                           <a asp-area="Admin" asp-controller="Address" asp-action="AddressAdd" asp-route-userId="@Model.UserDto.Id" class="btn btn-outline-primary mb-2">Adres Ekle</a>
                                           <div class="row">
-                                              @foreach (var address in @Model.UserAddressSummaryDtos)
+                                              @foreach (var address in @Model.UserAddressSummaryDtos.OrderByDescending(a=>a.Id))
                                               {
                                                   <div class="col-md-6 col-lg-12 col-xl-6 mb-3">
                                                       <div class="card" style="border-radius: 20px;">

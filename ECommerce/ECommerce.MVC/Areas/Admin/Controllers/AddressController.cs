@@ -61,7 +61,7 @@ public class AddressController : Controller
                 return RedirectToAction("AddressAdd", "Address");
             }
         }
-        return View();
+        return View(addressDto);
     }
 
     [HttpGet]
@@ -92,7 +92,7 @@ public class AddressController : Controller
                 return RedirectToAction("AddressUpdate", "Address" ,new { addressId=addressDto.Id});
             }
         }
-        return View();
+        return View(addressDto);
     }
 
     [HttpGet]
