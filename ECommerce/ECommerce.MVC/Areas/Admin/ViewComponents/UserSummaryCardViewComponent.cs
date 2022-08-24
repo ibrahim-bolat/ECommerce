@@ -28,11 +28,33 @@ public class UserSummaryCardViewComponent : ViewComponent
             var countResult= await _userImageService.GetUserImageCountByUserIdAsync(userId);
             if (countResult.ResultStatus == ResultStatus.Success)
                 ViewBag.UserImageCount = countResult.Data;
-            
+
             var profilResult = await _userImageService.GetProfilImageByUserIdAsync(userId);
             if (profilResult.ResultStatus == ResultStatus.Success)
-                if(profilResult.Data!=null)
+            {
+                if (profilResult.Data != null)
                     ViewBag.UserImageProfilImagePath = profilResult.Data.ImagePath;
+                
+                if (countResult.Data > 0)
+                {
+                    var dresult = await _userImageService.GetAllByUserIdAsync(userId);
+                    if (dresult.ResultStatus==ResultStatus.Success)
+                    {
+                        ViewBag.UserImageList = dresult.Data;
+                    }
+                }
+            }
+            else 
+            {
+                    if (countResult.Data > 0)
+                    {
+                        var dresult = await _userImageService.GetAllByUserIdAsync(userId);
+                        if (dresult.ResultStatus==ResultStatus.Success)
+                        {
+                            ViewBag.UserImageList = dresult.Data;
+                        }
+                    }
+           }
             UserCardSummaryDto userCardSummaryDto = _mapper.Map<UserCardSummaryDto>(user);
             return View(userCardSummaryDto);
         }

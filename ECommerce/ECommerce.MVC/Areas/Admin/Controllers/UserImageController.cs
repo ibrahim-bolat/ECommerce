@@ -58,4 +58,34 @@ public class UserImageController : Controller
         }
         return View(userImageAddDto);
     }
+    [HttpPost]
+    public async Task<IActionResult> UserImageSetProfil(int id,int userId)
+    {
+        if (id>0)
+        {
+            var dresult= await _userImageService.SetProfilImageAsync(id,userId, User.Identity?.Name);
+            if (dresult.ResultStatus==ResultStatus.Success)
+            {
+                return Json(new { success = true});
+            }
+            return Json(new { success = false});
+        }
+        return RedirectToAction("AllErrorPages", "ErrorPages", new { statusCode = 404 });
+    }
+    
+        
+    [HttpPost]
+    public async Task<IActionResult> UserImageDelete(int id,int userId)
+    {
+        if (id > 0)
+        {
+            var dresult= await _userImageService.DeleteAsync(id, User.Identity?.Name);
+            if (dresult.ResultStatus==ResultStatus.Success)
+            {
+                return Json(new { success = true});
+            }
+            return Json(new { success = false});
+        }
+        return RedirectToAction("AllErrorPages", "ErrorPages", new { statusCode = 404 });
+    }
 }

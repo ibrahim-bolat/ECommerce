@@ -14,4 +14,5 @@ public interface IUserImageService
     Task<IDataResult<int>> GetUserImageCountByUserIdAsync(int userId);
     Task<IDataResult<IList<UserImageDto>>> GetAllAsync();
     Task<IDataResult<IList<UserImageDto>>> GetAllByUserIdAsync(int userId);
+    Task<IResult> SetProfilImageAsync(int id,int userId,string modifiedByName);
 }

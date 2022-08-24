@@ -135,12 +135,18 @@
       <_ContentIncludedByDefault Remove="wwwroot\js\site.js" />
       <_ContentIncludedByDefault Remove="wwwroot\js\sweetalert2\sweetalert2.all.min.js" />
       <_ContentIncludedByDefault Remove="Areas\Admin\Pages\DeletedAccount\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\UserImage\PartialViews\_UserImageSelectProfilModalPartial.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Shared\Components\UserSummaryCard\PartialViews\_UserImageSelectProfilModalPartial.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Shared\UserImage\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Shared\UserImage\UserImageAdd.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Shared\Admin\PartialViews\_UserImageSelectProfilModalPartial.cshtml" />
     </ItemGroup>
 
     <ItemGroup>
       <Folder Include="Areas\Admin\Models\ViewModels\Account" />
       <Folder Include="Models\ViewModels" />
       <Folder Include="wwwroot\admin\images\userimages" />
+      <Folder Include="wwwroot\lib\fancybox\css" />
     </ItemGroup>
 
     <ItemGroup>
@@ -166,8 +172,28 @@
 
     <ItemGroup>
       <AdditionalFiles Include="Areas\Admin\Views\Shared\Components\UserImageCard\Default.cshtml" />
-      <AdditionalFiles Include="Areas\Admin\Views\UserImage\Index.cshtml" />
-      <AdditionalFiles Include="Areas\Admin\Views\UserImage\UserImageAdd.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Shared\UserImage\PartialViews\_UserImageSelectProfilModalPartial.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="Areas\Admin\Views\UserImage\PartialViews\_UserImageSelectProfilModalPartial.cshtml" />
+      <Content Remove="Areas\Admin\Views\UserImage\PartialViews\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Areas\Admin\Views\UserImage\PartialViews\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Areas\Admin\Views\UserImage\PartialViews\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Areas\Admin\Views\UserImage\PartialViews\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <UpToDateCheckInput Remove="Areas\Admin\Views\Shared\Components\UserSummaryCard\PartialViews\_UserImageSelectProfilModalPartial.cshtml" />
     </ItemGroup>
 
 </Project>

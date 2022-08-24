@@ -1,33 +1,23 @@
-@using ECommerce.Shared.Entities.Enums
 @model UserCardSummaryDto
 <div class="card mb-4">
     <div class="card-body text-center">
-        @if (Model.GenderType == GenderEnum.Erkek && ViewBag.UserImageCount==0 || Model.GenderType == GenderEnum.Erkek 
-             && ViewBag.UserImageCount>0 && ViewBag.UserImageProfilImagePath==null)
-        {
-            <img src="~/admin/images/avatar/maleuseravatar.png" alt="avatar"
-                 id="profilPhoto" class="rounded-circle img-fluid" style="width: 150px;">
-            <button type="button" class="btn btn-outline-warning mr-2 rounded">Profil Fotoğrafı Ekle</button>
-        }
-        else if(Model.GenderType == GenderEnum.Kadın && ViewBag.UserImageCount==0 || Model.GenderType == GenderEnum.Kadın 
-                && ViewBag.UserImageCount>0 && ViewBag.UserImageProfilImagePath==null)
-        {
-            <img src="~/admin/images/avatar/femaleuseravatar.png" alt="avatar"
-                 id="profilPhoto" class="rounded-circle img-fluid" style="width: 150px;">
-            <button type="button" class="btn btn-outline-warning mr-2 rounded">Profil Fotoğrafı Ekle</button>
-        }
-        else if(Model.GenderType == GenderEnum.Belirtilmemiş && ViewBag.UserImageCount==0 || Model.GenderType == GenderEnum.Belirtilmemiş 
-                && ViewBag.UserImageCount>0 && ViewBag.UserImageProfilImagePath==null)
+        @if (ViewBag.UserImageCount==0)
         {
             <img src="~/admin/images/avatar/unspecifieduseravatar.png" alt="avatar"
-                 id="profilPhoto" class="rounded-circle img-fluid" style="width: 150px;">
-            <button type="button" class="btn btn-outline-warning mr-2 rounded">Profil Fotoğrafı Ekle</button>
+                 id="profilPhoto" class="rounded-circle img-fluid" style="width: auto;">
+            <p><a asp-area="Admin" asp-controller="UserImage" asp-action="UserImageAdd" asp-route-userId="@Model.Id" class="btn btn-outline-warning mr-2 rounded" >Profil Fotoğrafı Ekle</a></p>
+        }
+        else if (ViewBag.UserImageCount>0 && ViewBag.UserImageProfilImagePath==null)
+        {
+            <img src="~/admin/images/avatar/unspecifieduseravatar.png" alt="avatar"
+                 id="profilPhoto" class="rounded-circle img-fluid" style="width: auto;">
+            <p><button type="button" class="btn btn-outline-warning mr-2 rounded" data-toggle="modal" data-target="#userImageModal">Profil Fotoğrafı Seç</button></p>
         }
         else if( ViewBag.UserImageCount>0 && ViewBag.UserImageProfilImagePath!=null)
         {
             <img src="@ViewBag.UserImageProfilImagePath" alt="avatar"
-                 id="profilPhoto" class="rounded-circle img-fluid" style="width: 150px;">
-            <button type="button" class="btn btn-outline-warning mr-2 rounded">Profil Fotoğrafı Değiştir</button>
+                 id="profilPhoto" class="rounded-circle img-fluid" style="width:auto;">
+            <p><button type="button" class="btn btn-outline-warning mr-2 rounded" data-toggle="modal" data-target="#userImageModal">Profil Fotoğrafı Değiştir</button></p>
         }
         <h5 class="my-3">@Model.FirstName @Model.LastName</h5>
         <p class="text-muted mb-1">@Model.UserName</p>
@@ -39,3 +29,9 @@
         </div>
     </div>
 </div>
+@if (@ViewBag.UserImageList != null)
+{
+    <div id="userImageModalForm">
+        <partial name="UserImage/PartialViews/_UserImageSelectProfilModalPartial" model="@ViewBag.UserImageList"/>
+    </div>
+}

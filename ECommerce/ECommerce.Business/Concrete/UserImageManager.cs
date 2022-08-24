@@ -70,11 +70,9 @@ public class UserImageManager:IUserImageService
                 Messages.UserImageUpdated, userImageDto);
         return new Result(ResultStatus.Error, Messages.UserImageNotUpdated);
     }
-
-
     public async Task<IDataResult<UserImageDto>> DeleteAsync(int id, string modifiedByName)
     {
-        var userImage = await _unitOfWork.UserImageRepository.GetAsync(x => x.Id == id);
+        var userImage = await _unitOfWork.UserImageRepository.GetAsync(x => x.Id == id && x.IsActive==true);
         if (userImage != null)
         {
             userImage.IsActive = false;
@@ -93,7 +91,7 @@ public class UserImageManager:IUserImageService
 
     public async Task<IDataResult<UserImageDto>> GetAsync(int id)
     {
-        var userImage = await _unitOfWork.UserImageRepository.GetAsync(x => x.Id == id, x => x.AppUser);
+        var userImage = await _unitOfWork.UserImageRepository.GetAsync(x => x.Id == id && x.IsActive, x => x.AppUser);
         var userImageViewDto = _mapper.Map<UserImageDto>(userImage);
         if (userImage != null)
         {
@@ -104,7 +102,7 @@ public class UserImageManager:IUserImageService
     
     public async Task<IDataResult<UserImageDto>> GetProfilImageByUserIdAsync(int userId)
     {
-        var userImage = await _unitOfWork.UserImageRepository.GetAsync(x => x.UserId == userId && x.Profil, x => x.AppUser);
+        var userImage = await _unitOfWork.UserImageRepository.GetAsync(x => x.UserId == userId && x.IsActive && x.Profil, x => x.AppUser);
         var userImageViewDto = _mapper.Map<UserImageDto>(userImage);
         if (userImage != null)
         {
@@ -139,5 +137,37 @@ public class UserImageManager:IUserImageService
             return new DataResult<IList<UserImageDto>>(ResultStatus.Success,userImagesViewDtoList);
         }
         return new DataResult<IList<UserImageDto>>(ResultStatus.Error, Messages.NotFound,null);
+    }
+
+    public async Task<IResult> SetProfilImageAsync(int id,int userId,string modifiedByName)
+    {
+        var userImages = await _unitOfWork.UserImageRepository.GetAllAsync(ui=>ui.UserId==userId && ui.IsActive , x => x.AppUser);
+        if (userImages !=null)
+        {
+            foreach (var userImage in userImages)
+            {
+                if (userImage.Id != id)
+                {
+                    userImage.Profil = false;
+                    userImage.ModifiedByName = modifiedByName;
+                    userImage.ModifiedTime = DateTime.Now;
+                    await _unitOfWork.UserImageRepository.UpdateAsync(userImage);
+                }
+                else
+                {
+                    if (userImage.Profil == false)
+                    {
+                        userImage.Profil = true;
+                        userImage.ModifiedByName = modifiedByName;
+                        userImage.ModifiedTime = DateTime.Now;
+                        await _unitOfWork.UserImageRepository.UpdateAsync(userImage);
+                    }
+                }
+            }
+            var result = await _unitOfWork.SaveAsync();
+            if (result > 0)
+                return new Result(ResultStatus.Success, Messages.UserImageSetProfil);
+        }
+        return new Result(ResultStatus.Success, Messages.UserImageSetProfil);
     }
 }

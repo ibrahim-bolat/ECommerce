@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "e5k/HDcjAWqbV8nHocN5hOBa8+NwL3Ws45ewGQj9lJA=",
+  "Hash": "/HcX71KCpaMk+EVYWsEAWmmuxst9+/JObmMJIYQNAmU=",
   "Source": "ECommerce.MVC",
   "BasePath": "_content/ECommerce.MVC",
   "Mode": "Default",
@@ -1649,6 +1649,23 @@
       "OriginalItemSpec": "wwwroot/admin/images/twitter_corner_blue.png"
     },
     {
+      "Identity": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.MVC/wwwroot/admin/images/userimages/ip address224922508.png",
+      "SourceId": "ECommerce.MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.MVC/wwwroot/",
+      "BasePath": "_content/ECommerce.MVC",
+      "RelativePath": "admin/images/userimages/ip address224922508.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/admin/images/userimages/ip address224922508.png"
+    },
+    {
       "Identity": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.MVC/wwwroot/admin/js/admin.js",
       "SourceId": "ECommerce.MVC",
       "SourceType": "Discovered",
@@ -1681,6 +1698,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/admin/js/DeletedAccount/DeletedUserTable.js"
+    },
+    {
+      "Identity": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.MVC/wwwroot/admin/js/UserImage/userImage.js",
+      "SourceId": "ECommerce.MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.MVC/wwwroot/",
+      "BasePath": "_content/ECommerce.MVC",
+      "RelativePath": "admin/js/UserImage/userImage.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/admin/js/UserImage/userImage.js"
     },
     {
       "Identity": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.MVC/wwwroot/admin/js/UserOperation/UserTable.js",
@@ -11592,6 +11626,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/lib/datatables/turkceDil.json"
+    },
+    {
+      "Identity": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.MVC/wwwroot/lib/fancybox/css/jquery.fancybox.css",
+      "SourceId": "ECommerce.MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.MVC/wwwroot/",
+      "BasePath": "_content/ECommerce.MVC",
+      "RelativePath": "lib/fancybox/css/jquery.fancybox.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/lib/fancybox/css/jquery.fancybox.css"
+    },
+    {
+      "Identity": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.MVC/wwwroot/lib/fancybox/js/jquery.fancybox.min.js",
+      "SourceId": "ECommerce.MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.MVC/wwwroot/",
+      "BasePath": "_content/ECommerce.MVC",
+      "RelativePath": "lib/fancybox/js/jquery.fancybox.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/lib/fancybox/js/jquery.fancybox.min.js"
     },
     {
       "Identity": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.MVC/wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",

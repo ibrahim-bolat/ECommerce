@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using ECommerce.Business.Dtos.UserImageDtos;
 using ECommerce.Shared.Entities.Abtract;
 using ECommerce.Shared.Entities.Enums;
 
@@ -26,6 +27,5 @@ public class UserCardSummaryDto:BaseDto,IDto
         
         [Display(Name = "Varsayılan Adres")]
         public string DefaultAddressDetail { get; set; }
-        
         
     }
