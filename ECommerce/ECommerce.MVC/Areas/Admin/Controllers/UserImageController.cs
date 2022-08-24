@@ -75,7 +75,7 @@ public class UserImageController : Controller
     
         
     [HttpPost]
-    public async Task<IActionResult> UserImageDelete(int id,int userId)
+    public async Task<IActionResult> UserImageDelete(int id)
     {
         if (id > 0)
         {
