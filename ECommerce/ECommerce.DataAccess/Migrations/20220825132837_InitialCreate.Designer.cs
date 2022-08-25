@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ECommerce.DataAccess.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220816124309_InitialCreate")]
+    [Migration("20220825132837_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -128,7 +128,7 @@ namespace ECommerce.DataAccess.Migrations
                             AddressType = "Ev",
                             City = "Ankara",
                             CreatedByName = "Admin",
-                            CreatedTime = new DateTime(2022, 8, 16, 15, 43, 9, 31, DateTimeKind.Local).AddTicks(2723),
+                            CreatedTime = new DateTime(2022, 8, 25, 16, 28, 36, 952, DateTimeKind.Local).AddTicks(1716),
                             DefaultAddress = false,
                             District = "Yenimahalle",
                             Email = "bolatcan@email.com",
@@ -137,7 +137,7 @@ namespace ECommerce.DataAccess.Migrations
                             IsDeleted = false,
                             LastName = "BOL",
                             ModifiedByName = "Admin",
-                            ModifiedTime = new DateTime(2022, 8, 16, 15, 43, 9, 31, DateTimeKind.Local).AddTicks(2740),
+                            ModifiedTime = new DateTime(2022, 8, 25, 16, 28, 36, 952, DateTimeKind.Local).AddTicks(1728),
                             NeighborhoodOrVillage = "Naci Bekir",
                             PhoneNumber = "+90(532)5757966",
                             PostalCode = "06500",
@@ -151,7 +151,7 @@ namespace ECommerce.DataAccess.Migrations
                             AddressType = "İş",
                             City = "Ankara",
                             CreatedByName = "Admin",
-                            CreatedTime = new DateTime(2022, 8, 16, 15, 43, 9, 31, DateTimeKind.Local).AddTicks(2761),
+                            CreatedTime = new DateTime(2022, 8, 25, 16, 28, 36, 952, DateTimeKind.Local).AddTicks(1752),
                             DefaultAddress = true,
                             District = "Çankaya",
                             Email = "bolatcan@email.com",
@@ -160,7 +160,7 @@ namespace ECommerce.DataAccess.Migrations
                             IsDeleted = false,
                             LastName = "BOLAT",
                             ModifiedByName = "Admin",
-                            ModifiedTime = new DateTime(2022, 8, 16, 15, 43, 9, 31, DateTimeKind.Local).AddTicks(2762),
+                            ModifiedTime = new DateTime(2022, 8, 25, 16, 28, 36, 952, DateTimeKind.Local).AddTicks(1753),
                             NeighborhoodOrVillage = "Mustafa Kemal",
                             PhoneNumber = "+90(532)5757966",
                             PostalCode = "06100",
@@ -222,13 +222,13 @@ namespace ECommerce.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "d8b62fdb-0c7d-474b-b5f5-61075f6feab7",
+                            ConcurrencyStamp = "5e933312-7ca3-435f-aae0-fae6f1951fe0",
                             CreatedByName = "Owner",
-                            CreatedTime = new DateTime(2022, 8, 16, 15, 43, 9, 25, DateTimeKind.Local).AddTicks(6165),
+                            CreatedTime = new DateTime(2022, 8, 25, 16, 28, 36, 946, DateTimeKind.Local).AddTicks(5158),
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByName = "Owner",
-                            ModifiedTime = new DateTime(2022, 8, 16, 15, 43, 9, 25, DateTimeKind.Local).AddTicks(6187),
+                            ModifiedTime = new DateTime(2022, 8, 25, 16, 28, 36, 946, DateTimeKind.Local).AddTicks(5179),
                             Name = "Admin",
                             NormalizedName = "ADMİN"
                         });
@@ -348,9 +348,9 @@ namespace ECommerce.DataAccess.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5f19efc9-2a5e-4576-9903-559c9d52f4fc",
+                            ConcurrencyStamp = "0bb58d46-7bd4-4fc2-9b61-ad37822d8bb7",
                             CreatedByName = "Owner",
-                            CreatedTime = new DateTime(2022, 8, 16, 15, 43, 9, 26, DateTimeKind.Local).AddTicks(1620),
+                            CreatedTime = new DateTime(2022, 8, 25, 16, 28, 36, 947, DateTimeKind.Local).AddTicks(1028),
                             Email = "bolat6606@hotmail.com",
                             EmailConfirmed = true,
                             FirstName = "İbrahim",
@@ -360,10 +360,10 @@ namespace ECommerce.DataAccess.Migrations
                             LastName = "Bolat",
                             LockoutEnabled = false,
                             ModifiedByName = "Owner",
-                            ModifiedTime = new DateTime(2022, 8, 16, 15, 43, 9, 26, DateTimeKind.Local).AddTicks(1629),
+                            ModifiedTime = new DateTime(2022, 8, 25, 16, 28, 36, 947, DateTimeKind.Local).AddTicks(1036),
                             NormalizedEmail = "BOLAT6606@HOTMAIL.COM",
                             NormalizedUserName = "BOLAT6606",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIGpVE6UeVUS3Vx4tMjvIyjmuKCVKX8hZS5IzW4hghMN4yw555HMiw+N7OWHom5NyA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEF++7RPrX9zQRfMm7WLBpSQ2ZKhi4hV8Lsyej7Rf0hoV+sEtMm5I7iMSnRg84BIE3A==",
                             PhoneNumber = "+90(532)575-79-66",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "VVPCRDAS3MJWQD5CSW2GWPRADBXEZINA",
@@ -433,14 +433,14 @@ namespace ECommerce.DataAccess.Migrations
                         {
                             Id = 1,
                             CreatedByName = "Admin",
-                            CreatedTime = new DateTime(2022, 8, 16, 15, 43, 9, 31, DateTimeKind.Local).AddTicks(3812),
+                            CreatedTime = new DateTime(2022, 8, 25, 16, 28, 36, 952, DateTimeKind.Local).AddTicks(2866),
                             ImageAltText = "Profil",
-                            ImagePath = "/admin/images/layout_img/g1.jpg",
+                            ImagePath = "/admin/images/userimages/profil.png",
                             ImageTitle = "ProfilResmi",
                             IsActive = false,
                             IsDeleted = false,
                             ModifiedByName = "Admin",
-                            ModifiedTime = new DateTime(2022, 8, 16, 15, 43, 9, 31, DateTimeKind.Local).AddTicks(3818),
+                            ModifiedTime = new DateTime(2022, 8, 25, 16, 28, 36, 952, DateTimeKind.Local).AddTicks(2871),
                             Profil = true,
                             UserId = 1
                         });
