@@ -20,7 +20,7 @@ namespace ECommerce.DataAccess.Concrete.EfCore.Mappings;
             {
                 Id = 1, 
                 ImageTitle = "ProfilResmi",
-                ImagePath ="/admin/images/layout_img/g1.jpg",
+                ImagePath ="/admin/images/userimages/ekran2.png",
                 ImageAltText = "Profil",
                 Profil = true,
                 UserId =1

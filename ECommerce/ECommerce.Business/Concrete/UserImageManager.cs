@@ -67,7 +67,7 @@ public class UserImageManager:IUserImageService
 
         int count = 1;
         var tempFileName = imageFileName;
-        while (System.IO.File.Exists(localImageFilePath))
+        while (File.Exists(localImageFilePath))
         {
             imageFileName = string.Format("{0}{1}", tempFileName, count++);
             localImageFilePath = $"{localImageFileDir}/{imageFileName}{extension}";
@@ -100,23 +100,28 @@ public class UserImageManager:IUserImageService
         var userImage = await _unitOfWork.UserImageRepository.GetAsync(x => x.Id == id && x.IsActive==true);
         if (userImage != null)
         {
-            userImage.IsActive = false;
-            userImage.IsDeleted = true;
-            userImage.ModifiedByName = modifiedByName;
-            userImage.ModifiedTime = DateTime.Now;
-            var deletedUserImage = _unitOfWork.UserImageRepository.UpdateAsync(userImage);
-            var result = await _unitOfWork.SaveAsync();
-            var userImageDto = _mapper.Map<UserImageDto>(userImage);
-            if (result > 0)
-                return new DataResult<UserImageDto>(ResultStatus.Success, userImageDto);
-            return new DataResult<UserImageDto>(ResultStatus.Error, Messages.UserImageNotDeleted, null);
+            var imagePath = _hostEnvironment.WebRootPath + userImage.ImagePath;
+            if (File.Exists(imagePath))
+            {
+                File.Delete(imagePath);
+                userImage.IsActive = false;
+                userImage.IsDeleted = true;
+                userImage.ModifiedByName = modifiedByName;
+                userImage.ModifiedTime = DateTime.Now;
+                var deletedUserImage = _unitOfWork.UserImageRepository.UpdateAsync(userImage);
+                var result = await _unitOfWork.SaveAsync();
+                var userImageDto = _mapper.Map<UserImageDto>(userImage);
+                if (result > 0)
+                    return new DataResult<UserImageDto>(ResultStatus.Success, userImageDto);
+                return new DataResult<UserImageDto>(ResultStatus.Error, Messages.UserImageNotDeleted, null);
+            }
         }
         return new DataResult<UserImageDto>(ResultStatus.Error, Messages.NotFound, null);
     }
 
     public async Task<IDataResult<UserImageDto>> GetAsync(int id)
     {
-        var userImage = await _unitOfWork.UserImageRepository.GetAsync(x => x.Id == id && x.IsActive, x => x.AppUser);
+        var userImage = await _unitOfWork.UserImageRepository.GetAsync(x => x.Id == id && x.IsActive);
         var userImageViewDto = _mapper.Map<UserImageDto>(userImage);
         if (userImage != null)
         {
@@ -127,7 +132,7 @@ public class UserImageManager:IUserImageService
     
     public async Task<IDataResult<UserImageDto>> GetProfilImageByUserIdAsync(int userId)
     {
-        var userImage = await _unitOfWork.UserImageRepository.GetAsync(x => x.UserId == userId && x.IsActive && x.Profil, x => x.AppUser);
+        var userImage = await _unitOfWork.UserImageRepository.GetAsync(x => x.UserId == userId && x.IsActive && x.Profil);
         var userImageViewDto = _mapper.Map<UserImageDto>(userImage);
         if (userImage != null)
         {
@@ -144,7 +149,7 @@ public class UserImageManager:IUserImageService
 
     public async Task<IDataResult<IList<UserImageDto>>> GetAllAsync()
     {
-        var userImages = await _unitOfWork.UserImageRepository.GetAllAsync(null, x => x.AppUser);
+        var userImages = await _unitOfWork.UserImageRepository.GetAllAsync();
         var userImagesViewDtoList = _mapper.Map<IList<UserImageDto>>(userImages);
         if (userImages.Count > -1)
         {
@@ -155,7 +160,7 @@ public class UserImageManager:IUserImageService
     
     public async Task<IDataResult<IList<UserImageDto>>> GetAllByUserIdAsync(int userId)
     {
-        var userImages = await _unitOfWork.UserImageRepository.GetAllAsync(ui=>ui.UserId==userId && ui.IsActive , x => x.AppUser);
+        var userImages = await _unitOfWork.UserImageRepository.GetAllAsync(ui=>ui.UserId==userId && ui.IsActive);
         var userImagesViewDtoList = _mapper.Map<IList<UserImageDto>>(userImages);
         if (userImages.Count > -1)
         {
@@ -166,7 +171,7 @@ public class UserImageManager:IUserImageService
 
     public async Task<IResult> SetProfilImageAsync(int id,int userId,string modifiedByName)
     {
-        var userImages = await _unitOfWork.UserImageRepository.GetAllAsync(ui=>ui.UserId==userId && ui.IsActive , x => x.AppUser);
+        var userImages = await _unitOfWork.UserImageRepository.GetAllAsync(ui=>ui.UserId==userId && ui.IsActive);
         if (userImages !=null)
         {
             foreach (var userImage in userImages)

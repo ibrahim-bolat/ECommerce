@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "dNrHy0WyyT7Cl9CXs/NNT/HS7eyZAv9hZjtZScvnOr0=",
+  "Hash": "g+vm4xZvnzLxUWGqIDsgQC0FpwdxMMM24+m+AtTjE/Q=",
   "Source": "ECommerce.MVC",
   "BasePath": "_content/ECommerce.MVC",
   "Mode": "Default",
@@ -1647,6 +1647,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/admin/images/twitter_corner_blue.png"
+    },
+    {
+      "Identity": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.MVC/wwwroot/admin/images/userimages/ekran2.png",
+      "SourceId": "ECommerce.MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.MVC/wwwroot/",
+      "BasePath": "_content/ECommerce.MVC",
+      "RelativePath": "admin/images/userimages/ekran2.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/admin/images/userimages/ekran2.png"
     },
     {
       "Identity": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.MVC/wwwroot/admin/js/admin.js",
