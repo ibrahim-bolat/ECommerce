@@ -52,7 +52,8 @@ public class EfGenericRepository<TEntity>:IGenericRepository<TEntity> where TEnt
                 query = query.Include(item);
             }
         }
-        return await query.SingleOrDefaultAsync();
+
+        return await query.FirstOrDefaultAsync();
     }
 
     public async Task<IList<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate = null, params Expression<Func<TEntity, object>>[] includeProperties)

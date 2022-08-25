@@ -58,7 +58,7 @@ public class AddressController : Controller
             if (dresult.ResultStatus == ResultStatus.Success)
             {
                 TempData["AddAddressSuccess"] = true;
-                return RedirectToAction("AddressAdd", "Address");
+                return RedirectToAction("AddressAdd", "Address" ,new  {userId=addressDto.UserId});
             }
         }
         return View(addressDto);

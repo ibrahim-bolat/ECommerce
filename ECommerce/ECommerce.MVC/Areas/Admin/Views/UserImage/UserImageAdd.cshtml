@@ -32,7 +32,7 @@
           font-size: 15px;
       }
    </style>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.css">
+   <link href="~/lib/fancybox/css/jquery.fancybox.css" rel="stylesheet" />
 }
 
 <div class="breadcrumbs">
@@ -127,7 +127,8 @@
     </div> <!-- .content -->
 
 @section Scripts {
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+        <script src="~/lib/fancybox/js/jquery.fancybox.min.js"></script>
+        <script src="~/admin/js/UserImage/userImage.js"></script>
     <script>
                 document.addEventListener("DOMContentLoaded", function(event) {
                     var addAddressMessage = '@TempData["AddUserImageSuccess"]';

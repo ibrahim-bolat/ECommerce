@@ -155,7 +155,8 @@
                                     </tbody>
                                 </table>
                                 <div class="d-flex justify-content-end">
-                                    <a asp-area="Admin" asp-controller="Address" asp-action="AddressUpdate" asp-route-addressId="@Model.Id" class="btn btn-primary btn-sm ml-2">Düzenle</a>
+                                    <a asp-area="Admin" asp-controller="Account" asp-action="Profile" asp-route-id="@Model.UserId" class="btn btn-primary btn-sm ml-2">Profil</a>
+                                    <a asp-area="Admin" asp-controller="Address" asp-action="AddressUpdate" asp-route-addressId="@Model.Id" class="btn btn-success btn-sm ml-2">Düzenle</a>
                                     <button type="button" id="addressdeletebutton" class="btn btn-danger btn-sm ml-2" data-id="@Model.Id">Sil</button>
                                 </div>
                             </div>

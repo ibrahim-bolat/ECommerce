@@ -8,6 +8,8 @@ using ECommerce.Shared.Utilities.Abstract;
 using ECommerce.Shared.Utilities.ComplexTypes;
 using ECommerce.Shared.Utilities.Concrete;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using IResult = ECommerce.Shared.Utilities.Abstract.IResult;
 
 
 namespace ECommerce.Business.Concrete;
@@ -32,18 +34,8 @@ public class UserImageManager:IUserImageService
         {
             return new Result(ResultStatus.Error, Messages.UserImageCountMoreThan4);
         }
-        //Save image to wwwroot/admin/images/userimages/
-        string wwwRootPath = _hostEnvironment.WebRootPath;
-        string fileName = Path.GetFileNameWithoutExtension(userImageAddDto.ImageFile.FileName);
-        string extension = Path.GetExtension(userImageAddDto.ImageFile.FileName);
-        userImageAddDto.ImageTitle=fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-        string path = Path.Combine(wwwRootPath + "/admin/images/userimages/", fileName);
-        using (var fileStream = new FileStream(path,FileMode.Create))
-        {
-            await userImageAddDto.ImageFile.CopyToAsync(fileStream);
-        }
         UserImage userImage = _mapper.Map<UserImage>(userImageAddDto);
-        userImage.ImagePath = Path.Combine( "/admin/images/userimages/", fileName);;
+        userImage.ImagePath = await UploadImage(userImageAddDto); //Resmi kaydet wwwroot/admin/images/userimages/
         userImage.CreatedByName = createdByName;
         userImage.ModifiedByName = createdByName;
         userImage.CreatedTime=DateTime.Now;
@@ -56,6 +48,39 @@ public class UserImageManager:IUserImageService
             return new DataResult<UserImageAddDto>(ResultStatus.Success, Messages.UserImageAdded, userImageAddDto);
         return new Result(ResultStatus.Error, Messages.UserImageNotAdded);
 
+    }
+
+    private async Task<string> UploadImage(UserImageAddDto userImageAddDto)
+    {
+        var imageFileName = Path.GetFileNameWithoutExtension(userImageAddDto.ImageFile.FileName);
+
+        var localImageFileDir = $"wwwroot/admin/images/userimages";// wwwroot/admin/images/userimages
+        var extension = Path.GetExtension(userImageAddDto.ImageFile.FileName).ToLower();
+
+        //local userimages klasörü yoksa oluştur.
+        if (!Directory.Exists(Path.Combine(localImageFileDir)))
+        {
+            Directory.CreateDirectory(Path.Combine(localImageFileDir));
+        }
+
+        var localImageFilePath = $"{localImageFileDir}/{imageFileName}{extension}"; // wwwroot/admin/images/userimages/profil.jpg
+
+        int count = 1;
+        var tempFileName = imageFileName;
+        while (System.IO.File.Exists(localImageFilePath))
+        {
+            imageFileName = string.Format("{0}{1}", tempFileName, count++);
+            localImageFilePath = $"{localImageFileDir}/{imageFileName}{extension}";
+        }
+
+        var path = $"/admin/images/userimages/{imageFileName}{extension}";// /admin/images/userimages/profil.jpg
+
+        using (Stream fileStream = new FileStream(localImageFilePath, FileMode.Create))
+        {
+            await userImageAddDto.ImageFile.CopyToAsync(fileStream);
+        }
+
+        return path;
     }
 
     public async Task<IResult> UpdateAsync(UserImageDto userImageDto, string modifiedByName)
