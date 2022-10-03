@@ -54,14 +54,14 @@ public class AccountController : Controller
         if (ModelState.IsValid)
         {
             AppUser applicationUser = _mapper.Map<AppUser>(model);
-            AppRole role = await _roleManager.FindByNameAsync(RoleEnum.User.ToString());
+            AppRole role = await _roleManager.FindByNameAsync(RoleType.User.ToString());
             if (role == null)
-                await _roleManager.CreateAsync(new AppRole { Name = RoleEnum.User.ToString() });
+                await _roleManager.CreateAsync(new AppRole { Name = RoleType.User.ToString() });
             IdentityResult userResult = await _userManager.CreateAsync(applicationUser, model.Password);
             IdentityResult roleResult = null;
             if (userResult.Succeeded)
             {
-                roleResult = await _userManager.AddToRoleAsync(applicationUser, RoleEnum.User.ToString());
+                roleResult = await _userManager.AddToRoleAsync(applicationUser, RoleType.User.ToString());
                 if (roleResult.Succeeded)
                 {
                     TempData["LoginSuccess"] = true;

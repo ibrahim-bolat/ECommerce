@@ -99,9 +99,9 @@ namespace ECommerce.MVC.Areas.Admin.Controllers;
             }
             IdentityResult createResult, confirmResult,roleResult = null;
             AppUser newUsers = _mapper.Map<AppUser>(registerDto);
-            AppRole role = await _roleManager.FindByNameAsync(RoleEnum.User.ToString());
+            AppRole role = await _roleManager.FindByNameAsync(RoleType.User.ToString());
             if (role == null)
-                await _roleManager.CreateAsync(new AppRole { Name = RoleEnum.User.ToString() });
+                await _roleManager.CreateAsync(new AppRole { Name = RoleType.User.ToString() });
             createResult = await _userManager.CreateAsync(newUsers, registerDto.Password);
             if (createResult.Succeeded)
             {
@@ -109,7 +109,7 @@ namespace ECommerce.MVC.Areas.Admin.Controllers;
                 confirmResult = await _userManager.ConfirmEmailAsync(newUsers, token);
                 if (confirmResult.Succeeded)
                 {
-                    roleResult = await _userManager.AddToRoleAsync(newUsers, RoleEnum.User.ToString());
+                    roleResult = await _userManager.AddToRoleAsync(newUsers, RoleType.User.ToString());
                     if (roleResult.Succeeded)
                     {
                         return Json(new { success = true });

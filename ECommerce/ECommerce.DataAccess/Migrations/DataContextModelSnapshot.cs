@@ -22,6 +22,155 @@ namespace ECommerce.DataAccess.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("ECommerce.Entities.Concrete.Ad", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("AdDate")
+                        .HasColumnType("date");
+
+                    b.Property<string>("AdDetail")
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)");
+
+                    b.Property<string>("AdFromWho")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("AdNo")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<string>("AdSwapStatus")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("AdTitle")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)");
+
+                    b.Property<decimal>("AdVehiclePrice")
+                        .HasColumnType("numeric(18,4)");
+
+                    b.Property<string>("AdVehicleStatus")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("CreatedByName")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("DamageStatus")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("ModifiedByName")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("ModifiedTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Note")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Ads");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AdDate = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(181),
+                            AdDetail = "ÇOK GÜZEL ARABA",
+                            AdFromWho = "ByOwner",
+                            AdNo = "123456789",
+                            AdSwapStatus = "Yes",
+                            AdTitle = "Sahibinden Tertemiz Araba",
+                            AdVehiclePrice = 350000.50m,
+                            AdVehicleStatus = "FirstHand",
+                            CreatedByName = "Admin",
+                            CreatedTime = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(142),
+                            DamageStatus = "Unspecified",
+                            IsActive = false,
+                            IsDeleted = false,
+                            ModifiedByName = "Admin",
+                            ModifiedTime = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(158)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AdDate = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(189),
+                            AdDetail = "ÇOK GÜZEL ARABA",
+                            AdFromWho = "ByOwner",
+                            AdNo = "234567891",
+                            AdSwapStatus = "No",
+                            AdTitle = "Sahibinden Boyasız Araba",
+                            AdVehiclePrice = 150000.7840m,
+                            AdVehicleStatus = "SecondHand",
+                            CreatedByName = "Admin",
+                            CreatedTime = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(186),
+                            DamageStatus = "HeavilyDamaged",
+                            IsActive = false,
+                            IsDeleted = false,
+                            ModifiedByName = "Admin",
+                            ModifiedTime = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(187)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AdDate = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(196),
+                            AdDetail = "ÇOK GÜZEL ARABA",
+                            AdFromWho = "FromAuthorizedDealer",
+                            AdNo = "345678912",
+                            AdSwapStatus = "Yes",
+                            AdTitle = "İTHAL ARAÇ",
+                            AdVehiclePrice = 1000000.50m,
+                            AdVehicleStatus = "ImportedFirstHand",
+                            CreatedByName = "Admin",
+                            CreatedTime = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(192),
+                            DamageStatus = "Unspecified",
+                            IsActive = false,
+                            IsDeleted = false,
+                            ModifiedByName = "Admin",
+                            ModifiedTime = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(193)
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AdDate = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(200),
+                            AdDetail = "ÇOK GÜZEL ARABA",
+                            AdFromWho = "FromTheGalery",
+                            AdNo = "456789123",
+                            AdSwapStatus = "No",
+                            AdTitle = "Galeriden Temiz Araç",
+                            AdVehiclePrice = 2500000.80m,
+                            AdVehicleStatus = "FirstHand",
+                            CreatedByName = "Admin",
+                            CreatedTime = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(197),
+                            DamageStatus = "WithoutDamageRegistration",
+                            IsActive = false,
+                            IsDeleted = false,
+                            ModifiedByName = "Admin",
+                            ModifiedTime = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(198)
+                        });
+                });
+
             modelBuilder.Entity("ECommerce.Entities.Concrete.Address", b =>
                 {
                     b.Property<int>("Id")
@@ -123,10 +272,10 @@ namespace ECommerce.DataAccess.Migrations
                             Id = 1,
                             AddressDetails = "Naci Bekir Mahallesi ,Atılım Cad. Ateş Sok. No:40/7 06500 Yenimahalle/Ankara/Türkiye",
                             AddressTitle = "Evim",
-                            AddressType = "Ev",
+                            AddressType = "Home",
                             City = "Ankara",
                             CreatedByName = "Admin",
-                            CreatedTime = new DateTime(2022, 8, 25, 16, 28, 36, 952, DateTimeKind.Local).AddTicks(1716),
+                            CreatedTime = new DateTime(2022, 10, 3, 14, 17, 16, 406, DateTimeKind.Local).AddTicks(3536),
                             DefaultAddress = false,
                             District = "Yenimahalle",
                             Email = "bolatcan@email.com",
@@ -135,7 +284,7 @@ namespace ECommerce.DataAccess.Migrations
                             IsDeleted = false,
                             LastName = "BOL",
                             ModifiedByName = "Admin",
-                            ModifiedTime = new DateTime(2022, 8, 25, 16, 28, 36, 952, DateTimeKind.Local).AddTicks(1728),
+                            ModifiedTime = new DateTime(2022, 10, 3, 14, 17, 16, 406, DateTimeKind.Local).AddTicks(3552),
                             NeighborhoodOrVillage = "Naci Bekir",
                             PhoneNumber = "+90(532)5757966",
                             PostalCode = "06500",
@@ -146,10 +295,10 @@ namespace ECommerce.DataAccess.Migrations
                             Id = 2,
                             AddressDetails = "Mustafa Kemal Mahallesi ,Eskişehir Yolu  Kütahya Sok. No:280/7 06500 Çankaya/Ankara/Türkiye",
                             AddressTitle = "İş",
-                            AddressType = "İş",
+                            AddressType = "Work",
                             City = "Ankara",
                             CreatedByName = "Admin",
-                            CreatedTime = new DateTime(2022, 8, 25, 16, 28, 36, 952, DateTimeKind.Local).AddTicks(1752),
+                            CreatedTime = new DateTime(2022, 10, 3, 14, 17, 16, 406, DateTimeKind.Local).AddTicks(3586),
                             DefaultAddress = true,
                             District = "Çankaya",
                             Email = "bolatcan@email.com",
@@ -158,11 +307,106 @@ namespace ECommerce.DataAccess.Migrations
                             IsDeleted = false,
                             LastName = "BOLAT",
                             ModifiedByName = "Admin",
-                            ModifiedTime = new DateTime(2022, 8, 25, 16, 28, 36, 952, DateTimeKind.Local).AddTicks(1753),
+                            ModifiedTime = new DateTime(2022, 10, 3, 14, 17, 16, 406, DateTimeKind.Local).AddTicks(3587),
                             NeighborhoodOrVillage = "Mustafa Kemal",
                             PhoneNumber = "+90(532)5757966",
                             PostalCode = "06100",
                             UserId = 1
+                        });
+                });
+
+            modelBuilder.Entity("ECommerce.Entities.Concrete.Brand", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CreatedByName")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("ModifiedByName")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("ModifiedTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)");
+
+                    b.Property<string>("Note")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<int>("SubCategoryId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SubCategoryId");
+
+                    b.ToTable("Brands");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedByName = "Admin",
+                            CreatedTime = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(2761),
+                            IsActive = false,
+                            IsDeleted = false,
+                            ModifiedByName = "Admin",
+                            ModifiedTime = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(2767),
+                            Name = "Wolkswagen",
+                            SubCategoryId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedByName = "Admin",
+                            CreatedTime = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(2777),
+                            IsActive = false,
+                            IsDeleted = false,
+                            ModifiedByName = "Admin",
+                            ModifiedTime = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(2778),
+                            Name = "Honda",
+                            SubCategoryId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedByName = "Admin",
+                            CreatedTime = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(2781),
+                            IsActive = false,
+                            IsDeleted = false,
+                            ModifiedByName = "Admin",
+                            ModifiedTime = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(2782),
+                            Name = "Fiat",
+                            SubCategoryId = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedByName = "Admin",
+                            CreatedTime = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(2784),
+                            IsActive = false,
+                            IsDeleted = false,
+                            ModifiedByName = "Admin",
+                            ModifiedTime = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(2785),
+                            Name = "Nissan",
+                            SubCategoryId = 4
                         });
                 });
 
@@ -220,13 +464,13 @@ namespace ECommerce.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "5e933312-7ca3-435f-aae0-fae6f1951fe0",
+                            ConcurrencyStamp = "6f886927-fb6a-40f9-ae13-fc468c800da2",
                             CreatedByName = "Owner",
-                            CreatedTime = new DateTime(2022, 8, 25, 16, 28, 36, 946, DateTimeKind.Local).AddTicks(5158),
+                            CreatedTime = new DateTime(2022, 10, 3, 14, 17, 16, 400, DateTimeKind.Local).AddTicks(2689),
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByName = "Owner",
-                            ModifiedTime = new DateTime(2022, 8, 25, 16, 28, 36, 946, DateTimeKind.Local).AddTicks(5179),
+                            ModifiedTime = new DateTime(2022, 10, 3, 14, 17, 16, 400, DateTimeKind.Local).AddTicks(2713),
                             Name = "Admin",
                             NormalizedName = "ADMİN"
                         });
@@ -346,27 +590,385 @@ namespace ECommerce.DataAccess.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0bb58d46-7bd4-4fc2-9b61-ad37822d8bb7",
+                            ConcurrencyStamp = "20890a3b-f9e5-4468-8519-fdacb1e8ae6b",
                             CreatedByName = "Owner",
-                            CreatedTime = new DateTime(2022, 8, 25, 16, 28, 36, 947, DateTimeKind.Local).AddTicks(1028),
+                            CreatedTime = new DateTime(2022, 10, 3, 14, 17, 16, 400, DateTimeKind.Local).AddTicks(8783),
                             Email = "bolat6606@hotmail.com",
                             EmailConfirmed = true,
                             FirstName = "İbrahim",
-                            GenderType = "Belirtilmemiş",
+                            GenderType = "Unspecified",
                             IsActive = true,
                             IsDeleted = false,
                             LastName = "Bolat",
                             LockoutEnabled = false,
                             ModifiedByName = "Owner",
-                            ModifiedTime = new DateTime(2022, 8, 25, 16, 28, 36, 947, DateTimeKind.Local).AddTicks(1036),
+                            ModifiedTime = new DateTime(2022, 10, 3, 14, 17, 16, 400, DateTimeKind.Local).AddTicks(8791),
                             NormalizedEmail = "BOLAT6606@HOTMAIL.COM",
                             NormalizedUserName = "BOLAT6606",
-                            PasswordHash = "AQAAAAEAACcQAAAAEF++7RPrX9zQRfMm7WLBpSQ2ZKhi4hV8Lsyej7Rf0hoV+sEtMm5I7iMSnRg84BIE3A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBAfPRFKmEOpwPnnslelzxy6iRDxQKDd6hQrOALcptXK51p0VXYVLCtLhBcYHqi/oA==",
                             PhoneNumber = "+90(532)575-79-66",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "VVPCRDAS3MJWQD5CSW2GWPRADBXEZINA",
                             TwoFactorEnabled = false,
                             UserName = "bolat6606"
+                        });
+                });
+
+            modelBuilder.Entity("ECommerce.Entities.Concrete.MainCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CreatedByName")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("ModifiedByName")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("ModifiedTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)");
+
+                    b.Property<string>("Note")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MainCategories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedByName = "Admin",
+                            CreatedTime = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(4409),
+                            IsActive = false,
+                            IsDeleted = false,
+                            ModifiedByName = "Admin",
+                            ModifiedTime = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(4416),
+                            Name = "Araçlar"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedByName = "Admin",
+                            CreatedTime = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(4425),
+                            IsActive = false,
+                            IsDeleted = false,
+                            ModifiedByName = "Admin",
+                            ModifiedTime = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(4426),
+                            Name = "Yedek Parçalar"
+                        });
+                });
+
+            modelBuilder.Entity("ECommerce.Entities.Concrete.Model", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    b.Property<string>("BodyType")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("BrandId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("CreatedByName")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("EngineCapacity")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("EnginePower")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("EngineType")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("EquipmentVariant")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("FuelType")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("GearType")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("GuaranteeStatus")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("Kilometer")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("ModelColour")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("ModelYear")
+                        .HasMaxLength(4)
+                        .HasColumnType("integer")
+                        .IsFixedLength();
+
+                    b.Property<string>("ModifiedByName")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("ModifiedTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)");
+
+                    b.Property<string>("Note")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<string>("PlateNationality")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("TractionType")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BrandId");
+
+                    b.ToTable("Models");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BodyType = "Hatchback5Door",
+                            BrandId = 1,
+                            CreatedByName = "Admin",
+                            CreatedTime = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(8936),
+                            EngineCapacity = "Cm13011600",
+                            EnginePower = "Hp101125",
+                            EngineType = "1.6 TDI",
+                            EquipmentVariant = "Confortline",
+                            FuelType = "Diesel",
+                            GearType = "Automatic",
+                            GuaranteeStatus = "No",
+                            IsActive = false,
+                            IsDeleted = false,
+                            Kilometer = 102000,
+                            ModelColour = "White",
+                            ModelYear = 2015,
+                            ModifiedByName = "Admin",
+                            ModifiedTime = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(8943),
+                            Name = "Golf",
+                            PlateNationality = "TurkeyPlate",
+                            TractionType = "FrontDrive"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BodyType = "Hatchback5Door",
+                            BrandId = 2,
+                            CreatedByName = "Admin",
+                            CreatedTime = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(8961),
+                            EngineCapacity = "Cm13011600",
+                            EnginePower = "Hp101125",
+                            EngineType = "1.4 TSI",
+                            EquipmentVariant = "Confortline",
+                            FuelType = "Diesel",
+                            GearType = "Automatic",
+                            GuaranteeStatus = "No",
+                            IsActive = false,
+                            IsDeleted = false,
+                            Kilometer = 102000,
+                            ModelColour = "White",
+                            ModelYear = 2015,
+                            ModifiedByName = "Admin",
+                            ModifiedTime = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(8962),
+                            Name = "City",
+                            PlateNationality = "TurkeyPlate",
+                            TractionType = "FrontDrive"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            BodyType = "Hatchback5Door",
+                            BrandId = 3,
+                            CreatedByName = "Admin",
+                            CreatedTime = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(8968),
+                            EngineCapacity = "Cm13011600",
+                            EnginePower = "Hp101125",
+                            EngineType = "1.6 TDI",
+                            EquipmentVariant = "Confortline",
+                            FuelType = "Diesel",
+                            GearType = "Automatic",
+                            GuaranteeStatus = "No",
+                            IsActive = false,
+                            IsDeleted = false,
+                            Kilometer = 102000,
+                            ModelColour = "White",
+                            ModelYear = 2015,
+                            ModifiedByName = "Admin",
+                            ModifiedTime = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(8969),
+                            Name = "Egea",
+                            PlateNationality = "TurkeyPlate",
+                            TractionType = "FrontDrive"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            BodyType = "Hatchback5Door",
+                            BrandId = 4,
+                            CreatedByName = "Admin",
+                            CreatedTime = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(8974),
+                            EngineCapacity = "Cm13011600",
+                            EnginePower = "Hp101125",
+                            EngineType = "1.6 Düz",
+                            EquipmentVariant = "Confortline",
+                            FuelType = "Diesel",
+                            GearType = "Automatic",
+                            GuaranteeStatus = "No",
+                            IsActive = false,
+                            IsDeleted = false,
+                            Kilometer = 102000,
+                            ModelColour = "White",
+                            ModelYear = 2015,
+                            ModifiedByName = "Admin",
+                            ModifiedTime = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(8975),
+                            Name = "Qashqai",
+                            PlateNationality = "TurkeyPlate",
+                            TractionType = "FrontDrive"
+                        });
+                });
+
+            modelBuilder.Entity("ECommerce.Entities.Concrete.SubCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CreatedByName")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("MainCategoryId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("ModifiedByName")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("ModifiedTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)");
+
+                    b.Property<string>("Note")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MainCategoryId");
+
+                    b.ToTable("SubCategories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedByName = "Admin",
+                            CreatedTime = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(5673),
+                            IsActive = false,
+                            IsDeleted = false,
+                            MainCategoryId = 1,
+                            ModifiedByName = "Admin",
+                            ModifiedTime = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(5679),
+                            Name = "Otomobil"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedByName = "Admin",
+                            CreatedTime = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(5688),
+                            IsActive = false,
+                            IsDeleted = false,
+                            MainCategoryId = 1,
+                            ModifiedByName = "Admin",
+                            ModifiedTime = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(5689),
+                            Name = "Motorsiklet"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedByName = "Admin",
+                            CreatedTime = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(5691),
+                            IsActive = false,
+                            IsDeleted = false,
+                            MainCategoryId = 1,
+                            ModifiedByName = "Admin",
+                            ModifiedTime = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(5693),
+                            Name = "Minivan & Panelvan"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedByName = "Admin",
+                            CreatedTime = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(5695),
+                            IsActive = false,
+                            IsDeleted = false,
+                            MainCategoryId = 1,
+                            ModifiedByName = "Admin",
+                            ModifiedTime = new DateTime(2022, 10, 3, 14, 17, 16, 409, DateTimeKind.Local).AddTicks(5696),
+                            Name = "Arazi, SUV & Pickup"
                         });
                 });
 
@@ -431,16 +1033,256 @@ namespace ECommerce.DataAccess.Migrations
                         {
                             Id = 1,
                             CreatedByName = "Admin",
-                            CreatedTime = new DateTime(2022, 8, 25, 16, 28, 36, 952, DateTimeKind.Local).AddTicks(2866),
+                            CreatedTime = new DateTime(2022, 10, 3, 14, 17, 16, 406, DateTimeKind.Local).AddTicks(4786),
                             ImageAltText = "Profil",
                             ImagePath = "/admin/images/userimages/profil.png",
                             ImageTitle = "ProfilResmi",
                             IsActive = false,
                             IsDeleted = false,
                             ModifiedByName = "Admin",
-                            ModifiedTime = new DateTime(2022, 8, 25, 16, 28, 36, 952, DateTimeKind.Local).AddTicks(2871),
+                            ModifiedTime = new DateTime(2022, 10, 3, 14, 17, 16, 406, DateTimeKind.Local).AddTicks(4792),
                             Profil = true,
                             UserId = 1
+                        });
+                });
+
+            modelBuilder.Entity("ECommerce.Entities.Concrete.VehicleAddress", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    b.Property<string>("AddressDetails")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<string>("AddressTitle")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)");
+
+                    b.Property<string>("CreatedByName")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("District")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("ModifiedByName")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("ModifiedTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("NeighborhoodOrVillage")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)");
+
+                    b.Property<string>("Note")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<string>("PostalCode")
+                        .HasMaxLength(5)
+                        .HasColumnType("character varying(5)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("VehicleAddresses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AddressDetails = "Naci Bekir Mahallesi ,Atılım Cad. Ateş Sok. No:40/7 06500 Yenimahalle/Ankara/Türkiye",
+                            AddressTitle = "Evim",
+                            City = "Ankara",
+                            CreatedByName = "Admin",
+                            CreatedTime = new DateTime(2022, 10, 3, 14, 17, 16, 410, DateTimeKind.Local).AddTicks(295),
+                            District = "Yenimahalle",
+                            IsActive = false,
+                            IsDeleted = false,
+                            ModifiedByName = "Admin",
+                            ModifiedTime = new DateTime(2022, 10, 3, 14, 17, 16, 410, DateTimeKind.Local).AddTicks(301),
+                            NeighborhoodOrVillage = "Naci Bekir",
+                            PostalCode = "06500"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AddressDetails = "Naci Bekir Mahallesi ,Atılım Cad. Ateş Sok. No:40/7 06500 Yenimahalle/Ankara/Türkiye",
+                            AddressTitle = "Evim",
+                            City = "Ankara",
+                            CreatedByName = "Admin",
+                            CreatedTime = new DateTime(2022, 10, 3, 14, 17, 16, 410, DateTimeKind.Local).AddTicks(310),
+                            District = "Yenimahalle",
+                            IsActive = false,
+                            IsDeleted = false,
+                            ModifiedByName = "Admin",
+                            ModifiedTime = new DateTime(2022, 10, 3, 14, 17, 16, 410, DateTimeKind.Local).AddTicks(311),
+                            NeighborhoodOrVillage = "Naci Bekir",
+                            PostalCode = "06500"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AddressDetails = "Naci Bekir Mahallesi ,Atılım Cad. Ateş Sok. No:40/7 06500 Yenimahalle/Ankara/Türkiye",
+                            AddressTitle = "Evim",
+                            City = "Ankara",
+                            CreatedByName = "Admin",
+                            CreatedTime = new DateTime(2022, 10, 3, 14, 17, 16, 410, DateTimeKind.Local).AddTicks(314),
+                            District = "Yenimahalle",
+                            IsActive = false,
+                            IsDeleted = false,
+                            ModifiedByName = "Admin",
+                            ModifiedTime = new DateTime(2022, 10, 3, 14, 17, 16, 410, DateTimeKind.Local).AddTicks(315),
+                            NeighborhoodOrVillage = "Naci Bekir",
+                            PostalCode = "06500"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AddressDetails = "Naci Bekir Mahallesi ,Atılım Cad. Ateş Sok. No:40/7 06500 Yenimahalle/Ankara/Türkiye",
+                            AddressTitle = "Evim",
+                            City = "Ankara",
+                            CreatedByName = "Admin",
+                            CreatedTime = new DateTime(2022, 10, 3, 14, 17, 16, 410, DateTimeKind.Local).AddTicks(318),
+                            District = "Yenimahalle",
+                            IsActive = false,
+                            IsDeleted = false,
+                            ModifiedByName = "Admin",
+                            ModifiedTime = new DateTime(2022, 10, 3, 14, 17, 16, 410, DateTimeKind.Local).AddTicks(319),
+                            NeighborhoodOrVillage = "Naci Bekir",
+                            PostalCode = "06500"
+                        });
+                });
+
+            modelBuilder.Entity("ECommerce.Entities.Concrete.VehicleImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AdId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("CreatedByName")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ImageAltText")
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)");
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<string>("ImageTitle")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("ModifiedByName")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("ModifiedTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Note")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AdId");
+
+                    b.ToTable("VehicleImages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AdId = 1,
+                            CreatedByName = "Admin",
+                            CreatedTime = new DateTime(2022, 10, 3, 14, 17, 16, 410, DateTimeKind.Local).AddTicks(1466),
+                            ImageAltText = "Profil",
+                            ImagePath = "/admin/images/userimages/profil.png",
+                            ImageTitle = "ProfilResmi",
+                            IsActive = false,
+                            IsDeleted = false,
+                            ModifiedByName = "Admin",
+                            ModifiedTime = new DateTime(2022, 10, 3, 14, 17, 16, 410, DateTimeKind.Local).AddTicks(1472)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AdId = 2,
+                            CreatedByName = "Admin",
+                            CreatedTime = new DateTime(2022, 10, 3, 14, 17, 16, 410, DateTimeKind.Local).AddTicks(1480),
+                            ImageAltText = "Profil",
+                            ImagePath = "/admin/images/userimages/profil.png",
+                            ImageTitle = "ProfilResmi",
+                            IsActive = false,
+                            IsDeleted = false,
+                            ModifiedByName = "Admin",
+                            ModifiedTime = new DateTime(2022, 10, 3, 14, 17, 16, 410, DateTimeKind.Local).AddTicks(1481)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AdId = 3,
+                            CreatedByName = "Admin",
+                            CreatedTime = new DateTime(2022, 10, 3, 14, 17, 16, 410, DateTimeKind.Local).AddTicks(1484),
+                            ImageAltText = "Profil",
+                            ImagePath = "/admin/images/userimages/profil.png",
+                            ImageTitle = "ProfilResmi",
+                            IsActive = false,
+                            IsDeleted = false,
+                            ModifiedByName = "Admin",
+                            ModifiedTime = new DateTime(2022, 10, 3, 14, 17, 16, 410, DateTimeKind.Local).AddTicks(1485)
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AdId = 4,
+                            CreatedByName = "Admin",
+                            CreatedTime = new DateTime(2022, 10, 3, 14, 17, 16, 410, DateTimeKind.Local).AddTicks(1487),
+                            ImageAltText = "Profil",
+                            ImagePath = "/admin/images/userimages/profil.png",
+                            ImageTitle = "ProfilResmi",
+                            IsActive = false,
+                            IsDeleted = false,
+                            ModifiedByName = "Admin",
+                            ModifiedTime = new DateTime(2022, 10, 3, 14, 17, 16, 410, DateTimeKind.Local).AddTicks(1489)
                         });
                 });
 
@@ -565,6 +1407,47 @@ namespace ECommerce.DataAccess.Migrations
                     b.Navigation("AppUser");
                 });
 
+            modelBuilder.Entity("ECommerce.Entities.Concrete.Brand", b =>
+                {
+                    b.HasOne("ECommerce.Entities.Concrete.SubCategory", "SubCategory")
+                        .WithMany("Brands")
+                        .HasForeignKey("SubCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SubCategory");
+                });
+
+            modelBuilder.Entity("ECommerce.Entities.Concrete.Model", b =>
+                {
+                    b.HasOne("ECommerce.Entities.Concrete.Brand", "Brand")
+                        .WithMany("Models")
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ECommerce.Entities.Concrete.Ad", "Ad")
+                        .WithOne("Model")
+                        .HasForeignKey("ECommerce.Entities.Concrete.Model", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Ad");
+
+                    b.Navigation("Brand");
+                });
+
+            modelBuilder.Entity("ECommerce.Entities.Concrete.SubCategory", b =>
+                {
+                    b.HasOne("ECommerce.Entities.Concrete.MainCategory", "MainCategory")
+                        .WithMany("SubCategories")
+                        .HasForeignKey("MainCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("MainCategory");
+                });
+
             modelBuilder.Entity("ECommerce.Entities.Concrete.UserImage", b =>
                 {
                     b.HasOne("ECommerce.Entities.Concrete.Identity.Entities.AppUser", "AppUser")
@@ -574,6 +1457,28 @@ namespace ECommerce.DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("AppUser");
+                });
+
+            modelBuilder.Entity("ECommerce.Entities.Concrete.VehicleAddress", b =>
+                {
+                    b.HasOne("ECommerce.Entities.Concrete.Ad", "Ad")
+                        .WithOne("VehicleAddress")
+                        .HasForeignKey("ECommerce.Entities.Concrete.VehicleAddress", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Ad");
+                });
+
+            modelBuilder.Entity("ECommerce.Entities.Concrete.VehicleImage", b =>
+                {
+                    b.HasOne("ECommerce.Entities.Concrete.Ad", "Ad")
+                        .WithMany("VehicleImages")
+                        .HasForeignKey("AdId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Ad");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -627,11 +1532,35 @@ namespace ECommerce.DataAccess.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("ECommerce.Entities.Concrete.Ad", b =>
+                {
+                    b.Navigation("Model");
+
+                    b.Navigation("VehicleAddress");
+
+                    b.Navigation("VehicleImages");
+                });
+
+            modelBuilder.Entity("ECommerce.Entities.Concrete.Brand", b =>
+                {
+                    b.Navigation("Models");
+                });
+
             modelBuilder.Entity("ECommerce.Entities.Concrete.Identity.Entities.AppUser", b =>
                 {
                     b.Navigation("Addresses");
 
                     b.Navigation("UserImages");
+                });
+
+            modelBuilder.Entity("ECommerce.Entities.Concrete.MainCategory", b =>
+                {
+                    b.Navigation("SubCategories");
+                });
+
+            modelBuilder.Entity("ECommerce.Entities.Concrete.SubCategory", b =>
+                {
+                    b.Navigation("Brands");
                 });
 #pragma warning restore 612, 618
         }

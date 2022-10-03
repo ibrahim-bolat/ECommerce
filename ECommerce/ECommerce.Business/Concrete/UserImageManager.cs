@@ -43,6 +43,25 @@ public class UserImageManager:IUserImageService
         userImage.IsActive = true;
         userImage.IsDeleted = false;
         var addedUserImage= await _unitOfWork.UserImageRepository.AddAsync(userImage);
+        if (count > 0 && count < 4 && userImage.Profil)
+        {
+            var userImages =
+                await _unitOfWork.UserImageRepository.GetAllAsync(ui =>
+                    ui.UserId == userImageAddDto.UserId && ui.IsActive);
+            if (userImages != null)
+            {
+                foreach (var uImage in userImages)
+                {
+                    if (uImage.Profil)
+                    {
+                        uImage.Profil = false;
+                        uImage.ModifiedByName = createdByName;
+                        uImage.ModifiedTime = DateTime.Now;
+                        await _unitOfWork.UserImageRepository.UpdateAsync(uImage);
+                    }
+                }
+            }
+        }
         int result = await _unitOfWork.SaveAsync();
         if (result > 0)
             return new DataResult<UserImageAddDto>(ResultStatus.Success, Messages.UserImageAdded, userImageAddDto);
@@ -176,7 +195,7 @@ public class UserImageManager:IUserImageService
         {
             foreach (var userImage in userImages)
             {
-                if (userImage.Id != id)
+                if (userImage.Id != id && userImage.Profil )
                 {
                     userImage.Profil = false;
                     userImage.ModifiedByName = modifiedByName;
@@ -185,7 +204,7 @@ public class UserImageManager:IUserImageService
                 }
                 else
                 {
-                    if (userImage.Profil == false)
+                    if (userImage.Id == id && userImage.Profil==false )
                     {
                         userImage.Profil = true;
                         userImage.ModifiedByName = modifiedByName;

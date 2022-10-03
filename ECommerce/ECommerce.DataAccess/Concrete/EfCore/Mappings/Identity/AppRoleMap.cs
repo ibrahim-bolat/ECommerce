@@ -14,8 +14,8 @@ public class AppRoleMap : IEntityTypeConfiguration<AppRole>
             builder.HasData(new AppRole
             {
                 Id = 1,
-                Name = RoleEnum.Admin.ToString(),
-                NormalizedName = RoleEnum.Admin.ToString().ToUpper()
+                Name = RoleType.Admin.ToString(),
+                NormalizedName = RoleType.Admin.ToString().ToUpper()
             });
     }
     }

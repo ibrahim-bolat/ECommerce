@@ -1,4 +1,5 @@
 @using ECommerce.Shared.Entities.Enums
+@using ECommerce.Business.Extensions
 @model UserDto
 @{
     Layout = "Admin/_AdminLayout";
@@ -97,11 +98,11 @@
                             <div class="form-group row">
                                 <label asp-for="GenderType" class="col-sm-2 col-form-label"></label>
                                 <div class="col-sm-10">
-                                    @foreach (var item in System.Enum.GetValues(typeof(GenderEnum)).OfType<GenderEnum>())
+                                    @foreach (var item in System.Enum.GetValues(typeof(GenderType)).OfType<GenderType>())
                                     {
                                         <label>
                                             <input type="radio" asp-for="GenderType" value="@Convert.ToInt32(item)" checked="@(item == Model?.GenderType)"/>
-                                            @item
+                                            @item.GetEnumDescription()
                                         </label>
                                     }
                                 </div>

@@ -10,7 +10,7 @@ public class AppUser:IdentityUser<int>,IIdentityEntity
         public string FirstName { get; set; }
         public string LastName { get; set; }
         
-        public GenderEnum GenderType { get; set; }
+        public GenderType GenderType { get; set; }
         public string UserIdendityNo { get; set; }
         
         public  DateTime? DateOfBirth{get; set;}

@@ -23,7 +23,7 @@ public class UserCardSummaryDto:BaseDto,IDto
         public string Email { get; set; }
 
         [Display(Name = "Cinsiyet")]
-        public GenderEnum GenderType { get; set; }
+        public GenderType GenderType { get; set; }
         
         [Display(Name = "Varsayılan Adres")]
         public string DefaultAddressDetail { get; set; }

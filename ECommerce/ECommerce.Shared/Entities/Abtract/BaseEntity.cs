@@ -9,7 +9,7 @@ public abstract class BaseEntity
         public virtual DateTime ModifiedTime { get; set; } = DateTime.Now;
         public virtual bool IsActive { get; set; } = false;
         public virtual bool IsDeleted { get; set; } = false;
-        public virtual string CreatedByName { get; set; } = RoleEnum.Admin.ToString();
-        public virtual string ModifiedByName { get; set; } = RoleEnum.Admin.ToString();
+        public virtual string CreatedByName { get; set; } = RoleType.Admin.ToString();
+        public virtual string ModifiedByName { get; set; } = RoleType.Admin.ToString();
         public virtual string Note { get; set; }
     }

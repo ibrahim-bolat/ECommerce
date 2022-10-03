@@ -28,7 +28,7 @@ public class AddressDto:BaseDto,IDto
     public  string AddressTitle{ get; set; }
     
     [Display(Name = "Adres Tipi")]
-    public  AddressEnum AddressType { get; set; }
+    public  AddressType AddressType { get; set; }
 
     [Display(Name = "Mahalle ya da Köy")]
     public  string NeighborhoodOrVillage{ get; set; }

@@ -17,7 +17,7 @@ namespace ECommerce.DataAccess.Concrete.EfCore.Mappings.Identity;
             builder.Property(user => user.GenderType)
                 .HasConversion(
                     a => a.ToString(),
-                    a => (GenderEnum)Enum.Parse(typeof(GenderEnum), a));
+                    a => (GenderType)Enum.Parse(typeof(GenderType), a));
             builder.Property(user => user.Note).HasMaxLength(500);
             builder.Property(user => user.DateOfBirth).HasColumnType("date");
             builder.HasMany(user => user.Addresses).WithOne(address => address.AppUser)

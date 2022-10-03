@@ -11,7 +11,7 @@ namespace ECommerce.Entities.Concrete;
         public string Email{ get; set; }
         public string PhoneNumber{ get; set; }
         public  string AddressTitle{ get; set; }
-        public  AddressEnum AddressType { get; set; }
+        public  AddressType AddressType { get; set; }
         public  string NeighborhoodOrVillage{ get; set; }
         public  string District{ get; set; }
         public  string City{ get; set; }

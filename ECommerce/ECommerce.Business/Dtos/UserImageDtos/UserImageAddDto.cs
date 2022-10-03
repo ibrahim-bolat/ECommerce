@@ -24,7 +24,7 @@ public class UserImageAddDto:BaseDto,IDto
     
     [Display(Name="Resim Yükle")]
     [DataType(DataType.Upload)]
-    [ImageMaxFileSize(5* 1024 * 1024)]//en fazla 5 mb izin veriyoruz.
+    [ImageMaxFileSize((5* 1024 * 1024),197,150)]//en fazla 5 mb izin veriyoruz.
     [ImageAllowedExtensions(new string[] { ".jpg",".jpeg" , ".png" })]//sadece bu uzantılar geçerli
     public IFormFile ImageFile { get; set; }
     

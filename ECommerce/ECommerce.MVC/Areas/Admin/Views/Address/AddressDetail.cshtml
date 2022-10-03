@@ -1,3 +1,4 @@
+@using ECommerce.Business.Extensions
 @model AddressDto
 @{
     Layout = "Admin/_AdminLayout";
@@ -120,7 +121,7 @@
                                         <td>
                                             <label asp-for="AddressType"></label>
                                         </td>
-                                        <td class="text-muted">@Model.AddressType</td>
+                                        <td class="text-muted">@Model.AddressType.GetEnumDescription()</td>
                                     </tr>
                                     <tr>
                                         <td>

@@ -19,7 +19,7 @@ namespace ECommerce.DataAccess.Concrete.EfCore.Mappings;
             builder.Property(address => address.AddressType)
                 .HasConversion(
                     a=>a.ToString(),
-                    a=>(AddressEnum)Enum.Parse(typeof(AddressEnum),a))
+                    a=>(AddressType)Enum.Parse(typeof(AddressType),a))
                 .IsRequired();
             builder.Property(address => address.NeighborhoodOrVillage).HasMaxLength(250).IsRequired();
             builder.Property(address => address.District).HasMaxLength(250).IsRequired();
@@ -37,7 +37,7 @@ namespace ECommerce.DataAccess.Concrete.EfCore.Mappings;
                 Email = "bolatcan@email.com",
                 PhoneNumber = "+90(532)5757966",
                 AddressTitle = "Evim",
-                AddressType = AddressEnum.Ev,
+                AddressType = AddressType.Home,
                 NeighborhoodOrVillage = "Naci Bekir",
                 District = "Yenimahalle",
                 City ="Ankara",
@@ -54,7 +54,7 @@ namespace ECommerce.DataAccess.Concrete.EfCore.Mappings;
                 Email = "bolatcan@email.com",
                 PhoneNumber = "+90(532)5757966",
                 AddressTitle = "İş",
-                AddressType = AddressEnum.İş,
+                AddressType = AddressType.Work,
                 NeighborhoodOrVillage = "Mustafa Kemal",
                 District = "Çankaya",
                 City ="Ankara",

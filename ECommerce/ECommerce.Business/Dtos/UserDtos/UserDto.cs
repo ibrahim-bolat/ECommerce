@@ -19,7 +19,7 @@ public class UserDto:BaseDto,IDto
         public string UserName { get; set; }
         
         [Display(Name = "Cinsiyet")]
-        public GenderEnum GenderType { get; set; }
+        public GenderType GenderType { get; set; }
         
         [Display(Name = "Kimlik No")]
         public string UserIdendityNo { get; set; }

@@ -1,3 +1,4 @@
+@using ECommerce.Business.Extensions
 @model UserDetailDto
 @{
     Layout = "Admin/_AdminLayout";
@@ -117,7 +118,7 @@
                                                                 <td>
                                                                     <label asp-for="UserDto.GenderType"></label>
                                                                 </td>
-                                                                <td class="text-muted">@Model.UserDto.GenderType</td>
+                                                                <td class="text-muted">@Model.UserDto.GenderType.GetEnumDescription()</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
