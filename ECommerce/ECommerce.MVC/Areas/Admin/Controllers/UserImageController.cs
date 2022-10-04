@@ -1,34 +1,20 @@
 using AutoMapper;
 using ECommerce.Business.Abstract;
 using ECommerce.Business.Constants;
-using ECommerce.Business.Dtos.AddressDtos;
 using ECommerce.Business.Dtos.UserImageDtos;
-using ECommerce.Entities.Concrete;
-using ECommerce.Entities.Concrete.Identity.Entities;
 using ECommerce.Shared.Utilities.ComplexTypes;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace ECommerce.MVC.Areas.Admin.Controllers;
 
 [Area("Admin")]
 public class UserImageController : Controller
 {
-    private readonly UserManager<AppUser> _userManager;
-    private readonly SignInManager<AppUser> _signInManager;
-    private readonly RoleManager<AppRole> _roleManager;
     private readonly IUserImageService _userImageService;
-    private readonly IMapper _mapper;
 
-    public UserImageController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,
-        RoleManager<AppRole> roleManager, IUserImageService userImageService, IMapper mapper)
+    public UserImageController(IUserImageService userImageService)
     {
-        _userManager = userManager;
-        _signInManager = signInManager;
-        _roleManager = roleManager;
         _userImageService = userImageService;
-        _mapper = mapper;
     }
 
     [HttpGet]

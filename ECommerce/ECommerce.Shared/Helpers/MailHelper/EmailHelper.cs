@@ -1,6 +1,7 @@
 using System.Net;
 using System.Net.Mail;
 using ECommerce.Helpers.MailHelper;
+using ECommerce.Shared.Models;
 using ECommerce.Shared.Service.Abtract;
 using Microsoft.Extensions.Options;
 
@@ -18,7 +19,7 @@ namespace ECommerce.Shared.Helpers.MailHelper
         {
             
             MailMessage mailMessage = new MailMessage();
-            mailMessage.From = new MailAddress(_mailSettings.Mail,$"{mailRequest.MailSubject}", System.Text.Encoding.UTF8);
+            mailMessage.From = new MailAddress(_mailSettings.Mail,mailRequest.DisplayName, System.Text.Encoding.UTF8);
             mailMessage.To.Add(new MailAddress(mailRequest.ToMail));
 
             mailMessage.Subject = mailRequest.MailSubject;

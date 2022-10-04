@@ -2,30 +2,19 @@ using AutoMapper;
 using ECommerce.Business.Abstract;
 using ECommerce.Business.Constants;
 using ECommerce.Business.Dtos.AddressDtos;
-using ECommerce.Entities.Concrete;
-using ECommerce.Entities.Concrete.Identity.Entities;
 using ECommerce.Shared.Utilities.ComplexTypes;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace ECommerce.MVC.Areas.Admin.Controllers;
 
 [Area("Admin")]
 public class AddressController : Controller
 {
-    private readonly UserManager<AppUser> _userManager;
-    private readonly SignInManager<AppUser> _signInManager;
-    private readonly RoleManager<AppRole> _roleManager;
     private readonly IAddressService _addressService;
     private readonly IMapper _mapper;
 
-    public AddressController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,
-        RoleManager<AppRole> roleManager, IAddressService addressService, IMapper mapper)
+    public AddressController(IAddressService addressService, IMapper mapper)
     {
-        _userManager = userManager;
-        _signInManager = signInManager;
-        _roleManager = roleManager;
         _addressService = addressService;
         _mapper = mapper;
     }
@@ -119,7 +108,7 @@ public class AddressController : Controller
             if (dresult.ResultStatus==ResultStatus.Success)
             {
                 var userId = dresult.Data.UserId;
-                return Json(new { success = true, userId = userId });
+                return Json(new { success = true, userId });
             }
             return Json(new { success = false});
         }

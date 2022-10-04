@@ -47,7 +47,7 @@ namespace ECommerce.MVC.Areas.Admin.Controllers;
                 var searchValue = Request.Form["search[value]"].FirstOrDefault();
                 int pageSize = length == "-1" ? userData.Count() : length != null ? Convert.ToInt32(length) : 0;
                 int skip = start != null ? Convert.ToInt32(start) : 0;
-                int recordsTotal = 0;
+                int recordsTotal;
                 if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDirection)))
                 {
                     userData = userData.OrderBy(s => sortColumn + " " + sortColumnDirection);
@@ -78,7 +78,7 @@ namespace ECommerce.MVC.Areas.Admin.Controllers;
                 var data = userData.Skip(skip).Take(pageSize).ToList();
                 var jsonData = new
                 {
-                    draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data,
+                    draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data, 
                     isSusccess = true
                 };
                 return Ok(jsonData);
@@ -97,7 +97,7 @@ namespace ECommerce.MVC.Areas.Admin.Controllers;
             {
                 return PartialView("PartialViews/_UserCreateModalPartial", registerDto);
             }
-            IdentityResult createResult, confirmResult,roleResult = null;
+            IdentityResult createResult, confirmResult, roleResult;
             AppUser newUsers = _mapper.Map<AppUser>(registerDto);
             AppRole role = await _roleManager.FindByNameAsync(RoleType.User.ToString());
             if (role == null)
@@ -125,25 +125,25 @@ namespace ECommerce.MVC.Areas.Admin.Controllers;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetbyID(string ID)
+        public async Task<IActionResult> GetbyId(string id)
         {
-            AppUser appUser = await _userManager.FindByIdAsync(ID);
+            AppUser appUser = await _userManager.FindByIdAsync(id);
             if (appUser != null)
             {
                 UserSummaryDto model = _mapper.Map<UserSummaryDto>(appUser);
                 return Json(new { success = true, user = model });
             }
             ModelState.AddModelError("NoUser", "Bu bilgilere sahip bir kullanıcı bulunamadı.");
-            var errors = ModelState.ToDictionary(x => x.Key, x => x.Value.Errors);
+            var errors = ModelState.ToDictionary(x => x.Key, x => x.Value?.Errors);
             return Json(new { success = false, errors = errors });
         }
 
 
         [HttpPost]
-        public async Task<IActionResult> Delete(string ID)
+        public async Task<IActionResult> Delete(string id)
         {
-            IdentityResult result = null;
-            AppUser deletedUser = await _userManager.FindByIdAsync(ID);
+            IdentityResult result;
+            AppUser deletedUser = await _userManager.FindByIdAsync(id);
             if (deletedUser != null)
             {
                 deletedUser.IsActive = false;
@@ -168,14 +168,14 @@ namespace ECommerce.MVC.Areas.Admin.Controllers;
                 }
             }
             //result.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
-            var errors = ModelState.ToDictionary(x => x.Key, x => x.Value.Errors);
+            var errors = ModelState.ToDictionary(x => x.Key, x => x.Value?.Errors);
             return Json(new { success = false, errors = errors });
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetRole(string Id)
+        public async Task<IActionResult> GetRole(string id)
         {
-            AppUser user = await _userManager.FindByIdAsync(Id);
+            AppUser user = await _userManager.FindByIdAsync(id);
             if (user != null)
             {
                 List<AppRole> allRoles = _roleManager.Roles.ToList();
@@ -185,7 +185,7 @@ namespace ECommerce.MVC.Areas.Admin.Controllers;
                 {
                     Id = role.Id,
                     Name = role.Name,
-                    HasAssign = userRoles.Contains(role.Name)
+                    HasAssign = userRoles != null && userRoles.Contains(role.Name)
                 }));
                 return Json(new { success = true, roles = assignRoles });
             }
@@ -193,17 +193,17 @@ namespace ECommerce.MVC.Areas.Admin.Controllers;
         }
 
         [HttpPost]
-        public async Task<IActionResult> SaveRole(string Id, List<String> roles)
+        public async Task<IActionResult> SaveRole(string id, List<String> roles)
         {
-            if (!string.IsNullOrEmpty(Id) && roles != null)
+            if (!string.IsNullOrEmpty(id) && roles != null)
             {
-                AppUser user = await _userManager.FindByIdAsync(Id);
+                AppUser user = await _userManager.FindByIdAsync(id);
                 if (user != null)
                 {
                     List<AppRole> allRoles = _roleManager.Roles.ToList();
                     List<RoleOperationDto> newAssignRoles = new List<RoleOperationDto>();
                     List<string> userNewRoles = new List<string>();
-                    AppRole appR = null;
+                    AppRole appR;
                     foreach (var role in roles)
                     {
                         appR = await _roleManager.FindByIdAsync(role);

@@ -1,11 +1,11 @@
 using System.Web;
 using AutoMapper;
 using ECommerce.Business.Abstract;
-using ECommerce.Business.Dtos.AddressDtos;
 using ECommerce.Business.Dtos.UserDtos;
 using ECommerce.Entities.Concrete.Identity.Entities;
 using ECommerce.Shared.Entities.Enums;
 using ECommerce.Helpers.MailHelper;
+using ECommerce.Shared.Models;
 using ECommerce.Shared.Service.Abtract;
 using ECommerce.Shared.Utilities.ComplexTypes;
 using Microsoft.AspNetCore.Authorization;
@@ -58,7 +58,7 @@ public class AccountController : Controller
             if (role == null)
                 await _roleManager.CreateAsync(new AppRole { Name = RoleType.User.ToString() });
             IdentityResult userResult = await _userManager.CreateAsync(applicationUser, model.Password);
-            IdentityResult roleResult = null;
+            IdentityResult roleResult;
             if (userResult.Succeeded)
             {
                 roleResult = await _userManager.AddToRoleAsync(applicationUser, RoleType.User.ToString());
@@ -122,10 +122,10 @@ public class AccountController : Controller
                         await _userManager.ResetAccessFailedCountAsync(user);
                         if (string.IsNullOrEmpty(TempData["returnUrl"] != null ? TempData["returnUrl"].ToString() : ""))
                             return RedirectToAction("Index", "Home");
-                        if (TempData["returnUrl"].Equals("Index") || TempData["returnUrl"].Equals("/"))
+                        if (TempData["returnUrl"]!.Equals("Index") || TempData["returnUrl"].Equals("/"))
                             return RedirectToAction("Index", "Home");
 
-                        return Redirect(TempData["returnUrl"].ToString());
+                        return Redirect(TempData["returnUrl"].ToString()!);
                     }
 
                     await _userManager.AccessFailedAsync(user);
@@ -186,6 +186,7 @@ public class AccountController : Controller
                 MailRequest mailRequest = new MailRequest
                 {
                     ToMail = model.Email,
+                    DisplayName = "Bolat A.Ş.",
                     ConfirmationLink = confirmationLink,
                     MailSubject = "Şifre Güncelleme Talebi",
                     IsBodyHtml = true,
@@ -200,7 +201,6 @@ public class AccountController : Controller
                 {
                     ViewBag.State = false;
                 }
-
                 ViewBag.State = true;
             }
             ModelState.AddModelError("UserDeleted", "Bu E-posta ya sahip kullanıcı silindiği için bu işlemi yapamaz.");
@@ -215,9 +215,18 @@ public class AccountController : Controller
 
     [AllowAnonymous]
     [HttpGet("[action]/{userId}/{token}")] 
-    public IActionResult UpdatePassword(string userId, string token)
+    public async Task<IActionResult> UpdatePassword(string userId, string token)
     {
-        return View();
+        AppUser user = await _userManager.FindByIdAsync(userId);
+        if (user != null)
+        {
+            string verifyToken = HttpUtility.UrlDecode(token);
+            bool result = await  _userManager.VerifyUserTokenAsync(user, _userManager.Options.Tokens.PasswordResetTokenProvider,
+                "ResetPassword", verifyToken);
+            if(result)
+                return View();
+        }
+        return RedirectToAction("AllErrorPages", "ErrorPages" ,new { statusCode = 404});
     }
 
     [AllowAnonymous]
@@ -269,16 +278,16 @@ public class AccountController : Controller
         {
             if (ModelState.IsValid)
             {
-                IdentityResult result = null;
-                AppUser user = null;
-                if (model.Email.Equals(TempData["oldEmail"].ToString()))
+                IdentityResult result;
+                AppUser user;
+                if (model.Email.Equals(TempData["oldEmail"]?.ToString()))
                 {
                     user =  await _userManager.FindByEmailAsync(model.Email);
                     if (user != null)
                     {
                         if (user.IsActive)
                         {
-                            user = _mapper.Map<UserDto, AppUser>(model, user);
+                            user = _mapper.Map(model, user);
                         }
                         else
                         {
@@ -294,12 +303,12 @@ public class AccountController : Controller
                 }
                 else
                 {
-                    user =  await _userManager.FindByEmailAsync(TempData["oldEmail"].ToString());
+                    user =  await _userManager.FindByEmailAsync(TempData["oldEmail"]?.ToString());
                     if (user != null)
                     {
                         if (user.IsActive)
                         {
-                            user = _mapper.Map<UserDto, AppUser>(model, user);
+                            user = _mapper.Map(model, user);
                             result = await _userManager.SetEmailAsync(user, model.Email);
                             if (!result.Succeeded)
                             {
@@ -337,7 +346,7 @@ public class AccountController : Controller
                     result.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
                     return View(model);
                 }
-                if (User.Identity?.Name==TempData["oldEmail"].ToString() && model.Email != TempData["oldEmail"].ToString())
+                if (User.Identity?.Name==TempData["oldEmail"]?.ToString() && model.Email != TempData["oldEmail"]?.ToString())
                 {
                     await _signInManager.SignOutAsync();
                     await _signInManager.SignInAsync(user, true);
@@ -368,14 +377,13 @@ public class AccountController : Controller
     {
         if (ModelState.IsValid)
         {
-                IdentityResult result = null;
-                AppUser user = await _userManager.FindByIdAsync(model.Id.ToString());
+            AppUser user = await _userManager.FindByIdAsync(model.Id.ToString());
                 if(user!=null)
                 {
                     if (user.IsActive)
                     {
                         var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-                        result = await _userManager.ResetPasswordAsync(user, token, model.NewPassword);
+                        var result = await _userManager.ResetPasswordAsync(user, token, model.NewPassword);
                         if (!result.Succeeded)
                         {
                             result.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
@@ -388,7 +396,7 @@ public class AccountController : Controller
                             return View(model);
                         }
 
-                        if (User.Identity.Name == user.UserName)
+                        if (User.Identity?.Name == user.UserName)
                         {
                             await _signInManager.SignOutAsync();
                             await _signInManager.SignInAsync(user, true);

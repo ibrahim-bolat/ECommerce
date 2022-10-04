@@ -1,8 +1,9 @@
-namespace ECommerce.Helpers.MailHelper;
+namespace  ECommerce.Shared.Models;
 
 public class MailRequest
 {
     public string ToMail { get; set; }
+    public string DisplayName { get; set; }
     public string ConfirmationLink { get; set; }
     public string MailSubject { get; set; }
     public bool IsBodyHtml { get; set; }

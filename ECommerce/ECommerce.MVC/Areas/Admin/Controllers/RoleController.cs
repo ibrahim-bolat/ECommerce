@@ -38,7 +38,7 @@ namespace ECommerce.MVC.Areas.Admin.Controllers;
         [HttpPost]
         public async Task<IActionResult> CreateRole(RoleDto model, string id)
         {
-            IdentityResult result = null;
+            IdentityResult result;
             if (id != null)
             {
                 AppRole role = await _roleManager.FindByIdAsync(id);
@@ -63,7 +63,7 @@ namespace ECommerce.MVC.Areas.Admin.Controllers;
             List<RoleAssignDto> assignRoles = new List<RoleAssignDto>();
             allRoles.ForEach(role => assignRoles.Add(new RoleAssignDto
             {
-                HasAssign = userRoles.Contains(role.Name),
+                HasAssign = userRoles != null && userRoles.Contains(role.Name),
                 RoleId = role.Id,
                 RoleName = role.Name
             }));

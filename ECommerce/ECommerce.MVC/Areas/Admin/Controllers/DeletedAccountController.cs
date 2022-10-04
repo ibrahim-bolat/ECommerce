@@ -35,7 +35,7 @@ public class DeletedAccountController : Controller
             var searchValue = Request.Form["search[value]"].FirstOrDefault();
             int pageSize = length == "-1" ? userData.Count() : length != null ? Convert.ToInt32(length) : 0;
             int skip = start != null ? Convert.ToInt32(start) : 0;
-            int recordsTotal = 0;
+            int recordsTotal;
             if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDirection)))
             {
                 userData = userData.OrderBy(s => sortColumn + " " + sortColumnDirection);
@@ -66,8 +66,7 @@ public class DeletedAccountController : Controller
             var data = userData.Skip(skip).Take(pageSize).ToList();
             var jsonData = new
             {
-                draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data,
-                isSusccess = true
+                draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data, isSusccess = true
             };
             return Ok(jsonData);
         }
@@ -82,7 +81,6 @@ public class DeletedAccountController : Controller
     public async Task<IActionResult> SetActiveUser(int userId)
     {
         AppUser user = await _userManager.FindByIdAsync(userId.ToString());
-        IdentityResult result = null;
         if (user != null)
         {
             if (user.IsDeleted)
@@ -91,7 +89,7 @@ public class DeletedAccountController : Controller
                 user.IsDeleted = false;
                 user.ModifiedTime = DateTime.Now;
                 user.ModifiedByName = User.Identity?.Name;
-                result = await _userManager.UpdateAsync(user);
+                var result = await _userManager.UpdateAsync(user);
                 if (!result.Succeeded)
                 {
                     result.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
@@ -108,7 +106,7 @@ public class DeletedAccountController : Controller
                     return Json(new { success = true });
                 }
             }
-            var errors = ModelState.ToDictionary(x => x.Key, x => x.Value.Errors);
+            var errors = ModelState.ToDictionary(x => x.Key, x => x.Value?.Errors);
             return Json(new { success = false, errors = errors });
         }
         return RedirectToAction("AllErrorPages", "ErrorPages" ,new { statusCode = 404});

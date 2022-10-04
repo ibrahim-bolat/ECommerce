@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "kDmVTiT0wqCzObm0ODfd1e+Hl6MuND/ycuvyCAMYPBw=",
+  "Hash": "o+UXawwXluUcbtVymYT5ALqEOsAUNAjcH8FH/8MqogY=",
   "Source": "ECommerce.MVC",
   "BasePath": "_content/ECommerce.MVC",
   "Mode": "Default",
@@ -1766,6 +1766,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/admin/images/userimages/logo1.png"
+    },
+    {
+      "Identity": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.MVC/wwwroot/admin/images/userimages/logo2.png",
+      "SourceId": "ECommerce.MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.MVC/wwwroot/",
+      "BasePath": "_content/ECommerce.MVC",
+      "RelativePath": "admin/images/userimages/logo2.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/admin/images/userimages/logo2.png"
     },
     {
       "Identity": "/home/ibrahim.bolat/RiderProjects/Repos/ECommerce/ECommerce/ECommerce.MVC/wwwroot/admin/images/userimages/Url Dogulama.png",

@@ -1,4 +1,5 @@
 using ECommerce.Helpers.MailHelper;
+using ECommerce.Shared.Models;
 
 namespace ECommerce.Shared.Service.Abtract;
 
