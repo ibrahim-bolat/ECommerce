@@ -35,9 +35,10 @@
     </form>
 </div>
 @section Scripts {
-<script>
+    <script>
     document.addEventListener("DOMContentLoaded", function() {
         var loginMessage = '@TempData["LoginSuccess"]';
+        var updatePasswordMessage = '@TempData["UpdatePasswordStatus"]';
         if (loginMessage)
         {
             const Toast = Swal.mixin({
@@ -59,6 +60,27 @@
             text: 'Artık giriş yapabilirsiniz.',
             })
 
+        }
+        if (updatePasswordMessage==="True")
+        {
+            const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 5000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('click', Swal.close)
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+            })
+
+            Toast.fire({
+            icon: 'success',
+            title: 'Tebrikler Şifre Güncellendi.',
+            text: 'Şifre Güncelleme İşlemi Başarıyla Gerçekleşmiştir.',
+            })
         }
 });
 </script>

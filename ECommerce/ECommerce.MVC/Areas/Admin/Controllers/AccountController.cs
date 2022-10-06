@@ -194,10 +194,10 @@ public class AccountController : Controller
                 bool emailResponse = _emailService.SendEmail(mailRequest);
                 if (emailResponse)
                 {
-                    ViewBag.State = true;
+                    TempData["EmailSendStatus"] = true;
                     return View();
                 }
-                ViewBag.State = false;
+                TempData["EmailSendStatus"] = false;
                 return View();
             }
             ModelState.AddModelError("UserDeleted", "Bu E-posta ya sahip kullanıcı silindiği için bu işlemi yapamaz.");
@@ -236,13 +236,12 @@ public class AccountController : Controller
                     await _userManager.ResetPasswordAsync(user, HttpUtility.UrlDecode(token), model.Password);
                 if (result.Succeeded)
                 {
-                    ViewBag.State = true;
+                    TempData["UpdatePasswordStatus"] = true;
                     await _userManager.UpdateSecurityStampAsync(user);
+                    return RedirectToAction("Login", "Account" ,new { area = "Admin"});
                 }
-                else
-                {
-                    ViewBag.State = false;
-                }
+                TempData["UpdatePasswordStatus"] = false;
+                return View();
             }
             ModelState.AddModelError("UserDeleted", "Bu E-posta ya sahip kullanıcı silindiği için bu işlemi yapamaz.");
             return View(model);
