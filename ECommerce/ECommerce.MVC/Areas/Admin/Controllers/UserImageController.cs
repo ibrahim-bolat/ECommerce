@@ -1,4 +1,3 @@
-using AutoMapper;
 using ECommerce.Business.Abstract;
 using ECommerce.Business.Constants;
 using ECommerce.Business.Dtos.UserImageDtos;
@@ -32,9 +31,9 @@ public class UserImageController : Controller
         {
             var dresult= await _userImageService.AddAsync(userImageAddDto, User.Identity?.Name);
             if (dresult.Message == Messages.UserImageCountMoreThan4)
-            {
+            { 
                 ModelState.AddModelError("UserImageCountMoreThan4", Messages.UserImageCountMoreThan4);
-               return View(userImageAddDto);
+                return View(userImageAddDto);
             }
             if (dresult.ResultStatus == ResultStatus.Success)
             {
