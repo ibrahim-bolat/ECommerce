@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using System.Drawing;
 using Microsoft.AspNetCore.Http;
 using SixLabors.ImageSharp;
 

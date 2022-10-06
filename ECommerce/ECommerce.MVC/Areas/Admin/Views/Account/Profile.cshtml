@@ -8,19 +8,8 @@
 @section Style {
     <style>
       /*------------------------------------------------------------------
-          17. Gallery Section   
+          Fancybox Gallery Section   
       -------------------------------------------------------------------*/
-      
-      .gallery_section_inner .column {
-          background: #fff;
-          box-shadow: 0 0 13px -10px #000;
-          overflow: hidden;
-      }
-      
-      .heading_section {
-          border-top: solid #1ed085 2px;
-          background: #15283c;
-      }
       
       .heading_section h4 {
           color: #fff;
@@ -91,8 +80,8 @@
                                         <table class="table border-bottom">
                                                             <thead>
                                                             <tr>
-                                                                <th width="30%" class="border-0"></th>
-                                                                <th width="70%" class="border-0"></th>
+                                                                <th class="border-0" style="width: 30%;"></th>
+                                                                <th class="border-0" style="width: 70%;"></th>
                                                             </tr>
                                                             </thead>
                                                             <tbody>
@@ -179,7 +168,7 @@
                                                                            else
                                                                            {
                                                                                <p>
-                                                                                   @address.AddressDetails.Substring(0, address.AddressDetails.Substring(0,150).LastIndexOf(" "))...
+                                                                                   @address.AddressDetails.Substring(0, address.AddressDetails.Substring(0,150).LastIndexOf(" ", StringComparison.Ordinal))...
                                                                                </p>
                                                                            }
                                                                   <p class="text-muted">@address.PhoneNumber</p>

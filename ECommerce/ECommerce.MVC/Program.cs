@@ -1,7 +1,5 @@
-using System.Reflection;
 using ECommerce.Business.Extensions;
 using ECommerce.DataAccess.Concrete.EfCore.Contexts;
-using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,7 +11,8 @@ var app = builder.Build();
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 await using var scope = app.Services.CreateAsyncScope();
 using var db = scope.ServiceProvider.GetService<DataContext>();
-await db.Database.MigrateAsync();
+if (db != null) 
+    await db.Database.MigrateAsync();
 
 
 if (!app.Environment.IsDevelopment())
@@ -39,7 +38,6 @@ app.UseEndpoints(endpoints =>
     endpoints.MapControllerRoute(
         name: "default",
         pattern: "{controller=Home}/{action=Index}/{id?}");
-
 });
 
 app.Run();

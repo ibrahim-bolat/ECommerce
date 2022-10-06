@@ -2,25 +2,15 @@ using System.Reflection;
 using System.Text.Json.Serialization;
 using ECommerce.Business.Abstract;
 using ECommerce.Business.Concrete;
-using ECommerce.Business.Dtos.AddressDtos;
-using ECommerce.Business.Dtos.RoleDtos;
-using ECommerce.Business.Dtos.UserDtos;
-using ECommerce.Business.Dtos.UserImageDtos;
-using ECommerce.Business.ValidationRules.FluentValidation.Account;
-using ECommerce.Business.ValidationRules.FluentValidation.Address;
-using ECommerce.Business.ValidationRules.FluentValidation.UserImage;
 using ECommerce.Business.Validations.Identity;
 using ECommerce.DataAccess.Abstract;
 using ECommerce.DataAccess.Concrete;
 using ECommerce.DataAccess.Concrete.EfCore.Contexts;
 using ECommerce.DataAccess.Concrete.EfCore.Repository;
 using ECommerce.Entities.Concrete.Identity.Entities;
-using ECommerce.Helpers.MailHelper;
-using ECommerce.Shared.DataAccess.Abstract;
-using ECommerce.Shared.DataAccess.Concrete.EntityFramework;
 using ECommerce.Shared.Helpers.MailHelper;
+using ECommerce.Shared.Models;
 using ECommerce.Shared.Service.Abtract;
-using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -69,8 +59,7 @@ public static class ServiceCollectionExtensions
             }).AddErrorDescriber<CustomIdentityErrorDescriber>()
             .AddEntityFrameworkStores<DataContext>()
             .AddDefaultTokenProviders();
-        ;
-        
+
         serviceCollection.ConfigureApplicationCookie(cookieOptions =>
         {
             cookieOptions.LoginPath = new PathString("/Admin/Account/Login");

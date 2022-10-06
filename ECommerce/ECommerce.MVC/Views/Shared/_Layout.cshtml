@@ -1,42 +1,79 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>@ViewData["Title"] - MyWebApp.MVC</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Ogani Template">
+    <meta name="keywords" content="Ogani, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@ViewData["Title"] - Car Dealer</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="~/css/site.css"/>
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+    
+    <!-- Css Styles -->
+        <link rel="stylesheet" href="~/css/font-awesome.min.css">
+        <link rel="stylesheet" href="~/css/elegant-icons.css">
+        <link rel="stylesheet" href="~/css/nice-select.css">
+        <link rel="stylesheet" href="~/css/jquery-ui.min.css">
+        <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="~/css/slicknav.min.css">
+        <link rel="stylesheet" href="~/css/style.css">
 </head>
 <body>
-<header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <!-- Page Preloder Begin -->
+    <partial name="_PagePreloder"/>
+    <!-- Page Preloder End-->
+
+    <!-- Humberger Begin -->
+    <partial name="_Humberger"/>
+    <!-- Humberger End-->
+
+    <!-- Header Section Begin -->
+     <partial name="_Header"/>
+    <!-- Header Section End -->
+
+    <!-- Hero Section Begin -->
+     <partial name="_Hero"/>
+    <!-- Hero Section End -->
+
+    <!-- Breadcrumb Section Begin -->
+      <partial name="_Breadcrump"/> 
+    <!-- Breadcrumb Section End -->
+
+    <!-- Product Section Begin -->
+    <section class="product spad">
         <div class="container">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MyWebApp.MVC</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="Admin" asp-controller="Account" asp-action="Login">AdminPanel</a>
-                    </li>
-                </ul>
+            <div class="row">
+                <div class="col-lg-3 col-md-5">
+                    
+                    <!-- Sidebar Section Begin -->
+                    <partial name="_Sidebar"/>
+                    <!-- Sidebar Section End -->
+                    
+                </div>
+                <div class="col-lg-9 col-md-7">
+                    @RenderBody()
+                </div>
             </div>
         </div>
-    </nav>
-</header>
-<div class="container">
-        @RenderBody()
-</div>
+    </section>
+    <!-- Product Section End -->
+
+    <!-- Footer Section Begin -->
+    <partial name="_Footer"/>
+    <!-- Footer Section End -->
+
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
 <script src="~/js/sweetalert2/sweetalert2.all.min.js"></script>
-<script src="~/js/site.js" asp-append-version="true"></script>
+<script src="~/js/jquery.nice-select.min.js"></script>
+<script src="~/js/jquery-ui.min.js"></script>
+<script src="~/js/jquery.slicknav.js"></script>
+<script src="~/js/mixitup.min.js"></script>
+<script src="~/js/owl.carousel.min.js"></script>
+<script src="~/js/main.js"></script>
 @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

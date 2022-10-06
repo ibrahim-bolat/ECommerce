@@ -178,6 +178,7 @@
     <ItemGroup>
       <Content Include="Areas\Admin\Views\UserImage\PartialViews\_UserImageSelectProfilModalPartial.cshtml" />
       <Content Remove="Areas\Admin\Views\UserImage\PartialViews\**" />
+      <Content Remove="Views\Shared\Anasayfa\_AdminHeader.cshtml" />
     </ItemGroup>
 
     <ItemGroup>

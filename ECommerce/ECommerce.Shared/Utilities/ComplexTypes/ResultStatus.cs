@@ -2,9 +2,9 @@
 
 public enum ResultStatus
     {
-        Success = 0,
-        Error = 1,
-        Warning = 2,
-        Info = 3
+        Success = 1,
+        Error = 2,
+        Warning = 3,
+        Info = 4
     }
 

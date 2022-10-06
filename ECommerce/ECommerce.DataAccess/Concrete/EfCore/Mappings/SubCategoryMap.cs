@@ -1,5 +1,4 @@
 using ECommerce.Entities.Concrete;
-using ECommerce.Shared.Entities.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

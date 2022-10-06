@@ -1,44 +1,44 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace MyWebApp.Shared.Helpers.SeoHelper
+namespace ECommerce.Shared.Helpers.SeoHelper
 {
     public class SeoHelper
     {
-        public static string ToSeoUrl(string IncomingText)
+        public static string ToSeoUrl(string incomingText)
         {
-            IncomingText = IncomingText.Replace("ş", "s");
-            IncomingText = IncomingText.Replace("Ş", "s");
-            IncomingText = IncomingText.Replace("İ", "i");
-            IncomingText = IncomingText.Replace("I", "i");
-            IncomingText = IncomingText.Replace("ı", "i");
-            IncomingText = IncomingText.Replace("ö", "o");
-            IncomingText = IncomingText.Replace("Ö", "o");
-            IncomingText = IncomingText.Replace("ü", "u");
-            IncomingText = IncomingText.Replace("Ü", "u");
-            IncomingText = IncomingText.Replace("Ç", "c");
-            IncomingText = IncomingText.Replace("ç", "c");
-            IncomingText = IncomingText.Replace("ğ", "g");
-            IncomingText = IncomingText.Replace("Ğ", "g");
-            IncomingText = IncomingText.Replace(" ", "-");
-            IncomingText = IncomingText.Replace("--", "-");
-            IncomingText = IncomingText.Replace("---", "-");
-            IncomingText = IncomingText.Replace("?", "");
-            IncomingText = IncomingText.Replace("/", "");
-            IncomingText = IncomingText.Replace(".", "");
-            IncomingText = IncomingText.Replace("'", "");
-            IncomingText = IncomingText.Replace("#", "-sharp");
-            IncomingText = IncomingText.Replace("%", "");
-            IncomingText = IncomingText.Replace("&", "");
-            IncomingText = IncomingText.Replace("*", "");
-            IncomingText = IncomingText.Replace("!", "");
-            IncomingText = IncomingText.Replace("@", "");
-            IncomingText = IncomingText.Replace("+", "");
+            incomingText = incomingText.Replace("ş", "s");
+            incomingText = incomingText.Replace("Ş", "s");
+            incomingText = incomingText.Replace("İ", "i");
+            incomingText = incomingText.Replace("I", "i");
+            incomingText = incomingText.Replace("ı", "i");
+            incomingText = incomingText.Replace("ö", "o");
+            incomingText = incomingText.Replace("Ö", "o");
+            incomingText = incomingText.Replace("ü", "u");
+            incomingText = incomingText.Replace("Ü", "u");
+            incomingText = incomingText.Replace("Ç", "c");
+            incomingText = incomingText.Replace("ç", "c");
+            incomingText = incomingText.Replace("ğ", "g");
+            incomingText = incomingText.Replace("Ğ", "g");
+            incomingText = incomingText.Replace(" ", "-");
+            incomingText = incomingText.Replace("--", "-");
+            incomingText = incomingText.Replace("---", "-");
+            incomingText = incomingText.Replace("?", "");
+            incomingText = incomingText.Replace("/", "");
+            incomingText = incomingText.Replace(".", "");
+            incomingText = incomingText.Replace("'", "");
+            incomingText = incomingText.Replace("#", "-sharp");
+            incomingText = incomingText.Replace("%", "");
+            incomingText = incomingText.Replace("&", "");
+            incomingText = incomingText.Replace("*", "");
+            incomingText = incomingText.Replace("!", "");
+            incomingText = incomingText.Replace("@", "");
+            incomingText = incomingText.Replace("+", "");
 
-            IncomingText = IncomingText.ToLower();
-            IncomingText = IncomingText.Trim();
+            incomingText = incomingText.ToLower();
+            incomingText = incomingText.Trim();
 
             // tüm harfleri küçült
-            string encodedUrl = (IncomingText ?? "").ToLower();
+            string encodedUrl = (incomingText ?? "").ToLower();
 
             // & ile " " yer değiştirme
             encodedUrl = Regex.Replace(encodedUrl, @"&+", "and");

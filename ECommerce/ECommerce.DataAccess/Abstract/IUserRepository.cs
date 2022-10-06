@@ -1,4 +1,3 @@
-using ECommerce.Entities.Concrete;
 using ECommerce.Entities.Concrete.Identity.Entities;
 using ECommerce.Shared.DataAccess.Abstract;
 

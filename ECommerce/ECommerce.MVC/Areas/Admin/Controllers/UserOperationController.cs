@@ -189,7 +189,7 @@ namespace ECommerce.MVC.Areas.Admin.Controllers;
                 }));
                 return Json(new { success = true, roles = assignRoles });
             }
-            return RedirectToAction("AllErrorPages", "ErrorPages" ,new { statusCode = 404});
+            return RedirectToAction("AllErrorPages", "ErrorPages" ,new { area = "", statusCode = 404});
         }
 
         [HttpPost]
@@ -237,7 +237,7 @@ namespace ECommerce.MVC.Areas.Admin.Controllers;
                     }
                     return Json(new { success = true });
                 }
-                return RedirectToAction("AllErrorPages", "ErrorPages" ,new { statusCode = 404});
+                return RedirectToAction("AllErrorPages", "ErrorPages" ,new { area = "", statusCode = 404});
             }
             return Json(new { success = false });
         }

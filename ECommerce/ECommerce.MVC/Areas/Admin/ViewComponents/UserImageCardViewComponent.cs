@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using ECommerce.Business.Abstract;
+﻿using ECommerce.Business.Abstract;
 using ECommerce.Shared.Utilities.ComplexTypes;
 using Microsoft.AspNetCore.Mvc;
 

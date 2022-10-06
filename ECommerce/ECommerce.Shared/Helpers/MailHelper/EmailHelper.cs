@@ -1,6 +1,5 @@
 using System.Net;
 using System.Net.Mail;
-using ECommerce.Helpers.MailHelper;
 using ECommerce.Shared.Models;
 using ECommerce.Shared.Service.Abtract;
 using Microsoft.Extensions.Options;
@@ -30,7 +29,7 @@ namespace ECommerce.Shared.Helpers.MailHelper
             client.Credentials = new NetworkCredential(_mailSettings.Mail, _mailSettings.Password);
             client.Port = _mailSettings.Port;
             client.Host = _mailSettings.Host;
-            client.EnableSsl = _mailSettings.UseSSL;
+            client.EnableSsl = _mailSettings.UseSsl;
  
             try
             {
@@ -40,8 +39,8 @@ namespace ECommerce.Shared.Helpers.MailHelper
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
+                return false;
             }
-            return false;
         }
     }
 }

@@ -7,20 +7,8 @@
 @section Style {
     <style>
       /*------------------------------------------------------------------
-          17. Gallery Section   
+          Fancybox Gallery Section
       -------------------------------------------------------------------*/
-      
-      .gallery_section_inner .column {
-          background: #fff;
-          box-shadow: 0 0 13px -10px #000;
-          overflow: hidden;
-      }
-      
-      .heading_section {
-          border-top: solid #1ed085 2px;
-          background: #15283c;
-      }
-      
       .heading_section h4 {
           color: #fff;
           margin: 0;
@@ -75,15 +63,15 @@
             <div class="col-lg-8">
                          <div class="card">
                              <div class="card-header">
-                                 <h3>Kullanıcı Bilgileri</h3>
+                                 <h3>Kullanıcı Adres Bilgileri</h3>
                                  </div>
                             <div class="card-body">
                                 <a asp-area="Admin" asp-controller="Address" asp-action="AddressAdd" asp-route-userId="@Model.UserId" class="btn btn-outline-primary mb-2">Adres Ekle</a>
                                 <table class="table border-bottom">
                                     <thead>
                                     <tr>
-                                        <th width="30%" class="border-0"></th>
-                                        <th width="70%" class="border-0"></th>
+                                        <th class="border-0" style="width: 30%;"></th>
+                                        <th class="border-0" style="width: 70%;"></th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -146,6 +134,12 @@
                                             <label asp-for="AddressDetails"></label>
                                         </td>
                                         <td class="text-muted">@Model.AddressDetails </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label asp-for="Note"></label>
+                                        </td>
+                                        <td class="text-muted">@Model.Note </td>
                                     </tr>
                                     <tr>
                                         <td>

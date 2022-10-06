@@ -1,6 +1,5 @@
 using ECommerce.DataAccess.Abstract;
 using ECommerce.DataAccess.Concrete.EfCore.Contexts;
-using ECommerce.DataAccess.Concrete.EfCore.Repository;
 
 namespace ECommerce.DataAccess.Concrete;
 

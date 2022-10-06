@@ -1,28 +1,13 @@
-@using ECommerce.Shared.Entities.Enums
 @model UserImageAddDto
-
 @{
     Layout = "Admin/_AdminLayout";
     ViewBag.Title = "Resim Ekle";
 }
-
 @section Style {
     <style>
       /*------------------------------------------------------------------
-          17. Gallery Section   
+         Fancybox Gallery Section   
       -------------------------------------------------------------------*/
-      
-      .gallery_section_inner .column {
-          background: #fff;
-          box-shadow: 0 0 13px -10px #000;
-          overflow: hidden;
-      }
-      
-      .heading_section {
-          border-top: solid #1ed085 2px;
-          background: #15283c;
-      }
-      
       .heading_section h4 {
           color: #fff;
           margin: 0;
@@ -53,8 +38,7 @@
             </div>
         </div>
     </div>
-
-    <div class="content mt-3">
+<div class="content mt-3">
         <div class="col-sm-12">
             <div class="alert  alert-success alert-dismissible fade show" role="alert">
                 <span class="badge badge-pill badge-success">Success</span> You successfully read this important alert message.
@@ -130,7 +114,7 @@
         <script src="~/lib/fancybox/js/jquery.fancybox.min.js"></script>
         <script src="~/admin/js/UserImage/userImage.js"></script>
     <script>
-                document.addEventListener("DOMContentLoaded", function(event) {
+                document.addEventListener("DOMContentLoaded", function() {
                     var addAddressMessage = '@TempData["AddUserImageSuccess"]';
                     if (addAddressMessage)
                     {

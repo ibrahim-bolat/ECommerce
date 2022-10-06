@@ -13,6 +13,10 @@ public class ErrorPagesController : Controller
             case 001:
                 ViewBag.ErrorMessage = "Bağlantının süresi doldu.";
                 ViewBag.ErrorNumber = "Oh no!";
+                break;            
+            case 400:
+                ViewBag.ErrorMessage = "Geçersiz istek.";
+                ViewBag.ErrorNumber = "400";
                 break;
             case 401:
                 ViewBag.ErrorMessage = "Bu sayfaya erişiminiz yok. Lütfen oturum açtığınızdan emin olun.";

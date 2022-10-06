@@ -1,4 +1,3 @@
-using ECommerce.Shared.Entities.Abtract;
 using ECommerce.Shared.Entities.Enums;
 
 namespace ECommerce.Shared.Entities.Abtract;

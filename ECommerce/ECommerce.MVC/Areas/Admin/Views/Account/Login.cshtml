@@ -30,13 +30,13 @@
         </div>
         <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Giriş Yap</button>
         <div class="register-link m-t-15 text-center">
-            <p>Hesabın yok mu? <a asp-area="Admin" asp-controller="Account" asp-action="Register"> Kaydol</a></p>
+            <p>Hesabın yok mu? <a asp-area="Admin" asp-controller="Account" asp-action="Register">Kaydol</a></p>
         </div>
     </form>
 </div>
 @section Scripts {
 <script>
-    document.addEventListener("DOMContentLoaded", function(event) {
+    document.addEventListener("DOMContentLoaded", function() {
         var loginMessage = '@TempData["LoginSuccess"]';
         if (loginMessage)
         {

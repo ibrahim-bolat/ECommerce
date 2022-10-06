@@ -9,20 +9,9 @@
 @section Style {
     <style>
       /*------------------------------------------------------------------
-          17. Gallery Section   
+          Fancybox Gallery Section   
       -------------------------------------------------------------------*/
-      
-      .gallery_section_inner .column {
-          background: #fff;
-          box-shadow: 0 0 13px -10px #000;
-          overflow: hidden;
-      }
-      
-      .heading_section {
-          border-top: solid #1ed085 2px;
-          background: #15283c;
-      }
-      
+
       .heading_section h4 {
           color: #fff;
           margin: 0;
@@ -98,7 +87,7 @@
                             <div class="form-group row">
                                 <label asp-for="GenderType" class="col-sm-2 col-form-label"></label>
                                 <div class="col-sm-10">
-                                    @foreach (var item in System.Enum.GetValues(typeof(GenderType)).OfType<GenderType>())
+                                    @foreach (var item in Enum.GetValues(typeof(GenderType)).OfType<GenderType>())
                                     {
                                         <label>
                                             <input type="radio" asp-for="GenderType" value="@Convert.ToInt32(item)" checked="@(item == Model?.GenderType)"/>

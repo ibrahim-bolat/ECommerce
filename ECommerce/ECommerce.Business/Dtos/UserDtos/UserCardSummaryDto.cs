@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using ECommerce.Business.Dtos.UserImageDtos;
 using ECommerce.Shared.Entities.Abtract;
 using ECommerce.Shared.Entities.Enums;
 

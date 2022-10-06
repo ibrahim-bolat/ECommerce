@@ -18,4 +18,5 @@ namespace ECommerce.Entities.Concrete;
         public Model Model { get; set; }
         public VehicleAddress VehicleAddress { get; set; }
         public List<VehicleImage> VehicleImages { get; set; }
+        
     }

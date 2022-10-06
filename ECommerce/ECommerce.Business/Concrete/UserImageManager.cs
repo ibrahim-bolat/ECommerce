@@ -8,7 +8,6 @@ using ECommerce.Shared.Utilities.Abstract;
 using ECommerce.Shared.Utilities.ComplexTypes;
 using ECommerce.Shared.Utilities.Concrete;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using IResult = ECommerce.Shared.Utilities.Abstract.IResult;
 
 
@@ -42,8 +41,8 @@ public class UserImageManager:IUserImageService
         userImage.ModifiedTime=DateTime.Now;
         userImage.IsActive = true;
         userImage.IsDeleted = false;
-        var addedUserImage= await _unitOfWork.UserImageRepository.AddAsync(userImage);
-        if (count > 0 && count < 4 && userImage.Profil)
+        await _unitOfWork.UserImageRepository.AddAsync(userImage);
+        if (count > 0  && userImage.Profil)
         {
             var userImages =
                 await _unitOfWork.UserImageRepository.GetAllAsync(ui =>
@@ -73,16 +72,16 @@ public class UserImageManager:IUserImageService
     {
         var imageFileName = Path.GetFileNameWithoutExtension(userImageAddDto.ImageFile.FileName);
 
-        var localImageFileDir = $"wwwroot/admin/images/userimages";// wwwroot/admin/images/userimages
+        var localImageFileDir = $"wwwroot/admin/images/userimages/{userImageAddDto.UserId}";// wwwroot/admin/images/userimages/1
         var extension = Path.GetExtension(userImageAddDto.ImageFile.FileName).ToLower();
-
-        //local userimages klasörü yoksa oluştur.
+        
+        //local userimages/userId klasörü yoksa oluştur.
         if (!Directory.Exists(Path.Combine(localImageFileDir)))
         {
             Directory.CreateDirectory(Path.Combine(localImageFileDir));
         }
-
-        var localImageFilePath = $"{localImageFileDir}/{imageFileName}{extension}"; // wwwroot/admin/images/userimages/profil.jpg
+        
+        var localImageFilePath = $"{localImageFileDir}/{imageFileName}{extension}"; // wwwroot/admin/images/userimages/1/profil.jpg
 
         int count = 1;
         var tempFileName = imageFileName;
@@ -92,42 +91,32 @@ public class UserImageManager:IUserImageService
             localImageFilePath = $"{localImageFileDir}/{imageFileName}{extension}";
         }
 
-        var path = $"/admin/images/userimages/{imageFileName}{extension}";// /admin/images/userimages/profil.jpg
+        var path = $"/admin/images/userimages/{userImageAddDto.UserId}/{imageFileName}{extension}";// /admin/images/userimages/1/profil.jpg
 
         using (Stream fileStream = new FileStream(localImageFilePath, FileMode.Create))
         {
             await userImageAddDto.ImageFile.CopyToAsync(fileStream);
         }
-
         return path;
     }
 
-    public async Task<IResult> UpdateAsync(UserImageDto userImageDto, string modifiedByName)
-    {
-        var userImage = _mapper.Map<UserImage>(userImageDto);
-        userImage.ModifiedByName = modifiedByName;
-        userImage.ModifiedTime = DateTime.Now;
-        var updatedUserImage= await _unitOfWork.UserImageRepository.UpdateAsync(userImage);
-        var result = await _unitOfWork.SaveAsync();
-        if (result > 0)
-            return new DataResult<UserImageDto>(ResultStatus.Success,
-                Messages.UserImageUpdated, userImageDto);
-        return new Result(ResultStatus.Error, Messages.UserImageNotUpdated);
-    }
     public async Task<IDataResult<UserImageDto>> DeleteAsync(int id, string modifiedByName)
     {
         var userImage = await _unitOfWork.UserImageRepository.GetAsync(x => x.Id == id && x.IsActive==true);
         if (userImage != null)
         {
             var imagePath = _hostEnvironment.WebRootPath + userImage.ImagePath;
+            var userImagePath = $"{_hostEnvironment.WebRootPath}/admin/images/userimages/{userImage.UserId}";
             if (File.Exists(imagePath))
             {
                 File.Delete(imagePath);
+                if(Directory.Exists(userImagePath) && Directory.GetFiles(userImagePath).Length==0)
+                    Directory.Delete(userImagePath);
                 userImage.IsActive = false;
                 userImage.IsDeleted = true;
                 userImage.ModifiedByName = modifiedByName;
                 userImage.ModifiedTime = DateTime.Now;
-                var deletedUserImage = _unitOfWork.UserImageRepository.UpdateAsync(userImage);
+                await _unitOfWork.UserImageRepository.UpdateAsync(userImage);
                 var result = await _unitOfWork.SaveAsync();
                 var userImageDto = _mapper.Map<UserImageDto>(userImage);
                 if (result > 0)
@@ -138,17 +127,6 @@ public class UserImageManager:IUserImageService
         return new DataResult<UserImageDto>(ResultStatus.Error, Messages.NotFound, null);
     }
 
-    public async Task<IDataResult<UserImageDto>> GetAsync(int id)
-    {
-        var userImage = await _unitOfWork.UserImageRepository.GetAsync(x => x.Id == id && x.IsActive);
-        var userImageViewDto = _mapper.Map<UserImageDto>(userImage);
-        if (userImage != null)
-        {
-            return new DataResult<UserImageDto>(ResultStatus.Success,userImageViewDto);
-        }
-        return new DataResult<UserImageDto>(ResultStatus.Error, Messages.NotFound,userImageViewDto);
-    }
-    
     public async Task<IDataResult<UserImageDto>> GetProfilImageByUserIdAsync(int userId)
     {
         var userImage = await _unitOfWork.UserImageRepository.GetAsync(x => x.UserId == userId && x.IsActive && x.Profil);
@@ -166,17 +144,6 @@ public class UserImageManager:IUserImageService
         return new DataResult<int>(ResultStatus.Success, count);
     }
 
-    public async Task<IDataResult<IList<UserImageDto>>> GetAllAsync()
-    {
-        var userImages = await _unitOfWork.UserImageRepository.GetAllAsync();
-        var userImagesViewDtoList = _mapper.Map<IList<UserImageDto>>(userImages);
-        if (userImages.Count > -1)
-        {
-            return new DataResult<IList<UserImageDto>>(ResultStatus.Success,userImagesViewDtoList);
-        }
-        return new DataResult<IList<UserImageDto>>(ResultStatus.Error, Messages.NotFound,null);
-    }
-    
     public async Task<IDataResult<IList<UserImageDto>>> GetAllByUserIdAsync(int userId)
     {
         var userImages = await _unitOfWork.UserImageRepository.GetAllAsync(ui=>ui.UserId==userId && ui.IsActive);

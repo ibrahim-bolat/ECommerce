@@ -7,7 +7,7 @@ public static class GetEnumDescriptionExtensions
     public static string GetEnumDescription(this Enum enumValue)
     {
         var field = enumValue.GetType().GetField(enumValue.ToString());
-        if (Attribute.GetCustomAttribute(field, typeof(DescriptionAttribute)) is DescriptionAttribute attribute)
+        if (field != null && Attribute.GetCustomAttribute(field, typeof(DescriptionAttribute)) is DescriptionAttribute attribute)
         {
             return attribute.Description;
         }

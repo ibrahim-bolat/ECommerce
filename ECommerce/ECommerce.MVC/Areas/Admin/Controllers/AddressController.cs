@@ -96,7 +96,7 @@ public class AddressController : Controller
                 return View(addressDto);
             }
         }
-        return RedirectToAction("AllErrorPages", "ErrorPages", new { statusCode = 404 });
+        return RedirectToAction("AllErrorPages", "ErrorPages" ,new { area = "", statusCode = 404});
     }
     
     [HttpPost]
@@ -112,6 +112,6 @@ public class AddressController : Controller
             }
             return Json(new { success = false});
         }
-        return RedirectToAction("AllErrorPages", "ErrorPages", new { statusCode = 404 });
+        return RedirectToAction("AllErrorPages", "ErrorPages" ,new { area = "", statusCode = 404});
     }
 }

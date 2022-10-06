@@ -4,7 +4,6 @@ using ECommerce.Business.Abstract;
 using ECommerce.Business.Dtos.UserDtos;
 using ECommerce.Entities.Concrete.Identity.Entities;
 using ECommerce.Shared.Entities.Enums;
-using ECommerce.Helpers.MailHelper;
 using ECommerce.Shared.Models;
 using ECommerce.Shared.Service.Abtract;
 using ECommerce.Shared.Utilities.ComplexTypes;
@@ -196,21 +195,16 @@ public class AccountController : Controller
                 if (emailResponse)
                 {
                     ViewBag.State = true;
+                    return View();
                 }
-                else
-                {
-                    ViewBag.State = false;
-                }
-                ViewBag.State = true;
+                ViewBag.State = false;
+                return View();
             }
             ModelState.AddModelError("UserDeleted", "Bu E-posta ya sahip kullanıcı silindiği için bu işlemi yapamaz.");
             return View(model);
         }
-        else
-        {
-            ViewBag.State = false;
-        }
-        return View();
+        ModelState.AddModelError("NoUser", "Böyle bir E-posta ya sahip kullanıcı bulunmamaktadır.");
+        return View(model);
     }
 
     [AllowAnonymous]
@@ -226,7 +220,7 @@ public class AccountController : Controller
             if(result)
                 return View();
         }
-        return RedirectToAction("AllErrorPages", "ErrorPages" ,new { statusCode = 404});
+        return RedirectToAction("AllErrorPages", "ErrorPages" ,new { area = "", statusCode = 400});
     }
 
     [AllowAnonymous]
@@ -270,7 +264,7 @@ public class AccountController : Controller
                     return View(userDto);
                 }
             }
-            return RedirectToAction("AllErrorPages", "ErrorPages" ,new { statusCode = 404});
+            return RedirectToAction("AllErrorPages", "ErrorPages" ,new { area = "", statusCode = 404});
     }
 
         [HttpPost]
@@ -298,7 +292,7 @@ public class AccountController : Controller
                     }
                     else
                     {
-                        return RedirectToAction("AllErrorPages", "ErrorPages", new { statusCode = 404 });
+                        return RedirectToAction("AllErrorPages", "ErrorPages" ,new { area = "", statusCode = 404});
                     }
                 }
                 else
@@ -325,7 +319,7 @@ public class AccountController : Controller
                     }
                     else
                     {
-                        return RedirectToAction("AllErrorPages", "ErrorPages" ,new { statusCode = 404});
+                        return RedirectToAction("AllErrorPages", "ErrorPages" ,new { area = "", statusCode = 404});
                     }
                 }
                 result = await _userManager.SetUserNameAsync(user, model.UserName);
@@ -369,7 +363,7 @@ public class AccountController : Controller
                     return View(editPasswordDto);
                 }
             }
-            return RedirectToAction("AllErrorPages", "ErrorPages" ,new { statusCode = 404});
+            return RedirectToAction("AllErrorPages", "ErrorPages" ,new { area = "", statusCode = 404});
     }
     
     [HttpPost]
@@ -408,7 +402,7 @@ public class AccountController : Controller
                         "Bu E-posta ya sahip kullanıcı silindiği için bu işlemi yapamaz.");
                     return View(model);
                 }
-                return RedirectToAction("AllErrorPages", "ErrorPages" ,new { statusCode = 404});
+                return RedirectToAction("AllErrorPages", "ErrorPages" ,new { area = "", statusCode = 404});
         }
         return View(model);
     }
@@ -425,6 +419,6 @@ public class AccountController : Controller
                 return View(dresult.Data);
             }
         }
-        return RedirectToAction("AllErrorPages", "ErrorPages", new { statusCode = 404 });
+        return RedirectToAction("AllErrorPages", "ErrorPages" ,new { area = "", statusCode = 404});
     }
 }

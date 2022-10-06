@@ -1,4 +1,3 @@
-using System.Linq.Expressions;
 using AutoMapper;
 using ECommerce.Business.Abstract;
 using ECommerce.Business.Constants;
@@ -6,11 +5,9 @@ using ECommerce.Business.Dtos.AddressDtos;
 using ECommerce.DataAccess.Abstract;
 using ECommerce.DataAccess.Concrete.EfCore.Contexts;
 using ECommerce.Entities.Concrete;
-using ECommerce.Entities.Concrete.Identity.Entities;
 using ECommerce.Shared.Utilities.Abstract;
 using ECommerce.Shared.Utilities.ComplexTypes;
 using ECommerce.Shared.Utilities.Concrete;
-using Microsoft.EntityFrameworkCore;
 
 namespace ECommerce.Business.Concrete;
 
@@ -18,13 +15,11 @@ public class AddressManager : IAddressService
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
-    private readonly DataContext _dataContext;
 
     public AddressManager(IUnitOfWork unitOfWork, IMapper mapper, DataContext dataContext)
     {
         _unitOfWork = unitOfWork;
         _mapper = mapper;
-        _dataContext = dataContext;
     }
 
     public async Task<IResult> AddAsync(AddressDto addressDto, string createdByName)
@@ -119,7 +114,7 @@ public class AddressManager : IAddressService
                 }
                 else
                 {
-                        addresses[i] = _mapper.Map<AddressDto, Address>(addressDto, addresses[i]);
+                        addresses[i] = _mapper.Map(addressDto, addresses[i]);
                         addresses[i].DefaultAddress = true;
                         addresses[i].ModifiedByName = modifiedByName;
                         addresses[i].ModifiedTime = DateTime.Now;
@@ -132,7 +127,7 @@ public class AddressManager : IAddressService
             var address = await _unitOfWork.AddressRepository.GetAsync(x => x.Id == addressDto.Id);
             if (address != null)
             {
-                address = _mapper.Map<AddressDto, Address>(addressDto, address);
+                address = _mapper.Map(addressDto, address);
                 address.DefaultAddress = false;
                 address.ModifiedByName = modifiedByName;
                 address.ModifiedTime = DateTime.Now;
@@ -176,17 +171,5 @@ public class AddressManager : IAddressService
         }
 
         return new DataResult<AddressDto>(ResultStatus.Error, Messages.NotFound, null);
-    }
-
-    public async Task<IDataResult<IList<AddressDto>>> GetAllAsync()
-    {
-        var addresses = await _unitOfWork.AddressRepository.GetAllAsync();
-        var addressViewDtoList = _mapper.Map<IList<AddressDto>>(addresses);
-        if (addresses.Count > -1)
-        {
-            return new DataResult<IList<AddressDto>>(ResultStatus.Success, addressViewDtoList);
-        }
-
-        return new DataResult<IList<AddressDto>>(ResultStatus.Error, Messages.NotFound, null);
     }
 }
