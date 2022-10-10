@@ -140,6 +140,10 @@
       <_ContentIncludedByDefault Remove="Areas\Admin\Views\Shared\UserImage\Index.cshtml" />
       <_ContentIncludedByDefault Remove="Areas\Admin\Views\Shared\UserImage\UserImageAdd.cshtml" />
       <_ContentIncludedByDefault Remove="Areas\Admin\Views\Shared\Admin\PartialViews\_UserImageSelectProfilModalPartial.cshtml" />
+      <_ContentIncludedByDefault Remove="wwwroot\admin\images\userimages\1\1.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\admin\images\userimages\1\11.jpg" />
+      <_ContentIncludedByDefault Remove="wwwroot\admin\images\userimages\1\icon.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\admin\images\userimages\1\Url Dogulama.png" />
     </ItemGroup>
 
     <ItemGroup>
