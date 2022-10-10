@@ -149,7 +149,6 @@
     <ItemGroup>
       <Folder Include="Areas\Admin\Models\ViewModels\Account" />
       <Folder Include="Models\ViewModels" />
-      <Folder Include="wwwroot\admin\images\userimages" />
       <Folder Include="wwwroot\lib\fancybox\css" />
     </ItemGroup>
 

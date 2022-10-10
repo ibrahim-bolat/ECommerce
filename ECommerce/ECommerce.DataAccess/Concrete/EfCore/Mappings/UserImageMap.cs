@@ -20,10 +20,12 @@ namespace ECommerce.DataAccess.Concrete.EfCore.Mappings;
             {
                 Id = 1, 
                 ImageTitle = "ProfilResmi",
-                ImagePath ="/admin/images/userimages/profil.png",
+                ImagePath ="/admin/images/userimages/1/profil.jpg",
                 ImageAltText = "Profil",
                 Profil = true,
-                UserId =1
+                UserId =1,
+                IsActive = true,
+                IsDeleted = false
             });
         }
     }
