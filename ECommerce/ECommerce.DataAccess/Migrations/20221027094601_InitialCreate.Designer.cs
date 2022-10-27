@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ECommerce.DataAccess.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20221010122601_InitialCreate")]
+    [Migration("20221027094601_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -98,7 +98,7 @@ namespace ECommerce.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            AdDate = new DateTime(2022, 10, 10, 15, 26, 1, 410, DateTimeKind.Local).AddTicks(5017),
+                            AdDate = new DateTime(2022, 10, 27, 12, 46, 0, 994, DateTimeKind.Local).AddTicks(9867),
                             AdDetail = "ÇOK GÜZEL ARABA",
                             AdFromWho = "ByOwner",
                             AdNo = "123456789",
@@ -107,17 +107,17 @@ namespace ECommerce.DataAccess.Migrations
                             AdVehiclePrice = 350000.50m,
                             AdVehicleStatus = "FirstHand",
                             CreatedByName = "Admin",
-                            CreatedTime = new DateTime(2022, 10, 10, 15, 26, 1, 410, DateTimeKind.Local).AddTicks(4995),
+                            CreatedTime = new DateTime(2022, 10, 27, 12, 46, 0, 994, DateTimeKind.Local).AddTicks(9832),
                             DamageStatus = "Unspecified",
                             IsActive = false,
                             IsDeleted = false,
                             ModifiedByName = "Admin",
-                            ModifiedTime = new DateTime(2022, 10, 10, 15, 26, 1, 410, DateTimeKind.Local).AddTicks(5003)
+                            ModifiedTime = new DateTime(2022, 10, 27, 12, 46, 0, 994, DateTimeKind.Local).AddTicks(9846)
                         },
                         new
                         {
                             Id = 2,
-                            AdDate = new DateTime(2022, 10, 10, 15, 26, 1, 410, DateTimeKind.Local).AddTicks(5025),
+                            AdDate = new DateTime(2022, 10, 27, 12, 46, 0, 994, DateTimeKind.Local).AddTicks(9874),
                             AdDetail = "ÇOK GÜZEL ARABA",
                             AdFromWho = "ByOwner",
                             AdNo = "234567891",
@@ -126,17 +126,17 @@ namespace ECommerce.DataAccess.Migrations
                             AdVehiclePrice = 150000.7840m,
                             AdVehicleStatus = "SecondHand",
                             CreatedByName = "Admin",
-                            CreatedTime = new DateTime(2022, 10, 10, 15, 26, 1, 410, DateTimeKind.Local).AddTicks(5022),
+                            CreatedTime = new DateTime(2022, 10, 27, 12, 46, 0, 994, DateTimeKind.Local).AddTicks(9871),
                             DamageStatus = "HeavilyDamaged",
                             IsActive = false,
                             IsDeleted = false,
                             ModifiedByName = "Admin",
-                            ModifiedTime = new DateTime(2022, 10, 10, 15, 26, 1, 410, DateTimeKind.Local).AddTicks(5023)
+                            ModifiedTime = new DateTime(2022, 10, 27, 12, 46, 0, 994, DateTimeKind.Local).AddTicks(9872)
                         },
                         new
                         {
                             Id = 3,
-                            AdDate = new DateTime(2022, 10, 10, 15, 26, 1, 410, DateTimeKind.Local).AddTicks(5030),
+                            AdDate = new DateTime(2022, 10, 27, 12, 46, 0, 994, DateTimeKind.Local).AddTicks(9880),
                             AdDetail = "ÇOK GÜZEL ARABA",
                             AdFromWho = "FromAuthorizedDealer",
                             AdNo = "345678912",
@@ -145,17 +145,17 @@ namespace ECommerce.DataAccess.Migrations
                             AdVehiclePrice = 1000000.50m,
                             AdVehicleStatus = "ImportedFirstHand",
                             CreatedByName = "Admin",
-                            CreatedTime = new DateTime(2022, 10, 10, 15, 26, 1, 410, DateTimeKind.Local).AddTicks(5027),
+                            CreatedTime = new DateTime(2022, 10, 27, 12, 46, 0, 994, DateTimeKind.Local).AddTicks(9876),
                             DamageStatus = "Unspecified",
                             IsActive = false,
                             IsDeleted = false,
                             ModifiedByName = "Admin",
-                            ModifiedTime = new DateTime(2022, 10, 10, 15, 26, 1, 410, DateTimeKind.Local).AddTicks(5028)
+                            ModifiedTime = new DateTime(2022, 10, 27, 12, 46, 0, 994, DateTimeKind.Local).AddTicks(9877)
                         },
                         new
                         {
                             Id = 4,
-                            AdDate = new DateTime(2022, 10, 10, 15, 26, 1, 410, DateTimeKind.Local).AddTicks(5035),
+                            AdDate = new DateTime(2022, 10, 27, 12, 46, 0, 994, DateTimeKind.Local).AddTicks(9884),
                             AdDetail = "ÇOK GÜZEL ARABA",
                             AdFromWho = "FromTheGalery",
                             AdNo = "456789123",
@@ -164,12 +164,12 @@ namespace ECommerce.DataAccess.Migrations
                             AdVehiclePrice = 2500000.80m,
                             AdVehicleStatus = "FirstHand",
                             CreatedByName = "Admin",
-                            CreatedTime = new DateTime(2022, 10, 10, 15, 26, 1, 410, DateTimeKind.Local).AddTicks(5032),
+                            CreatedTime = new DateTime(2022, 10, 27, 12, 46, 0, 994, DateTimeKind.Local).AddTicks(9881),
                             DamageStatus = "WithoutDamageRegistration",
                             IsActive = false,
                             IsDeleted = false,
                             ModifiedByName = "Admin",
-                            ModifiedTime = new DateTime(2022, 10, 10, 15, 26, 1, 410, DateTimeKind.Local).AddTicks(5033)
+                            ModifiedTime = new DateTime(2022, 10, 27, 12, 46, 0, 994, DateTimeKind.Local).AddTicks(9882)
                         });
                 });
 
@@ -277,7 +277,7 @@ namespace ECommerce.DataAccess.Migrations
                             AddressType = "Home",
                             City = "Ankara",
                             CreatedByName = "Admin",
-                            CreatedTime = new DateTime(2022, 10, 10, 15, 26, 1, 408, DateTimeKind.Local).AddTicks(2367),
+                            CreatedTime = new DateTime(2022, 10, 27, 12, 46, 0, 992, DateTimeKind.Local).AddTicks(6140),
                             DefaultAddress = false,
                             District = "Yenimahalle",
                             Email = "bolatcan@email.com",
@@ -286,7 +286,7 @@ namespace ECommerce.DataAccess.Migrations
                             IsDeleted = false,
                             LastName = "BOL",
                             ModifiedByName = "Admin",
-                            ModifiedTime = new DateTime(2022, 10, 10, 15, 26, 1, 408, DateTimeKind.Local).AddTicks(2377),
+                            ModifiedTime = new DateTime(2022, 10, 27, 12, 46, 0, 992, DateTimeKind.Local).AddTicks(6153),
                             NeighborhoodOrVillage = "Naci Bekir",
                             PhoneNumber = "+90(532)5757966",
                             PostalCode = "06500",
@@ -300,7 +300,7 @@ namespace ECommerce.DataAccess.Migrations
                             AddressType = "Work",
                             City = "Ankara",
                             CreatedByName = "Admin",
-                            CreatedTime = new DateTime(2022, 10, 10, 15, 26, 1, 408, DateTimeKind.Local).AddTicks(2439),
+                            CreatedTime = new DateTime(2022, 10, 27, 12, 46, 0, 992, DateTimeKind.Local).AddTicks(6174),
                             DefaultAddress = true,
                             District = "Çankaya",
                             Email = "bolatcan@email.com",
@@ -309,7 +309,7 @@ namespace ECommerce.DataAccess.Migrations
                             IsDeleted = false,
                             LastName = "BOLAT",
                             ModifiedByName = "Admin",
-                            ModifiedTime = new DateTime(2022, 10, 10, 15, 26, 1, 408, DateTimeKind.Local).AddTicks(2440),
+                            ModifiedTime = new DateTime(2022, 10, 27, 12, 46, 0, 992, DateTimeKind.Local).AddTicks(6175),
                             NeighborhoodOrVillage = "Mustafa Kemal",
                             PhoneNumber = "+90(532)5757966",
                             PostalCode = "06100",
@@ -366,11 +366,11 @@ namespace ECommerce.DataAccess.Migrations
                         {
                             Id = 1,
                             CreatedByName = "Admin",
-                            CreatedTime = new DateTime(2022, 10, 10, 15, 26, 1, 410, DateTimeKind.Local).AddTicks(7556),
+                            CreatedTime = new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(2289),
                             IsActive = false,
                             IsDeleted = false,
                             ModifiedByName = "Admin",
-                            ModifiedTime = new DateTime(2022, 10, 10, 15, 26, 1, 410, DateTimeKind.Local).AddTicks(7562),
+                            ModifiedTime = new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(2295),
                             Name = "Wolkswagen",
                             SubCategoryId = 1
                         },
@@ -378,11 +378,11 @@ namespace ECommerce.DataAccess.Migrations
                         {
                             Id = 2,
                             CreatedByName = "Admin",
-                            CreatedTime = new DateTime(2022, 10, 10, 15, 26, 1, 410, DateTimeKind.Local).AddTicks(7572),
+                            CreatedTime = new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(2304),
                             IsActive = false,
                             IsDeleted = false,
                             ModifiedByName = "Admin",
-                            ModifiedTime = new DateTime(2022, 10, 10, 15, 26, 1, 410, DateTimeKind.Local).AddTicks(7573),
+                            ModifiedTime = new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(2305),
                             Name = "Honda",
                             SubCategoryId = 2
                         },
@@ -390,11 +390,11 @@ namespace ECommerce.DataAccess.Migrations
                         {
                             Id = 3,
                             CreatedByName = "Admin",
-                            CreatedTime = new DateTime(2022, 10, 10, 15, 26, 1, 410, DateTimeKind.Local).AddTicks(7575),
+                            CreatedTime = new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(2307),
                             IsActive = false,
                             IsDeleted = false,
                             ModifiedByName = "Admin",
-                            ModifiedTime = new DateTime(2022, 10, 10, 15, 26, 1, 410, DateTimeKind.Local).AddTicks(7576),
+                            ModifiedTime = new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(2308),
                             Name = "Fiat",
                             SubCategoryId = 3
                         },
@@ -402,11 +402,11 @@ namespace ECommerce.DataAccess.Migrations
                         {
                             Id = 4,
                             CreatedByName = "Admin",
-                            CreatedTime = new DateTime(2022, 10, 10, 15, 26, 1, 410, DateTimeKind.Local).AddTicks(7579),
+                            CreatedTime = new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(2310),
                             IsActive = false,
                             IsDeleted = false,
                             ModifiedByName = "Admin",
-                            ModifiedTime = new DateTime(2022, 10, 10, 15, 26, 1, 410, DateTimeKind.Local).AddTicks(7580),
+                            ModifiedTime = new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(2311),
                             Name = "Nissan",
                             SubCategoryId = 4
                         });
@@ -466,15 +466,15 @@ namespace ECommerce.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "1624cec8-9c31-44fd-b57a-49c5179b3d81",
+                            ConcurrencyStamp = "ea925c95-9514-4fd9-b1a3-56df8480aeb0",
                             CreatedByName = "Owner",
-                            CreatedTime = new DateTime(2022, 10, 10, 15, 26, 1, 402, DateTimeKind.Local).AddTicks(5700),
+                            CreatedTime = new DateTime(2022, 10, 27, 12, 46, 0, 986, DateTimeKind.Local).AddTicks(9416),
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByName = "Owner",
-                            ModifiedTime = new DateTime(2022, 10, 10, 15, 26, 1, 402, DateTimeKind.Local).AddTicks(5727),
+                            ModifiedTime = new DateTime(2022, 10, 27, 12, 46, 0, 986, DateTimeKind.Local).AddTicks(9442),
                             Name = "Admin",
-                            NormalizedName = "ADMİN"
+                            NormalizedName = "ADMIN"
                         });
                 });
 
@@ -592,9 +592,9 @@ namespace ECommerce.DataAccess.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e0e58118-48a9-4cee-956a-63992fed4822",
+                            ConcurrencyStamp = "5b5d7d52-86bd-4876-bc08-205e5768d986",
                             CreatedByName = "Owner",
-                            CreatedTime = new DateTime(2022, 10, 10, 15, 26, 1, 403, DateTimeKind.Local).AddTicks(1453),
+                            CreatedTime = new DateTime(2022, 10, 27, 12, 46, 0, 987, DateTimeKind.Local).AddTicks(4713),
                             Email = "bolat6606@hotmail.com",
                             EmailConfirmed = true,
                             FirstName = "İbrahim",
@@ -604,10 +604,10 @@ namespace ECommerce.DataAccess.Migrations
                             LastName = "Bolat",
                             LockoutEnabled = false,
                             ModifiedByName = "Owner",
-                            ModifiedTime = new DateTime(2022, 10, 10, 15, 26, 1, 403, DateTimeKind.Local).AddTicks(1460),
+                            ModifiedTime = new DateTime(2022, 10, 27, 12, 46, 0, 987, DateTimeKind.Local).AddTicks(4721),
                             NormalizedEmail = "BOLAT6606@HOTMAIL.COM",
                             NormalizedUserName = "BOLAT6606",
-                            PasswordHash = "AQAAAAEAACcQAAAAEI2rElx5hEB6Iw0rNSeC5fOG5RTflZN0C2xSiHbsJgvjxz6ceuc7j619nnkWVKPT5Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIfCVRzWR5n4v8mWrzHtqTFZQQHCLxToa8wZRikVvxJX8D4JhHeHjMXaYx2wJU5Btg==",
                             PhoneNumber = "+90(532)575-79-66",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "VVPCRDAS3MJWQD5CSW2GWPRADBXEZINA",
@@ -660,22 +660,22 @@ namespace ECommerce.DataAccess.Migrations
                         {
                             Id = 1,
                             CreatedByName = "Admin",
-                            CreatedTime = new DateTime(2022, 10, 10, 15, 26, 1, 410, DateTimeKind.Local).AddTicks(8866),
+                            CreatedTime = new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(3726),
                             IsActive = false,
                             IsDeleted = false,
                             ModifiedByName = "Admin",
-                            ModifiedTime = new DateTime(2022, 10, 10, 15, 26, 1, 410, DateTimeKind.Local).AddTicks(8872),
+                            ModifiedTime = new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(3731),
                             Name = "Araçlar"
                         },
                         new
                         {
                             Id = 2,
                             CreatedByName = "Admin",
-                            CreatedTime = new DateTime(2022, 10, 10, 15, 26, 1, 410, DateTimeKind.Local).AddTicks(8881),
+                            CreatedTime = new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(3743),
                             IsActive = false,
                             IsDeleted = false,
                             ModifiedByName = "Admin",
-                            ModifiedTime = new DateTime(2022, 10, 10, 15, 26, 1, 410, DateTimeKind.Local).AddTicks(8882),
+                            ModifiedTime = new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(3744),
                             Name = "Yedek Parçalar"
                         });
                 });
@@ -783,7 +783,7 @@ namespace ECommerce.DataAccess.Migrations
                             BodyType = "Hatchback5Door",
                             BrandId = 1,
                             CreatedByName = "Admin",
-                            CreatedTime = new DateTime(2022, 10, 10, 15, 26, 1, 411, DateTimeKind.Local).AddTicks(3017),
+                            CreatedTime = new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(7963),
                             EngineCapacity = "Cm13011600",
                             EnginePower = "Hp101125",
                             EngineType = "1.6 TDI",
@@ -797,7 +797,7 @@ namespace ECommerce.DataAccess.Migrations
                             ModelColour = "White",
                             ModelYear = 2015,
                             ModifiedByName = "Admin",
-                            ModifiedTime = new DateTime(2022, 10, 10, 15, 26, 1, 411, DateTimeKind.Local).AddTicks(3046),
+                            ModifiedTime = new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(7969),
                             Name = "Golf",
                             PlateNationality = "TurkeyPlate",
                             TractionType = "FrontDrive"
@@ -808,7 +808,7 @@ namespace ECommerce.DataAccess.Migrations
                             BodyType = "Hatchback5Door",
                             BrandId = 2,
                             CreatedByName = "Admin",
-                            CreatedTime = new DateTime(2022, 10, 10, 15, 26, 1, 411, DateTimeKind.Local).AddTicks(3090),
+                            CreatedTime = new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(7983),
                             EngineCapacity = "Cm13011600",
                             EnginePower = "Hp101125",
                             EngineType = "1.4 TSI",
@@ -822,7 +822,7 @@ namespace ECommerce.DataAccess.Migrations
                             ModelColour = "White",
                             ModelYear = 2015,
                             ModifiedByName = "Admin",
-                            ModifiedTime = new DateTime(2022, 10, 10, 15, 26, 1, 411, DateTimeKind.Local).AddTicks(3091),
+                            ModifiedTime = new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(7984),
                             Name = "City",
                             PlateNationality = "TurkeyPlate",
                             TractionType = "FrontDrive"
@@ -833,7 +833,7 @@ namespace ECommerce.DataAccess.Migrations
                             BodyType = "Hatchback5Door",
                             BrandId = 3,
                             CreatedByName = "Admin",
-                            CreatedTime = new DateTime(2022, 10, 10, 15, 26, 1, 411, DateTimeKind.Local).AddTicks(3119),
+                            CreatedTime = new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(7989),
                             EngineCapacity = "Cm13011600",
                             EnginePower = "Hp101125",
                             EngineType = "1.6 TDI",
@@ -847,7 +847,7 @@ namespace ECommerce.DataAccess.Migrations
                             ModelColour = "White",
                             ModelYear = 2015,
                             ModifiedByName = "Admin",
-                            ModifiedTime = new DateTime(2022, 10, 10, 15, 26, 1, 411, DateTimeKind.Local).AddTicks(3120),
+                            ModifiedTime = new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(7990),
                             Name = "Egea",
                             PlateNationality = "TurkeyPlate",
                             TractionType = "FrontDrive"
@@ -858,7 +858,7 @@ namespace ECommerce.DataAccess.Migrations
                             BodyType = "Hatchback5Door",
                             BrandId = 4,
                             CreatedByName = "Admin",
-                            CreatedTime = new DateTime(2022, 10, 10, 15, 26, 1, 411, DateTimeKind.Local).AddTicks(3130),
+                            CreatedTime = new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(7994),
                             EngineCapacity = "Cm13011600",
                             EnginePower = "Hp101125",
                             EngineType = "1.6 Düz",
@@ -872,7 +872,7 @@ namespace ECommerce.DataAccess.Migrations
                             ModelColour = "White",
                             ModelYear = 2015,
                             ModifiedByName = "Admin",
-                            ModifiedTime = new DateTime(2022, 10, 10, 15, 26, 1, 411, DateTimeKind.Local).AddTicks(3131),
+                            ModifiedTime = new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(7995),
                             Name = "Qashqai",
                             PlateNationality = "TurkeyPlate",
                             TractionType = "FrontDrive"
@@ -928,48 +928,48 @@ namespace ECommerce.DataAccess.Migrations
                         {
                             Id = 1,
                             CreatedByName = "Admin",
-                            CreatedTime = new DateTime(2022, 10, 10, 15, 26, 1, 411, DateTimeKind.Local).AddTicks(117),
+                            CreatedTime = new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(4902),
                             IsActive = false,
                             IsDeleted = false,
                             MainCategoryId = 1,
                             ModifiedByName = "Admin",
-                            ModifiedTime = new DateTime(2022, 10, 10, 15, 26, 1, 411, DateTimeKind.Local).AddTicks(123),
+                            ModifiedTime = new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(4907),
                             Name = "Otomobil"
                         },
                         new
                         {
                             Id = 2,
                             CreatedByName = "Admin",
-                            CreatedTime = new DateTime(2022, 10, 10, 15, 26, 1, 411, DateTimeKind.Local).AddTicks(131),
+                            CreatedTime = new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(4915),
                             IsActive = false,
                             IsDeleted = false,
                             MainCategoryId = 1,
                             ModifiedByName = "Admin",
-                            ModifiedTime = new DateTime(2022, 10, 10, 15, 26, 1, 411, DateTimeKind.Local).AddTicks(132),
+                            ModifiedTime = new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(4916),
                             Name = "Motorsiklet"
                         },
                         new
                         {
                             Id = 3,
                             CreatedByName = "Admin",
-                            CreatedTime = new DateTime(2022, 10, 10, 15, 26, 1, 411, DateTimeKind.Local).AddTicks(135),
+                            CreatedTime = new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(4918),
                             IsActive = false,
                             IsDeleted = false,
                             MainCategoryId = 1,
                             ModifiedByName = "Admin",
-                            ModifiedTime = new DateTime(2022, 10, 10, 15, 26, 1, 411, DateTimeKind.Local).AddTicks(136),
+                            ModifiedTime = new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(4919),
                             Name = "Minivan & Panelvan"
                         },
                         new
                         {
                             Id = 4,
                             CreatedByName = "Admin",
-                            CreatedTime = new DateTime(2022, 10, 10, 15, 26, 1, 411, DateTimeKind.Local).AddTicks(138),
+                            CreatedTime = new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(4922),
                             IsActive = false,
                             IsDeleted = false,
                             MainCategoryId = 1,
                             ModifiedByName = "Admin",
-                            ModifiedTime = new DateTime(2022, 10, 10, 15, 26, 1, 411, DateTimeKind.Local).AddTicks(139),
+                            ModifiedTime = new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(4923),
                             Name = "Arazi, SUV & Pickup"
                         });
                 });
@@ -1035,14 +1035,14 @@ namespace ECommerce.DataAccess.Migrations
                         {
                             Id = 1,
                             CreatedByName = "Admin",
-                            CreatedTime = new DateTime(2022, 10, 10, 15, 26, 1, 408, DateTimeKind.Local).AddTicks(3389),
+                            CreatedTime = new DateTime(2022, 10, 27, 12, 46, 0, 992, DateTimeKind.Local).AddTicks(7242),
                             ImageAltText = "Profil",
                             ImagePath = "/admin/images/userimages/1/profil.jpg",
                             ImageTitle = "ProfilResmi",
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByName = "Admin",
-                            ModifiedTime = new DateTime(2022, 10, 10, 15, 26, 1, 408, DateTimeKind.Local).AddTicks(3395),
+                            ModifiedTime = new DateTime(2022, 10, 27, 12, 46, 0, 992, DateTimeKind.Local).AddTicks(7247),
                             Profil = true,
                             UserId = 1
                         });
@@ -1117,12 +1117,12 @@ namespace ECommerce.DataAccess.Migrations
                             AddressTitle = "Evim",
                             City = "Ankara",
                             CreatedByName = "Admin",
-                            CreatedTime = new DateTime(2022, 10, 10, 15, 26, 1, 411, DateTimeKind.Local).AddTicks(4244),
+                            CreatedTime = new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(9084),
                             District = "Yenimahalle",
                             IsActive = false,
                             IsDeleted = false,
                             ModifiedByName = "Admin",
-                            ModifiedTime = new DateTime(2022, 10, 10, 15, 26, 1, 411, DateTimeKind.Local).AddTicks(4250),
+                            ModifiedTime = new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(9088),
                             NeighborhoodOrVillage = "Naci Bekir",
                             PostalCode = "06500"
                         },
@@ -1133,12 +1133,12 @@ namespace ECommerce.DataAccess.Migrations
                             AddressTitle = "Evim",
                             City = "Ankara",
                             CreatedByName = "Admin",
-                            CreatedTime = new DateTime(2022, 10, 10, 15, 26, 1, 411, DateTimeKind.Local).AddTicks(4258),
+                            CreatedTime = new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(9097),
                             District = "Yenimahalle",
                             IsActive = false,
                             IsDeleted = false,
                             ModifiedByName = "Admin",
-                            ModifiedTime = new DateTime(2022, 10, 10, 15, 26, 1, 411, DateTimeKind.Local).AddTicks(4259),
+                            ModifiedTime = new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(9098),
                             NeighborhoodOrVillage = "Naci Bekir",
                             PostalCode = "06500"
                         },
@@ -1149,12 +1149,12 @@ namespace ECommerce.DataAccess.Migrations
                             AddressTitle = "Evim",
                             City = "Ankara",
                             CreatedByName = "Admin",
-                            CreatedTime = new DateTime(2022, 10, 10, 15, 26, 1, 411, DateTimeKind.Local).AddTicks(4262),
+                            CreatedTime = new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(9101),
                             District = "Yenimahalle",
                             IsActive = false,
                             IsDeleted = false,
                             ModifiedByName = "Admin",
-                            ModifiedTime = new DateTime(2022, 10, 10, 15, 26, 1, 411, DateTimeKind.Local).AddTicks(4263),
+                            ModifiedTime = new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(9102),
                             NeighborhoodOrVillage = "Naci Bekir",
                             PostalCode = "06500"
                         },
@@ -1165,12 +1165,12 @@ namespace ECommerce.DataAccess.Migrations
                             AddressTitle = "Evim",
                             City = "Ankara",
                             CreatedByName = "Admin",
-                            CreatedTime = new DateTime(2022, 10, 10, 15, 26, 1, 411, DateTimeKind.Local).AddTicks(4265),
+                            CreatedTime = new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(9104),
                             District = "Yenimahalle",
                             IsActive = false,
                             IsDeleted = false,
                             ModifiedByName = "Admin",
-                            ModifiedTime = new DateTime(2022, 10, 10, 15, 26, 1, 411, DateTimeKind.Local).AddTicks(4266),
+                            ModifiedTime = new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(9105),
                             NeighborhoodOrVillage = "Naci Bekir",
                             PostalCode = "06500"
                         });
@@ -1235,56 +1235,56 @@ namespace ECommerce.DataAccess.Migrations
                             Id = 1,
                             AdId = 1,
                             CreatedByName = "Admin",
-                            CreatedTime = new DateTime(2022, 10, 10, 15, 26, 1, 411, DateTimeKind.Local).AddTicks(5300),
+                            CreatedTime = new DateTime(2022, 10, 27, 12, 46, 0, 996, DateTimeKind.Local).AddTicks(241),
                             ImageAltText = "Profil",
                             ImagePath = "/admin/images/userimages/profil.png",
                             ImageTitle = "ProfilResmi",
                             IsActive = false,
                             IsDeleted = false,
                             ModifiedByName = "Admin",
-                            ModifiedTime = new DateTime(2022, 10, 10, 15, 26, 1, 411, DateTimeKind.Local).AddTicks(5306)
+                            ModifiedTime = new DateTime(2022, 10, 27, 12, 46, 0, 996, DateTimeKind.Local).AddTicks(246)
                         },
                         new
                         {
                             Id = 2,
                             AdId = 2,
                             CreatedByName = "Admin",
-                            CreatedTime = new DateTime(2022, 10, 10, 15, 26, 1, 411, DateTimeKind.Local).AddTicks(5313),
+                            CreatedTime = new DateTime(2022, 10, 27, 12, 46, 0, 996, DateTimeKind.Local).AddTicks(254),
                             ImageAltText = "Profil",
                             ImagePath = "/admin/images/userimages/profil.png",
                             ImageTitle = "ProfilResmi",
                             IsActive = false,
                             IsDeleted = false,
                             ModifiedByName = "Admin",
-                            ModifiedTime = new DateTime(2022, 10, 10, 15, 26, 1, 411, DateTimeKind.Local).AddTicks(5314)
+                            ModifiedTime = new DateTime(2022, 10, 27, 12, 46, 0, 996, DateTimeKind.Local).AddTicks(255)
                         },
                         new
                         {
                             Id = 3,
                             AdId = 3,
                             CreatedByName = "Admin",
-                            CreatedTime = new DateTime(2022, 10, 10, 15, 26, 1, 411, DateTimeKind.Local).AddTicks(5317),
+                            CreatedTime = new DateTime(2022, 10, 27, 12, 46, 0, 996, DateTimeKind.Local).AddTicks(258),
                             ImageAltText = "Profil",
                             ImagePath = "/admin/images/userimages/profil.png",
                             ImageTitle = "ProfilResmi",
                             IsActive = false,
                             IsDeleted = false,
                             ModifiedByName = "Admin",
-                            ModifiedTime = new DateTime(2022, 10, 10, 15, 26, 1, 411, DateTimeKind.Local).AddTicks(5318)
+                            ModifiedTime = new DateTime(2022, 10, 27, 12, 46, 0, 996, DateTimeKind.Local).AddTicks(259)
                         },
                         new
                         {
                             Id = 4,
                             AdId = 4,
                             CreatedByName = "Admin",
-                            CreatedTime = new DateTime(2022, 10, 10, 15, 26, 1, 411, DateTimeKind.Local).AddTicks(5320),
+                            CreatedTime = new DateTime(2022, 10, 27, 12, 46, 0, 996, DateTimeKind.Local).AddTicks(261),
                             ImageAltText = "Profil",
                             ImagePath = "/admin/images/userimages/profil.png",
                             ImageTitle = "ProfilResmi",
                             IsActive = false,
                             IsDeleted = false,
                             ModifiedByName = "Admin",
-                            ModifiedTime = new DateTime(2022, 10, 10, 15, 26, 1, 411, DateTimeKind.Local).AddTicks(5321)
+                            ModifiedTime = new DateTime(2022, 10, 27, 12, 46, 0, 996, DateTimeKind.Local).AddTicks(262)
                         });
                 });
 
