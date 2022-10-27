@@ -38,19 +38,22 @@ namespace ECommerce.MVC.Areas.Admin.Controllers;
         [HttpPost]
         public async Task<IActionResult> CreateRole(RoleDto model, string id)
         {
-            IdentityResult result;
-            if (id != null)
+            if (ModelState.IsValid)
             {
-                AppRole role = await _roleManager.FindByIdAsync(id);
-                role.Name = model.Name;
-                result = await _roleManager.UpdateAsync(role);
-            }
-            else
-                result = await _roleManager.CreateAsync(new AppRole { Name = model.Name});
+                IdentityResult result;
+                if (id != null)
+                {
+                    AppRole role = await _roleManager.FindByIdAsync(id);
+                    role.Name = model.Name;
+                    result = await _roleManager.UpdateAsync(role);
+                }
+                else
+                    result = await _roleManager.CreateAsync(new AppRole { Name = model.Name });
 
-            if (result.Succeeded)
-            {
-                return RedirectToAction("Index", "Role" ,new {area="Admin"});
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Role", new { area = "Admin" });
+                }
             }
             return View();
         }

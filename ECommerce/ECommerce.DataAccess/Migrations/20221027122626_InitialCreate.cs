@@ -455,29 +455,29 @@ namespace ECommerce.DataAccess.Migrations
                 columns: new[] { "Id", "AdDate", "AdDetail", "AdFromWho", "AdNo", "AdSwapStatus", "AdTitle", "AdVehiclePrice", "AdVehicleStatus", "CreatedByName", "CreatedTime", "DamageStatus", "IsActive", "IsDeleted", "ModifiedByName", "ModifiedTime", "Note" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 10, 27, 12, 46, 0, 994, DateTimeKind.Local).AddTicks(9867), "ÇOK GÜZEL ARABA", "ByOwner", "123456789", "Yes", "Sahibinden Tertemiz Araba", 350000.50m, "FirstHand", "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 994, DateTimeKind.Local).AddTicks(9832), "Unspecified", false, false, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 994, DateTimeKind.Local).AddTicks(9846), null },
-                    { 2, new DateTime(2022, 10, 27, 12, 46, 0, 994, DateTimeKind.Local).AddTicks(9874), "ÇOK GÜZEL ARABA", "ByOwner", "234567891", "No", "Sahibinden Boyasız Araba", 150000.7840m, "SecondHand", "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 994, DateTimeKind.Local).AddTicks(9871), "HeavilyDamaged", false, false, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 994, DateTimeKind.Local).AddTicks(9872), null },
-                    { 3, new DateTime(2022, 10, 27, 12, 46, 0, 994, DateTimeKind.Local).AddTicks(9880), "ÇOK GÜZEL ARABA", "FromAuthorizedDealer", "345678912", "Yes", "İTHAL ARAÇ", 1000000.50m, "ImportedFirstHand", "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 994, DateTimeKind.Local).AddTicks(9876), "Unspecified", false, false, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 994, DateTimeKind.Local).AddTicks(9877), null },
-                    { 4, new DateTime(2022, 10, 27, 12, 46, 0, 994, DateTimeKind.Local).AddTicks(9884), "ÇOK GÜZEL ARABA", "FromTheGalery", "456789123", "No", "Galeriden Temiz Araç", 2500000.80m, "FirstHand", "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 994, DateTimeKind.Local).AddTicks(9881), "WithoutDamageRegistration", false, false, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 994, DateTimeKind.Local).AddTicks(9882), null }
+                    { 1, new DateTime(2022, 10, 27, 15, 26, 26, 232, DateTimeKind.Local).AddTicks(5756), "ÇOK GÜZEL ARABA", "ByOwner", "123456789", "Yes", "Sahibinden Tertemiz Araba", 350000.50m, "FirstHand", "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 232, DateTimeKind.Local).AddTicks(5738), "Unspecified", false, false, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 232, DateTimeKind.Local).AddTicks(5745), null },
+                    { 2, new DateTime(2022, 10, 27, 15, 26, 26, 232, DateTimeKind.Local).AddTicks(5763), "ÇOK GÜZEL ARABA", "ByOwner", "234567891", "No", "Sahibinden Boyasız Araba", 150000.7840m, "SecondHand", "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 232, DateTimeKind.Local).AddTicks(5760), "HeavilyDamaged", false, false, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 232, DateTimeKind.Local).AddTicks(5761), null },
+                    { 3, new DateTime(2022, 10, 27, 15, 26, 26, 232, DateTimeKind.Local).AddTicks(5768), "ÇOK GÜZEL ARABA", "FromAuthorizedDealer", "345678912", "Yes", "İTHAL ARAÇ", 1000000.50m, "ImportedFirstHand", "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 232, DateTimeKind.Local).AddTicks(5765), "Unspecified", false, false, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 232, DateTimeKind.Local).AddTicks(5766), null },
+                    { 4, new DateTime(2022, 10, 27, 15, 26, 26, 232, DateTimeKind.Local).AddTicks(5774), "ÇOK GÜZEL ARABA", "FromTheGalery", "456789123", "No", "Galeriden Temiz Araç", 2500000.80m, "FirstHand", "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 232, DateTimeKind.Local).AddTicks(5771), "WithoutDamageRegistration", false, false, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 232, DateTimeKind.Local).AddTicks(5772), null }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "CreatedByName", "CreatedTime", "IsActive", "IsDeleted", "ModifiedByName", "ModifiedTime", "Name", "NormalizedName", "Note" },
-                values: new object[] { 1, "ea925c95-9514-4fd9-b1a3-56df8480aeb0", "Owner", new DateTime(2022, 10, 27, 12, 46, 0, 986, DateTimeKind.Local).AddTicks(9416), true, false, "Owner", new DateTime(2022, 10, 27, 12, 46, 0, 986, DateTimeKind.Local).AddTicks(9442), "Admin", "ADMIN", null });
+                values: new object[] { 1, "7a8ebbbe-f7f3-4205-8082-b424819283b3", "Owner", new DateTime(2022, 10, 27, 15, 26, 26, 224, DateTimeKind.Local).AddTicks(7259), true, false, "Owner", new DateTime(2022, 10, 27, 15, 26, 26, 224, DateTimeKind.Local).AddTicks(7282), "Admin", "ADMIN", null });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreatedByName", "CreatedTime", "DateOfBirth", "Email", "EmailConfirmed", "FirstName", "GenderType", "IsActive", "IsDeleted", "LastName", "LockoutEnabled", "LockoutEnd", "ModifiedByName", "ModifiedTime", "NormalizedEmail", "NormalizedUserName", "Note", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserIdendityNo", "UserName" },
-                values: new object[] { 1, 0, "5b5d7d52-86bd-4876-bc08-205e5768d986", "Owner", new DateTime(2022, 10, 27, 12, 46, 0, 987, DateTimeKind.Local).AddTicks(4713), null, "bolat6606@hotmail.com", true, "İbrahim", "Unspecified", true, false, "Bolat", false, null, "Owner", new DateTime(2022, 10, 27, 12, 46, 0, 987, DateTimeKind.Local).AddTicks(4721), "BOLAT6606@HOTMAIL.COM", "BOLAT6606", null, "AQAAAAEAACcQAAAAEIfCVRzWR5n4v8mWrzHtqTFZQQHCLxToa8wZRikVvxJX8D4JhHeHjMXaYx2wJU5Btg==", "+90(532)575-79-66", false, "VVPCRDAS3MJWQD5CSW2GWPRADBXEZINA", false, null, "bolat6606" });
+                values: new object[] { 1, 0, "aad43044-3017-4a24-b31f-b5a66428b20b", "Owner", new DateTime(2022, 10, 27, 15, 26, 26, 225, DateTimeKind.Local).AddTicks(2573), null, "bolat6606@hotmail.com", true, "İbrahim", "Unspecified", true, false, "Bolat", false, null, "Owner", new DateTime(2022, 10, 27, 15, 26, 26, 225, DateTimeKind.Local).AddTicks(2580), "BOLAT6606@HOTMAIL.COM", "BOLAT6606", null, "AQAAAAEAACcQAAAAEMw7P7WAEhOmhvBP5pbrl2cGycZhfnw/6/oHevpQYWTwYloUpVG97llOcTd5f6UIgw==", "+90(532)575-79-66", false, "VVPCRDAS3MJWQD5CSW2GWPRADBXEZINA", false, null, "bolat6606" });
 
             migrationBuilder.InsertData(
                 table: "MainCategories",
                 columns: new[] { "Id", "CreatedByName", "CreatedTime", "IsActive", "IsDeleted", "ModifiedByName", "ModifiedTime", "Name", "Note" },
                 values: new object[,]
                 {
-                    { 1, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(3726), false, false, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(3731), "Araçlar", null },
-                    { 2, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(3743), false, false, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(3744), "Yedek Parçalar", null }
+                    { 1, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 232, DateTimeKind.Local).AddTicks(9509), false, false, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 232, DateTimeKind.Local).AddTicks(9515), "Araçlar", null },
+                    { 2, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 232, DateTimeKind.Local).AddTicks(9524), false, false, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 232, DateTimeKind.Local).AddTicks(9525), "Yedek Parçalar", null }
                 });
 
             migrationBuilder.InsertData(
@@ -485,8 +485,8 @@ namespace ECommerce.DataAccess.Migrations
                 columns: new[] { "Id", "AddressDetails", "AddressTitle", "AddressType", "City", "CreatedByName", "CreatedTime", "DefaultAddress", "District", "Email", "FirstName", "IsActive", "IsDeleted", "LastName", "ModifiedByName", "ModifiedTime", "NeighborhoodOrVillage", "Note", "PhoneNumber", "PostalCode", "UserId" },
                 values: new object[,]
                 {
-                    { 1, "Naci Bekir Mahallesi ,Atılım Cad. Ateş Sok. No:40/7 06500 Yenimahalle/Ankara/Türkiye", "Evim", "Home", "Ankara", "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 992, DateTimeKind.Local).AddTicks(6140), false, "Yenimahalle", "bolatcan@email.com", "ibo", false, false, "BOL", "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 992, DateTimeKind.Local).AddTicks(6153), "Naci Bekir", null, "+90(532)5757966", "06500", 1 },
-                    { 2, "Mustafa Kemal Mahallesi ,Eskişehir Yolu  Kütahya Sok. No:280/7 06500 Çankaya/Ankara/Türkiye", "İş", "Work", "Ankara", "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 992, DateTimeKind.Local).AddTicks(6174), true, "Çankaya", "bolatcan@email.com", "ibo", false, false, "BOLAT", "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 992, DateTimeKind.Local).AddTicks(6175), "Mustafa Kemal", null, "+90(532)5757966", "06100", 1 }
+                    { 1, "Naci Bekir Mahallesi ,Atılım Cad. Ateş Sok. No:40/7 06500 Yenimahalle/Ankara/Türkiye", "Evim", "Home", "Ankara", "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 230, DateTimeKind.Local).AddTicks(4570), false, "Yenimahalle", "bolatcan@email.com", "ibo", false, false, "BOL", "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 230, DateTimeKind.Local).AddTicks(4577), "Naci Bekir", null, "+90(532)5757966", "06500", 1 },
+                    { 2, "Mustafa Kemal Mahallesi ,Eskişehir Yolu  Kütahya Sok. No:280/7 06500 Çankaya/Ankara/Türkiye", "İş", "Work", "Ankara", "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 230, DateTimeKind.Local).AddTicks(4590), true, "Çankaya", "bolatcan@email.com", "ibo", false, false, "BOLAT", "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 230, DateTimeKind.Local).AddTicks(4591), "Mustafa Kemal", null, "+90(532)5757966", "06100", 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -499,26 +499,26 @@ namespace ECommerce.DataAccess.Migrations
                 columns: new[] { "Id", "CreatedByName", "CreatedTime", "IsActive", "IsDeleted", "MainCategoryId", "ModifiedByName", "ModifiedTime", "Name", "Note" },
                 values: new object[,]
                 {
-                    { 1, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(4902), false, false, 1, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(4907), "Otomobil", null },
-                    { 2, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(4915), false, false, 1, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(4916), "Motorsiklet", null },
-                    { 3, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(4918), false, false, 1, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(4919), "Minivan & Panelvan", null },
-                    { 4, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(4922), false, false, 1, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(4923), "Arazi, SUV & Pickup", null }
+                    { 1, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 233, DateTimeKind.Local).AddTicks(697), false, false, 1, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 233, DateTimeKind.Local).AddTicks(703), "Otomobil", null },
+                    { 2, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 233, DateTimeKind.Local).AddTicks(711), false, false, 1, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 233, DateTimeKind.Local).AddTicks(712), "Motorsiklet", null },
+                    { 3, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 233, DateTimeKind.Local).AddTicks(714), false, false, 1, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 233, DateTimeKind.Local).AddTicks(715), "Minivan & Panelvan", null },
+                    { 4, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 233, DateTimeKind.Local).AddTicks(717), false, false, 1, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 233, DateTimeKind.Local).AddTicks(718), "Arazi, SUV & Pickup", null }
                 });
 
             migrationBuilder.InsertData(
                 table: "UserImages",
                 columns: new[] { "Id", "CreatedByName", "CreatedTime", "ImageAltText", "ImagePath", "ImageTitle", "IsActive", "IsDeleted", "ModifiedByName", "ModifiedTime", "Note", "Profil", "UserId" },
-                values: new object[] { 1, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 992, DateTimeKind.Local).AddTicks(7242), "Profil", "/admin/images/userimages/1/profil.jpg", "ProfilResmi", true, false, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 992, DateTimeKind.Local).AddTicks(7247), null, true, 1 });
+                values: new object[] { 1, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 230, DateTimeKind.Local).AddTicks(5523), "Profil", "/admin/images/userimages/1/profil.jpg", "ProfilResmi", true, false, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 230, DateTimeKind.Local).AddTicks(5528), null, true, 1 });
 
             migrationBuilder.InsertData(
                 table: "VehicleAddresses",
                 columns: new[] { "Id", "AddressDetails", "AddressTitle", "City", "CreatedByName", "CreatedTime", "District", "IsActive", "IsDeleted", "ModifiedByName", "ModifiedTime", "NeighborhoodOrVillage", "Note", "PostalCode" },
                 values: new object[,]
                 {
-                    { 1, "Naci Bekir Mahallesi ,Atılım Cad. Ateş Sok. No:40/7 06500 Yenimahalle/Ankara/Türkiye", "Evim", "Ankara", "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(9084), "Yenimahalle", false, false, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(9088), "Naci Bekir", null, "06500" },
-                    { 2, "Naci Bekir Mahallesi ,Atılım Cad. Ateş Sok. No:40/7 06500 Yenimahalle/Ankara/Türkiye", "Evim", "Ankara", "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(9097), "Yenimahalle", false, false, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(9098), "Naci Bekir", null, "06500" },
-                    { 3, "Naci Bekir Mahallesi ,Atılım Cad. Ateş Sok. No:40/7 06500 Yenimahalle/Ankara/Türkiye", "Evim", "Ankara", "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(9101), "Yenimahalle", false, false, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(9102), "Naci Bekir", null, "06500" },
-                    { 4, "Naci Bekir Mahallesi ,Atılım Cad. Ateş Sok. No:40/7 06500 Yenimahalle/Ankara/Türkiye", "Evim", "Ankara", "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(9104), "Yenimahalle", false, false, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(9105), "Naci Bekir", null, "06500" }
+                    { 1, "Naci Bekir Mahallesi ,Atılım Cad. Ateş Sok. No:40/7 06500 Yenimahalle/Ankara/Türkiye", "Evim", "Ankara", "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 233, DateTimeKind.Local).AddTicks(4910), "Yenimahalle", false, false, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 233, DateTimeKind.Local).AddTicks(4915), "Naci Bekir", null, "06500" },
+                    { 2, "Naci Bekir Mahallesi ,Atılım Cad. Ateş Sok. No:40/7 06500 Yenimahalle/Ankara/Türkiye", "Evim", "Ankara", "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 233, DateTimeKind.Local).AddTicks(4922), "Yenimahalle", false, false, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 233, DateTimeKind.Local).AddTicks(4923), "Naci Bekir", null, "06500" },
+                    { 3, "Naci Bekir Mahallesi ,Atılım Cad. Ateş Sok. No:40/7 06500 Yenimahalle/Ankara/Türkiye", "Evim", "Ankara", "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 233, DateTimeKind.Local).AddTicks(4926), "Yenimahalle", false, false, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 233, DateTimeKind.Local).AddTicks(4927), "Naci Bekir", null, "06500" },
+                    { 4, "Naci Bekir Mahallesi ,Atılım Cad. Ateş Sok. No:40/7 06500 Yenimahalle/Ankara/Türkiye", "Evim", "Ankara", "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 233, DateTimeKind.Local).AddTicks(4929), "Yenimahalle", false, false, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 233, DateTimeKind.Local).AddTicks(4930), "Naci Bekir", null, "06500" }
                 });
 
             migrationBuilder.InsertData(
@@ -526,10 +526,10 @@ namespace ECommerce.DataAccess.Migrations
                 columns: new[] { "Id", "AdId", "CreatedByName", "CreatedTime", "ImageAltText", "ImagePath", "ImageTitle", "IsActive", "IsDeleted", "ModifiedByName", "ModifiedTime", "Note" },
                 values: new object[,]
                 {
-                    { 1, 1, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 996, DateTimeKind.Local).AddTicks(241), "Profil", "/admin/images/userimages/profil.png", "ProfilResmi", false, false, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 996, DateTimeKind.Local).AddTicks(246), null },
-                    { 2, 2, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 996, DateTimeKind.Local).AddTicks(254), "Profil", "/admin/images/userimages/profil.png", "ProfilResmi", false, false, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 996, DateTimeKind.Local).AddTicks(255), null },
-                    { 3, 3, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 996, DateTimeKind.Local).AddTicks(258), "Profil", "/admin/images/userimages/profil.png", "ProfilResmi", false, false, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 996, DateTimeKind.Local).AddTicks(259), null },
-                    { 4, 4, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 996, DateTimeKind.Local).AddTicks(261), "Profil", "/admin/images/userimages/profil.png", "ProfilResmi", false, false, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 996, DateTimeKind.Local).AddTicks(262), null }
+                    { 1, 1, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 233, DateTimeKind.Local).AddTicks(5947), "Profil", "/admin/images/userimages/profil.png", "ProfilResmi", false, false, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 233, DateTimeKind.Local).AddTicks(5952), null },
+                    { 2, 2, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 233, DateTimeKind.Local).AddTicks(5960), "Profil", "/admin/images/userimages/profil.png", "ProfilResmi", false, false, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 233, DateTimeKind.Local).AddTicks(5961), null },
+                    { 3, 3, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 233, DateTimeKind.Local).AddTicks(5964), "Profil", "/admin/images/userimages/profil.png", "ProfilResmi", false, false, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 233, DateTimeKind.Local).AddTicks(5965), null },
+                    { 4, 4, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 233, DateTimeKind.Local).AddTicks(5967), "Profil", "/admin/images/userimages/profil.png", "ProfilResmi", false, false, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 233, DateTimeKind.Local).AddTicks(5968), null }
                 });
 
             migrationBuilder.InsertData(
@@ -537,10 +537,10 @@ namespace ECommerce.DataAccess.Migrations
                 columns: new[] { "Id", "CreatedByName", "CreatedTime", "IsActive", "IsDeleted", "ModifiedByName", "ModifiedTime", "Name", "Note", "SubCategoryId" },
                 values: new object[,]
                 {
-                    { 1, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(2289), false, false, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(2295), "Wolkswagen", null, 1 },
-                    { 2, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(2304), false, false, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(2305), "Honda", null, 2 },
-                    { 3, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(2307), false, false, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(2308), "Fiat", null, 3 },
-                    { 4, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(2310), false, false, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(2311), "Nissan", null, 4 }
+                    { 1, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 232, DateTimeKind.Local).AddTicks(8143), false, false, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 232, DateTimeKind.Local).AddTicks(8149), "Wolkswagen", null, 1 },
+                    { 2, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 232, DateTimeKind.Local).AddTicks(8157), false, false, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 232, DateTimeKind.Local).AddTicks(8158), "Honda", null, 2 },
+                    { 3, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 232, DateTimeKind.Local).AddTicks(8160), false, false, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 232, DateTimeKind.Local).AddTicks(8161), "Fiat", null, 3 },
+                    { 4, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 232, DateTimeKind.Local).AddTicks(8163), false, false, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 232, DateTimeKind.Local).AddTicks(8164), "Nissan", null, 4 }
                 });
 
             migrationBuilder.InsertData(
@@ -548,10 +548,10 @@ namespace ECommerce.DataAccess.Migrations
                 columns: new[] { "Id", "BodyType", "BrandId", "CreatedByName", "CreatedTime", "EngineCapacity", "EnginePower", "EngineType", "EquipmentVariant", "FuelType", "GearType", "GuaranteeStatus", "IsActive", "IsDeleted", "Kilometer", "ModelColour", "ModelYear", "ModifiedByName", "ModifiedTime", "Name", "Note", "PlateNationality", "TractionType" },
                 values: new object[,]
                 {
-                    { 1, "Hatchback5Door", 1, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(7963), "Cm13011600", "Hp101125", "1.6 TDI", "Confortline", "Diesel", "Automatic", "No", false, false, 102000, "White", 2015, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(7969), "Golf", null, "TurkeyPlate", "FrontDrive" },
-                    { 2, "Hatchback5Door", 2, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(7983), "Cm13011600", "Hp101125", "1.4 TSI", "Confortline", "Diesel", "Automatic", "No", false, false, 102000, "White", 2015, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(7984), "City", null, "TurkeyPlate", "FrontDrive" },
-                    { 3, "Hatchback5Door", 3, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(7989), "Cm13011600", "Hp101125", "1.6 TDI", "Confortline", "Diesel", "Automatic", "No", false, false, 102000, "White", 2015, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(7990), "Egea", null, "TurkeyPlate", "FrontDrive" },
-                    { 4, "Hatchback5Door", 4, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(7994), "Cm13011600", "Hp101125", "1.6 Düz", "Confortline", "Diesel", "Automatic", "No", false, false, 102000, "White", 2015, "Admin", new DateTime(2022, 10, 27, 12, 46, 0, 995, DateTimeKind.Local).AddTicks(7995), "Qashqai", null, "TurkeyPlate", "FrontDrive" }
+                    { 1, "Hatchback5Door", 1, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 233, DateTimeKind.Local).AddTicks(3696), "Cm13011600", "Hp101125", "1.6 TDI", "Confortline", "Diesel", "Automatic", "No", false, false, 102000, "White", 2015, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 233, DateTimeKind.Local).AddTicks(3702), "Golf", null, "TurkeyPlate", "FrontDrive" },
+                    { 2, "Hatchback5Door", 2, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 233, DateTimeKind.Local).AddTicks(3717), "Cm13011600", "Hp101125", "1.4 TSI", "Confortline", "Diesel", "Automatic", "No", false, false, 102000, "White", 2015, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 233, DateTimeKind.Local).AddTicks(3718), "City", null, "TurkeyPlate", "FrontDrive" },
+                    { 3, "Hatchback5Door", 3, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 233, DateTimeKind.Local).AddTicks(3723), "Cm13011600", "Hp101125", "1.6 TDI", "Confortline", "Diesel", "Automatic", "No", false, false, 102000, "White", 2015, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 233, DateTimeKind.Local).AddTicks(3724), "Egea", null, "TurkeyPlate", "FrontDrive" },
+                    { 4, "Hatchback5Door", 4, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 233, DateTimeKind.Local).AddTicks(3728), "Cm13011600", "Hp101125", "1.6 Düz", "Confortline", "Diesel", "Automatic", "No", false, false, 102000, "White", 2015, "Admin", new DateTime(2022, 10, 27, 15, 26, 26, 233, DateTimeKind.Local).AddTicks(3729), "Qashqai", null, "TurkeyPlate", "FrontDrive" }
                 });
 
             migrationBuilder.CreateIndex(
